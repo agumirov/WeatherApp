@@ -19,5 +19,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Asap-Thin.ttf</string>
+		<string>Asap-Bold.ttf</string>
+		<string>Asap-Medium.ttf</string>
+	</array>
 </dict>
 </plist>

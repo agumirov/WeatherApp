@@ -12,6 +12,159 @@
 		C636E3492A10240B00BE18DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3482A10240B00BE18DB /* SceneDelegate.swift */; };
 		C636E3502A10240C00BE18DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C636E34F2A10240C00BE18DB /* Assets.xcassets */; };
 		C636E3532A10240C00BE18DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636E3512A10240C00BE18DB /* LaunchScreen.storyboard */; };
+		C636E41B2A10255700BE18DB /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E35F2A10255600BE18DB /* WeatherViewModel.swift */; };
+		C636E41C2A10255700BE18DB /* WeatherViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3602A10255600BE18DB /* WeatherViewModelImpl.swift */; };
+		C636E41D2A10255700BE18DB /* WeekDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3622A10255600BE18DB /* WeekDayView.swift */; };
+		C636E41E2A10255700BE18DB /* TemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3632A10255600BE18DB /* TemperatureView.swift */; };
+		C636E41F2A10255700BE18DB /* FiveDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3642A10255600BE18DB /* FiveDaysView.swift */; };
+		C636E4202A10255700BE18DB /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3662A10255600BE18DB /* WeatherViewController.swift */; };
+		C636E4212A10255700BE18DB /* WeatherErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3682A10255600BE18DB /* WeatherErrorView.swift */; };
+		C636E4222A10255700BE18DB /* WeatherSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3692A10255600BE18DB /* WeatherSuccessView.swift */; };
+		C636E4232A10255700BE18DB /* WeatherViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E36A2A10255600BE18DB /* WeatherViewContainer.swift */; };
+		C636E4242A10255700BE18DB /* WeatherModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E36C2A10255600BE18DB /* WeatherModuleBuilder.swift */; };
+		C636E4252A10255700BE18DB /* SearchViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E36F2A10255600BE18DB /* SearchViewModelImpl.swift */; };
+		C636E4262A10255700BE18DB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3702A10255600BE18DB /* SearchViewModel.swift */; };
+		C636E4272A10255700BE18DB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3722A10255600BE18DB /* SearchView.swift */; };
+		C636E4282A10255700BE18DB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3742A10255600BE18DB /* SearchViewController.swift */; };
+		C636E4292A10255700BE18DB /* SearchLoadedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3762A10255600BE18DB /* SearchLoadedView.swift */; };
+		C636E42A2A10255700BE18DB /* SearchViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3772A10255600BE18DB /* SearchViewContainer.swift */; };
+		C636E42B2A10255700BE18DB /* SearchErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3782A10255600BE18DB /* SearchErrorView.swift */; };
+		C636E42C2A10255700BE18DB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E37A2A10255600BE18DB /* CollectionViewCell.swift */; };
+		C636E42D2A10255700BE18DB /* SearchModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E37C2A10255600BE18DB /* SearchModuleBuilder.swift */; };
+		C636E42E2A10255700BE18DB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E37E2A10255700BE18DB /* AppCoordinator.swift */; };
+		C636E42F2A10255700BE18DB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E37F2A10255700BE18DB /* ViewModel.swift */; };
+		C636E4302A10255700BE18DB /* ErrorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3812A10255700BE18DB /* ErrorScreen.swift */; };
+		C636E4312A10255700BE18DB /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3822A10255700BE18DB /* AboutScreen.swift */; };
+		C636E4322A10255700BE18DB /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3832A10255700BE18DB /* LoadingScreen.swift */; };
+		C636E4332A10255700BE18DB /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3842A10255700BE18DB /* AppNavigation.swift */; };
+		C636E4342A10255700BE18DB /* WeatherRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3882A10255700BE18DB /* WeatherRepositoryImpl.swift */; };
+		C636E4352A10255700BE18DB /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3892A10255700BE18DB /* WeatherRepository.swift */; };
+		C636E4362A10255700BE18DB /* GeoRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E38B2A10255700BE18DB /* GeoRepositoryImpl.swift */; };
+		C636E4372A10255700BE18DB /* GeoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E38C2A10255700BE18DB /* GeoRepository.swift */; };
+		C636E4382A10255700BE18DB /* GeoModelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E38F2A10255700BE18DB /* GeoModelAPI.swift */; };
+		C636E4392A10255700BE18DB /* WeatherModelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3902A10255700BE18DB /* WeatherModelAPI.swift */; };
+		C636E43A2A10255700BE18DB /* WeatherModelDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3922A10255700BE18DB /* WeatherModelDomain.swift */; };
+		C636E43B2A10255700BE18DB /* GeoModelDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3932A10255700BE18DB /* GeoModelDomain.swift */; };
+		C636E43C2A10255700BE18DB /* WeekDayModelDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3942A10255700BE18DB /* WeekDayModelDomain.swift */; };
+		C636E43D2A10255700BE18DB /* NetworkServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3972A10255700BE18DB /* NetworkServiceImplementation.swift */; };
+		C636E43E2A10255700BE18DB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3982A10255700BE18DB /* NetworkService.swift */; };
+		C636E43F2A10255700BE18DB /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E39A2A10255700BE18DB /* Encoder.swift */; };
+		C636E4402A10255700BE18DB /* URLEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E39B2A10255700BE18DB /* URLEncoder.swift */; };
+		C636E4412A10255700BE18DB /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E39D2A10255700BE18DB /* RequestConfig.swift */; };
+		C636E4422A10255700BE18DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E39E2A10255700BE18DB /* HTTPMethod.swift */; };
+		C636E4432A10255700BE18DB /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E39F2A10255700BE18DB /* APIKey.swift */; };
+		C636E4442A10255700BE18DB /* GeoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3A02A10255700BE18DB /* GeoRequest.swift */; };
+		C636E4452A10255700BE18DB /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3A12A10255700BE18DB /* WeatherRequest.swift */; };
+		C636E4462A10255700BE18DB /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3A22A10255700BE18DB /* RequestType.swift */; };
+		C636E4472A10255700BE18DB /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3A42A10255700BE18DB /* RequestBuilder.swift */; };
+		C636E4482A10255700BE18DB /* FlowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3A72A10255700BE18DB /* FlowFactory.swift */; };
+		C636E4492A10255700BE18DB /* FlowFactoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3A82A10255700BE18DB /* FlowFactoryImplementation.swift */; };
+		C636E44A2A10255700BE18DB /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3AA2A10255700BE18DB /* MainFlowCoordinator.swift */; };
+		C636E44B2A10255700BE18DB /* MainFlowCoordinatorImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3AB2A10255700BE18DB /* MainFlowCoordinatorImplementation.swift */; };
+		C636E44C2A10255700BE18DB /* MainFlowNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3AC2A10255700BE18DB /* MainFlowNavigation.swift */; };
+		C636E44D2A10255700BE18DB /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3AE2A10255700BE18DB /* ImageCache.swift */; };
+		C636E44E2A10255700BE18DB /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B02A10255700BE18DB /* UIImageView + Extension.swift */; };
+		C636E44F2A10255700BE18DB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B12A10255700BE18DB /* UIColor+Extension.swift */; };
+		C636E4502A10255700BE18DB /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B22A10255700BE18DB /* UIViewController+Extension.swift */; };
+		C636E4512A10255700BE18DB /* UIView+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B32A10255700BE18DB /* UIView+ Extension.swift */; };
+		C636E4522A10255700BE18DB /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B42A10255700BE18DB /* Experiment.swift */; };
+		C636E4532A10255700BE18DB /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B52A10255700BE18DB /* Resources.swift */; };
+		C636E4542A10255800BE18DB /* Asap-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3B82A10255700BE18DB /* Asap-VariableFont_wdth,wght.ttf */; };
+		C636E4552A10255800BE18DB /* Asap_SemiCondensed-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3BA2A10255700BE18DB /* Asap_SemiCondensed-MediumItalic.ttf */; };
+		C636E4562A10255800BE18DB /* Asap-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3BB2A10255700BE18DB /* Asap-ExtraLight.ttf */; };
+		C636E4572A10255800BE18DB /* Asap_SemiCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3BC2A10255700BE18DB /* Asap_SemiCondensed-Italic.ttf */; };
+		C636E4582A10255800BE18DB /* Asap-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3BD2A10255700BE18DB /* Asap-ThinItalic.ttf */; };
+		C636E4592A10255800BE18DB /* Asap_Expanded-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3BE2A10255700BE18DB /* Asap_Expanded-Light.ttf */; };
+		C636E45A2A10255800BE18DB /* Asap-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3BF2A10255700BE18DB /* Asap-Thin.ttf */; };
+		C636E45B2A10255800BE18DB /* Asap_Condensed-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C02A10255700BE18DB /* Asap_Condensed-BlackItalic.ttf */; };
+		C636E45C2A10255800BE18DB /* Asap-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C12A10255700BE18DB /* Asap-ExtraBold.ttf */; };
+		C636E45D2A10255800BE18DB /* Asap_SemiExpanded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C22A10255700BE18DB /* Asap_SemiExpanded-SemiBold.ttf */; };
+		C636E45E2A10255800BE18DB /* Asap-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C32A10255700BE18DB /* Asap-BoldItalic.ttf */; };
+		C636E45F2A10255800BE18DB /* Asap_Condensed-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C42A10255700BE18DB /* Asap_Condensed-MediumItalic.ttf */; };
+		C636E4602A10255800BE18DB /* Asap-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C52A10255700BE18DB /* Asap-MediumItalic.ttf */; };
+		C636E4612A10255800BE18DB /* Asap_SemiExpanded-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C62A10255700BE18DB /* Asap_SemiExpanded-ExtraBold.ttf */; };
+		C636E4622A10255800BE18DB /* Asap_SemiCondensed-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C72A10255700BE18DB /* Asap_SemiCondensed-ExtraLightItalic.ttf */; };
+		C636E4632A10255800BE18DB /* Asap_Condensed-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C82A10255700BE18DB /* Asap_Condensed-ThinItalic.ttf */; };
+		C636E4642A10255800BE18DB /* Asap_SemiExpanded-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3C92A10255700BE18DB /* Asap_SemiExpanded-MediumItalic.ttf */; };
+		C636E4652A10255800BE18DB /* Asap-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3CA2A10255700BE18DB /* Asap-BlackItalic.ttf */; };
+		C636E4662A10255800BE18DB /* Asap_Condensed-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3CB2A10255700BE18DB /* Asap_Condensed-ExtraLight.ttf */; };
+		C636E4672A10255800BE18DB /* Asap_Expanded-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3CC2A10255700BE18DB /* Asap_Expanded-LightItalic.ttf */; };
+		C636E4682A10255800BE18DB /* Asap_Expanded-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3CD2A10255700BE18DB /* Asap_Expanded-Italic.ttf */; };
+		C636E4692A10255800BE18DB /* Asap-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3CE2A10255700BE18DB /* Asap-Medium.ttf */; };
+		C636E46A2A10255800BE18DB /* Asap-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3CF2A10255700BE18DB /* Asap-Bold.ttf */; };
+		C636E46B2A10255800BE18DB /* Asap_SemiExpanded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D02A10255700BE18DB /* Asap_SemiExpanded-Regular.ttf */; };
+		C636E46C2A10255800BE18DB /* Asap_Condensed-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D12A10255700BE18DB /* Asap_Condensed-BoldItalic.ttf */; };
+		C636E46D2A10255800BE18DB /* Asap_Condensed-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D22A10255700BE18DB /* Asap_Condensed-Black.ttf */; };
+		C636E46E2A10255800BE18DB /* Asap_SemiCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D32A10255700BE18DB /* Asap_SemiCondensed-Regular.ttf */; };
+		C636E46F2A10255800BE18DB /* Asap_SemiExpanded-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D42A10255700BE18DB /* Asap_SemiExpanded-ExtraLightItalic.ttf */; };
+		C636E4702A10255800BE18DB /* Asap_Condensed-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D52A10255700BE18DB /* Asap_Condensed-SemiBoldItalic.ttf */; };
+		C636E4712A10255800BE18DB /* Asap_Expanded-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D62A10255700BE18DB /* Asap_Expanded-ExtraBold.ttf */; };
+		C636E4722A10255800BE18DB /* Asap_Expanded-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D72A10255700BE18DB /* Asap_Expanded-BoldItalic.ttf */; };
+		C636E4732A10255800BE18DB /* Asap-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D82A10255700BE18DB /* Asap-LightItalic.ttf */; };
+		C636E4742A10255800BE18DB /* Asap-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3D92A10255700BE18DB /* Asap-ExtraLightItalic.ttf */; };
+		C636E4752A10255800BE18DB /* Asap_SemiCondensed-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3DA2A10255700BE18DB /* Asap_SemiCondensed-Black.ttf */; };
+		C636E4762A10255800BE18DB /* Asap_Expanded-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3DB2A10255700BE18DB /* Asap_Expanded-ExtraLight.ttf */; };
+		C636E4772A10255800BE18DB /* Asap_Expanded-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3DC2A10255700BE18DB /* Asap_Expanded-BlackItalic.ttf */; };
+		C636E4782A10255800BE18DB /* Asap_Expanded-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3DD2A10255700BE18DB /* Asap_Expanded-Thin.ttf */; };
+		C636E4792A10255800BE18DB /* Asap_Expanded-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3DE2A10255700BE18DB /* Asap_Expanded-ThinItalic.ttf */; };
+		C636E47A2A10255800BE18DB /* Asap_Expanded-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3DF2A10255700BE18DB /* Asap_Expanded-SemiBoldItalic.ttf */; };
+		C636E47B2A10255800BE18DB /* Asap_SemiExpanded-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E02A10255700BE18DB /* Asap_SemiExpanded-Italic.ttf */; };
+		C636E47C2A10255800BE18DB /* Asap_Condensed-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E12A10255700BE18DB /* Asap_Condensed-Medium.ttf */; };
+		C636E47D2A10255800BE18DB /* Asap-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E22A10255700BE18DB /* Asap-SemiBoldItalic.ttf */; };
+		C636E47E2A10255800BE18DB /* Asap_SemiCondensed-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E32A10255700BE18DB /* Asap_SemiCondensed-ExtraBold.ttf */; };
+		C636E47F2A10255800BE18DB /* Asap_SemiExpanded-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E42A10255700BE18DB /* Asap_SemiExpanded-ExtraBoldItalic.ttf */; };
+		C636E4802A10255800BE18DB /* Asap_Expanded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E52A10255700BE18DB /* Asap_Expanded-Bold.ttf */; };
+		C636E4812A10255800BE18DB /* Asap_Condensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E62A10255700BE18DB /* Asap_Condensed-LightItalic.ttf */; };
+		C636E4822A10255800BE18DB /* Asap_SemiCondensed-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E72A10255700BE18DB /* Asap_SemiCondensed-ExtraBoldItalic.ttf */; };
+		C636E4832A10255800BE18DB /* Asap-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E82A10255700BE18DB /* Asap-Regular.ttf */; };
+		C636E4842A10255800BE18DB /* Asap-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3E92A10255700BE18DB /* Asap-SemiBold.ttf */; };
+		C636E4852A10255800BE18DB /* Asap_SemiExpanded-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3EA2A10255700BE18DB /* Asap_SemiExpanded-Light.ttf */; };
+		C636E4862A10255800BE18DB /* Asap-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3EB2A10255700BE18DB /* Asap-Black.ttf */; };
+		C636E4872A10255800BE18DB /* Asap-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3EC2A10255700BE18DB /* Asap-ExtraBoldItalic.ttf */; };
+		C636E4882A10255800BE18DB /* Asap_SemiCondensed-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3ED2A10255700BE18DB /* Asap_SemiCondensed-ThinItalic.ttf */; };
+		C636E4892A10255800BE18DB /* Asap_Expanded-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3EE2A10255700BE18DB /* Asap_Expanded-SemiBold.ttf */; };
+		C636E48A2A10255800BE18DB /* Asap_SemiCondensed-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3EF2A10255700BE18DB /* Asap_SemiCondensed-SemiBoldItalic.ttf */; };
+		C636E48B2A10255800BE18DB /* Asap_Condensed-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F02A10255700BE18DB /* Asap_Condensed-ExtraLightItalic.ttf */; };
+		C636E48C2A10255800BE18DB /* Asap_SemiExpanded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F12A10255700BE18DB /* Asap_SemiExpanded-Medium.ttf */; };
+		C636E48D2A10255800BE18DB /* Asap_Condensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F22A10255700BE18DB /* Asap_Condensed-Italic.ttf */; };
+		C636E48E2A10255800BE18DB /* Asap_SemiCondensed-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F32A10255700BE18DB /* Asap_SemiCondensed-ExtraLight.ttf */; };
+		C636E48F2A10255800BE18DB /* Asap_SemiCondensed-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F42A10255700BE18DB /* Asap_SemiCondensed-BlackItalic.ttf */; };
+		C636E4902A10255800BE18DB /* Asap_SemiExpanded-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F52A10255700BE18DB /* Asap_SemiExpanded-LightItalic.ttf */; };
+		C636E4912A10255800BE18DB /* Asap_SemiExpanded-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F62A10255700BE18DB /* Asap_SemiExpanded-Black.ttf */; };
+		C636E4922A10255800BE18DB /* Asap-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F72A10255700BE18DB /* Asap-Light.ttf */; };
+		C636E4932A10255800BE18DB /* Asap_SemiCondensed-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F82A10255700BE18DB /* Asap_SemiCondensed-BoldItalic.ttf */; };
+		C636E4942A10255800BE18DB /* Asap_SemiCondensed-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3F92A10255700BE18DB /* Asap_SemiCondensed-SemiBold.ttf */; };
+		C636E4952A10255800BE18DB /* Asap_SemiExpanded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3FA2A10255700BE18DB /* Asap_SemiExpanded-Bold.ttf */; };
+		C636E4962A10255800BE18DB /* Asap_Condensed-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3FB2A10255700BE18DB /* Asap_Condensed-Thin.ttf */; };
+		C636E4972A10255800BE18DB /* Asap_Condensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3FC2A10255700BE18DB /* Asap_Condensed-Bold.ttf */; };
+		C636E4982A10255800BE18DB /* Asap_SemiExpanded-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3FD2A10255700BE18DB /* Asap_SemiExpanded-Thin.ttf */; };
+		C636E4992A10255800BE18DB /* Asap_Expanded-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3FE2A10255700BE18DB /* Asap_Expanded-MediumItalic.ttf */; };
+		C636E49A2A10255800BE18DB /* Asap_SemiExpanded-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3FF2A10255700BE18DB /* Asap_SemiExpanded-BoldItalic.ttf */; };
+		C636E49B2A10255800BE18DB /* Asap_Condensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4002A10255700BE18DB /* Asap_Condensed-Regular.ttf */; };
+		C636E49C2A10255800BE18DB /* Asap_SemiExpanded-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4012A10255700BE18DB /* Asap_SemiExpanded-ThinItalic.ttf */; };
+		C636E49D2A10255800BE18DB /* Asap_Condensed-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4022A10255700BE18DB /* Asap_Condensed-ExtraBold.ttf */; };
+		C636E49E2A10255800BE18DB /* Asap_Expanded-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4032A10255700BE18DB /* Asap_Expanded-Regular.ttf */; };
+		C636E49F2A10255800BE18DB /* Asap_SemiCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4042A10255700BE18DB /* Asap_SemiCondensed-Light.ttf */; };
+		C636E4A02A10255800BE18DB /* Asap_SemiExpanded-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4052A10255700BE18DB /* Asap_SemiExpanded-ExtraLight.ttf */; };
+		C636E4A12A10255800BE18DB /* Asap_Condensed-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4062A10255700BE18DB /* Asap_Condensed-ExtraBoldItalic.ttf */; };
+		C636E4A22A10255800BE18DB /* Asap_Condensed-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4072A10255700BE18DB /* Asap_Condensed-SemiBold.ttf */; };
+		C636E4A32A10255800BE18DB /* Asap_SemiCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4082A10255700BE18DB /* Asap_SemiCondensed-Bold.ttf */; };
+		C636E4A42A10255800BE18DB /* Asap_SemiCondensed-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4092A10255700BE18DB /* Asap_SemiCondensed-Medium.ttf */; };
+		C636E4A52A10255800BE18DB /* Asap_Condensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E40A2A10255700BE18DB /* Asap_Condensed-Light.ttf */; };
+		C636E4A62A10255800BE18DB /* Asap_Expanded-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E40B2A10255700BE18DB /* Asap_Expanded-ExtraBoldItalic.ttf */; };
+		C636E4A72A10255800BE18DB /* Asap_Expanded-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E40C2A10255700BE18DB /* Asap_Expanded-Black.ttf */; };
+		C636E4A82A10255800BE18DB /* Asap_Expanded-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E40D2A10255700BE18DB /* Asap_Expanded-Medium.ttf */; };
+		C636E4A92A10255800BE18DB /* Asap-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E40E2A10255700BE18DB /* Asap-Italic.ttf */; };
+		C636E4AA2A10255800BE18DB /* Asap_SemiCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E40F2A10255700BE18DB /* Asap_SemiCondensed-LightItalic.ttf */; };
+		C636E4AB2A10255800BE18DB /* Asap_Expanded-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4102A10255700BE18DB /* Asap_Expanded-ExtraLightItalic.ttf */; };
+		C636E4AC2A10255800BE18DB /* Asap_SemiCondensed-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4112A10255700BE18DB /* Asap_SemiCondensed-Thin.ttf */; };
+		C636E4AD2A10255800BE18DB /* Asap_SemiExpanded-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4122A10255700BE18DB /* Asap_SemiExpanded-BlackItalic.ttf */; };
+		C636E4AE2A10255800BE18DB /* Asap_SemiExpanded-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4132A10255700BE18DB /* Asap_SemiExpanded-SemiBoldItalic.ttf */; };
+		C636E4AF2A10255800BE18DB /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = C636E4142A10255700BE18DB /* OFL.txt */; };
+		C636E4B02A10255800BE18DB /* Asap-Italic-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E4152A10255700BE18DB /* Asap-Italic-VariableFont_wdth,wght.ttf */; };
+		C636E4B12A10255800BE18DB /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C636E4162A10255700BE18DB /* README.txt */; };
+		C636E4B22A10255800BE18DB /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E4182A10255700BE18DB /* CustomLabel.swift */; };
+		C636E4B32A10255800BE18DB /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E41A2A10255700BE18DB /* DIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +177,159 @@
 		C636E34F2A10240C00BE18DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C636E3522A10240C00BE18DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C636E3542A10240C00BE18DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C636E35F2A10255600BE18DB /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		C636E3602A10255600BE18DB /* WeatherViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModelImpl.swift; sourceTree = "<group>"; };
+		C636E3622A10255600BE18DB /* WeekDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDayView.swift; sourceTree = "<group>"; };
+		C636E3632A10255600BE18DB /* TemperatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureView.swift; sourceTree = "<group>"; };
+		C636E3642A10255600BE18DB /* FiveDaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveDaysView.swift; sourceTree = "<group>"; };
+		C636E3662A10255600BE18DB /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		C636E3682A10255600BE18DB /* WeatherErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherErrorView.swift; sourceTree = "<group>"; };
+		C636E3692A10255600BE18DB /* WeatherSuccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherSuccessView.swift; sourceTree = "<group>"; };
+		C636E36A2A10255600BE18DB /* WeatherViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewContainer.swift; sourceTree = "<group>"; };
+		C636E36C2A10255600BE18DB /* WeatherModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherModuleBuilder.swift; sourceTree = "<group>"; };
+		C636E36F2A10255600BE18DB /* SearchViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModelImpl.swift; sourceTree = "<group>"; };
+		C636E3702A10255600BE18DB /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C636E3722A10255600BE18DB /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C636E3742A10255600BE18DB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C636E3762A10255600BE18DB /* SearchLoadedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLoadedView.swift; sourceTree = "<group>"; };
+		C636E3772A10255600BE18DB /* SearchViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewContainer.swift; sourceTree = "<group>"; };
+		C636E3782A10255600BE18DB /* SearchErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchErrorView.swift; sourceTree = "<group>"; };
+		C636E37A2A10255600BE18DB /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		C636E37C2A10255600BE18DB /* SearchModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModuleBuilder.swift; sourceTree = "<group>"; };
+		C636E37E2A10255700BE18DB /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		C636E37F2A10255700BE18DB /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		C636E3812A10255700BE18DB /* ErrorScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorScreen.swift; sourceTree = "<group>"; };
+		C636E3822A10255700BE18DB /* AboutScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
+		C636E3832A10255700BE18DB /* LoadingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		C636E3842A10255700BE18DB /* AppNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
+		C636E3882A10255700BE18DB /* WeatherRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRepositoryImpl.swift; sourceTree = "<group>"; };
+		C636E3892A10255700BE18DB /* WeatherRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
+		C636E38B2A10255700BE18DB /* GeoRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoRepositoryImpl.swift; sourceTree = "<group>"; };
+		C636E38C2A10255700BE18DB /* GeoRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoRepository.swift; sourceTree = "<group>"; };
+		C636E38F2A10255700BE18DB /* GeoModelAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoModelAPI.swift; sourceTree = "<group>"; };
+		C636E3902A10255700BE18DB /* WeatherModelAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherModelAPI.swift; sourceTree = "<group>"; };
+		C636E3922A10255700BE18DB /* WeatherModelDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherModelDomain.swift; sourceTree = "<group>"; };
+		C636E3932A10255700BE18DB /* GeoModelDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoModelDomain.swift; sourceTree = "<group>"; };
+		C636E3942A10255700BE18DB /* WeekDayModelDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDayModelDomain.swift; sourceTree = "<group>"; };
+		C636E3972A10255700BE18DB /* NetworkServiceImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceImplementation.swift; sourceTree = "<group>"; };
+		C636E3982A10255700BE18DB /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C636E39A2A10255700BE18DB /* Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
+		C636E39B2A10255700BE18DB /* URLEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoder.swift; sourceTree = "<group>"; };
+		C636E39D2A10255700BE18DB /* RequestConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
+		C636E39E2A10255700BE18DB /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		C636E39F2A10255700BE18DB /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		C636E3A02A10255700BE18DB /* GeoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoRequest.swift; sourceTree = "<group>"; };
+		C636E3A12A10255700BE18DB /* WeatherRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
+		C636E3A22A10255700BE18DB /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		C636E3A42A10255700BE18DB /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		C636E3A72A10255700BE18DB /* FlowFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowFactory.swift; sourceTree = "<group>"; };
+		C636E3A82A10255700BE18DB /* FlowFactoryImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowFactoryImplementation.swift; sourceTree = "<group>"; };
+		C636E3AA2A10255700BE18DB /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		C636E3AB2A10255700BE18DB /* MainFlowCoordinatorImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorImplementation.swift; sourceTree = "<group>"; };
+		C636E3AC2A10255700BE18DB /* MainFlowNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowNavigation.swift; sourceTree = "<group>"; };
+		C636E3AE2A10255700BE18DB /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		C636E3B02A10255700BE18DB /* UIImageView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
+		C636E3B12A10255700BE18DB /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		C636E3B22A10255700BE18DB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C636E3B32A10255700BE18DB /* UIView+ Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ Extension.swift"; sourceTree = "<group>"; };
+		C636E3B42A10255700BE18DB /* Experiment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experiment.swift; sourceTree = "<group>"; };
+		C636E3B52A10255700BE18DB /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		C636E3B82A10255700BE18DB /* Asap-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		C636E3BA2A10255700BE18DB /* Asap_SemiCondensed-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C636E3BB2A10255700BE18DB /* Asap-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C636E3BC2A10255700BE18DB /* Asap_SemiCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-Italic.ttf"; sourceTree = "<group>"; };
+		C636E3BD2A10255700BE18DB /* Asap-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C636E3BE2A10255700BE18DB /* Asap_Expanded-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-Light.ttf"; sourceTree = "<group>"; };
+		C636E3BF2A10255700BE18DB /* Asap-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Thin.ttf"; sourceTree = "<group>"; };
+		C636E3C02A10255700BE18DB /* Asap_Condensed-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C636E3C12A10255700BE18DB /* Asap-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C636E3C22A10255700BE18DB /* Asap_SemiExpanded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-SemiBold.ttf"; sourceTree = "<group>"; };
+		C636E3C32A10255700BE18DB /* Asap-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3C42A10255700BE18DB /* Asap_Condensed-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C636E3C52A10255700BE18DB /* Asap-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C636E3C62A10255700BE18DB /* Asap_SemiExpanded-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C636E3C72A10255700BE18DB /* Asap_SemiCondensed-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3C82A10255700BE18DB /* Asap_Condensed-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C636E3C92A10255700BE18DB /* Asap_SemiExpanded-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C636E3CA2A10255700BE18DB /* Asap-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C636E3CB2A10255700BE18DB /* Asap_Condensed-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C636E3CC2A10255700BE18DB /* Asap_Expanded-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-LightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3CD2A10255700BE18DB /* Asap_Expanded-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-Italic.ttf"; sourceTree = "<group>"; };
+		C636E3CE2A10255700BE18DB /* Asap-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Medium.ttf"; sourceTree = "<group>"; };
+		C636E3CF2A10255700BE18DB /* Asap-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Bold.ttf"; sourceTree = "<group>"; };
+		C636E3D02A10255700BE18DB /* Asap_SemiExpanded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-Regular.ttf"; sourceTree = "<group>"; };
+		C636E3D12A10255700BE18DB /* Asap_Condensed-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3D22A10255700BE18DB /* Asap_Condensed-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-Black.ttf"; sourceTree = "<group>"; };
+		C636E3D32A10255700BE18DB /* Asap_SemiCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		C636E3D42A10255700BE18DB /* Asap_SemiExpanded-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3D52A10255700BE18DB /* Asap_Condensed-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3D62A10255700BE18DB /* Asap_Expanded-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C636E3D72A10255700BE18DB /* Asap_Expanded-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3D82A10255700BE18DB /* Asap-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-LightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3D92A10255700BE18DB /* Asap-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3DA2A10255700BE18DB /* Asap_SemiCondensed-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-Black.ttf"; sourceTree = "<group>"; };
+		C636E3DB2A10255700BE18DB /* Asap_Expanded-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C636E3DC2A10255700BE18DB /* Asap_Expanded-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C636E3DD2A10255700BE18DB /* Asap_Expanded-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-Thin.ttf"; sourceTree = "<group>"; };
+		C636E3DE2A10255700BE18DB /* Asap_Expanded-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C636E3DF2A10255700BE18DB /* Asap_Expanded-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3E02A10255700BE18DB /* Asap_SemiExpanded-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-Italic.ttf"; sourceTree = "<group>"; };
+		C636E3E12A10255700BE18DB /* Asap_Condensed-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-Medium.ttf"; sourceTree = "<group>"; };
+		C636E3E22A10255700BE18DB /* Asap-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3E32A10255700BE18DB /* Asap_SemiCondensed-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C636E3E42A10255700BE18DB /* Asap_SemiExpanded-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3E52A10255700BE18DB /* Asap_Expanded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-Bold.ttf"; sourceTree = "<group>"; };
+		C636E3E62A10255700BE18DB /* Asap_Condensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-LightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3E72A10255700BE18DB /* Asap_SemiCondensed-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3E82A10255700BE18DB /* Asap-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Regular.ttf"; sourceTree = "<group>"; };
+		C636E3E92A10255700BE18DB /* Asap-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-SemiBold.ttf"; sourceTree = "<group>"; };
+		C636E3EA2A10255700BE18DB /* Asap_SemiExpanded-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-Light.ttf"; sourceTree = "<group>"; };
+		C636E3EB2A10255700BE18DB /* Asap-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Black.ttf"; sourceTree = "<group>"; };
+		C636E3EC2A10255700BE18DB /* Asap-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3ED2A10255700BE18DB /* Asap_SemiCondensed-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C636E3EE2A10255700BE18DB /* Asap_Expanded-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-SemiBold.ttf"; sourceTree = "<group>"; };
+		C636E3EF2A10255700BE18DB /* Asap_SemiCondensed-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3F02A10255700BE18DB /* Asap_Condensed-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3F12A10255700BE18DB /* Asap_SemiExpanded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-Medium.ttf"; sourceTree = "<group>"; };
+		C636E3F22A10255700BE18DB /* Asap_Condensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-Italic.ttf"; sourceTree = "<group>"; };
+		C636E3F32A10255700BE18DB /* Asap_SemiCondensed-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C636E3F42A10255700BE18DB /* Asap_SemiCondensed-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C636E3F52A10255700BE18DB /* Asap_SemiExpanded-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-LightItalic.ttf"; sourceTree = "<group>"; };
+		C636E3F62A10255700BE18DB /* Asap_SemiExpanded-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-Black.ttf"; sourceTree = "<group>"; };
+		C636E3F72A10255700BE18DB /* Asap-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Light.ttf"; sourceTree = "<group>"; };
+		C636E3F82A10255700BE18DB /* Asap_SemiCondensed-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E3F92A10255700BE18DB /* Asap_SemiCondensed-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-SemiBold.ttf"; sourceTree = "<group>"; };
+		C636E3FA2A10255700BE18DB /* Asap_SemiExpanded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-Bold.ttf"; sourceTree = "<group>"; };
+		C636E3FB2A10255700BE18DB /* Asap_Condensed-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-Thin.ttf"; sourceTree = "<group>"; };
+		C636E3FC2A10255700BE18DB /* Asap_Condensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-Bold.ttf"; sourceTree = "<group>"; };
+		C636E3FD2A10255700BE18DB /* Asap_SemiExpanded-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-Thin.ttf"; sourceTree = "<group>"; };
+		C636E3FE2A10255700BE18DB /* Asap_Expanded-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C636E3FF2A10255700BE18DB /* Asap_SemiExpanded-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E4002A10255700BE18DB /* Asap_Condensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-Regular.ttf"; sourceTree = "<group>"; };
+		C636E4012A10255700BE18DB /* Asap_SemiExpanded-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C636E4022A10255700BE18DB /* Asap_Condensed-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C636E4032A10255700BE18DB /* Asap_Expanded-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-Regular.ttf"; sourceTree = "<group>"; };
+		C636E4042A10255700BE18DB /* Asap_SemiCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-Light.ttf"; sourceTree = "<group>"; };
+		C636E4052A10255700BE18DB /* Asap_SemiExpanded-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C636E4062A10255700BE18DB /* Asap_Condensed-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E4072A10255700BE18DB /* Asap_Condensed-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-SemiBold.ttf"; sourceTree = "<group>"; };
+		C636E4082A10255700BE18DB /* Asap_SemiCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		C636E4092A10255700BE18DB /* Asap_SemiCondensed-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-Medium.ttf"; sourceTree = "<group>"; };
+		C636E40A2A10255700BE18DB /* Asap_Condensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Condensed-Light.ttf"; sourceTree = "<group>"; };
+		C636E40B2A10255700BE18DB /* Asap_Expanded-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E40C2A10255700BE18DB /* Asap_Expanded-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-Black.ttf"; sourceTree = "<group>"; };
+		C636E40D2A10255700BE18DB /* Asap_Expanded-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-Medium.ttf"; sourceTree = "<group>"; };
+		C636E40E2A10255700BE18DB /* Asap-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Italic.ttf"; sourceTree = "<group>"; };
+		C636E40F2A10255700BE18DB /* Asap_SemiCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
+		C636E4102A10255700BE18DB /* Asap_Expanded-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_Expanded-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C636E4112A10255700BE18DB /* Asap_SemiCondensed-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-Thin.ttf"; sourceTree = "<group>"; };
+		C636E4122A10255700BE18DB /* Asap_SemiExpanded-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C636E4132A10255700BE18DB /* Asap_SemiExpanded-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiExpanded-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C636E4142A10255700BE18DB /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		C636E4152A10255700BE18DB /* Asap-Italic-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-Italic-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		C636E4162A10255700BE18DB /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		C636E4182A10255700BE18DB /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		C636E41A2A10255700BE18DB /* DIContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +374,11 @@
 		C636E3452A10240B00BE18DB /* WeatherDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				C636E37D2A10255700BE18DB /* Base */,
+				C636E3852A10255700BE18DB /* Core */,
+				C636E4192A10255700BE18DB /* Dependencies */,
+				C636E3AD2A10255700BE18DB /* Helpers */,
+				C636E35C2A10255600BE18DB /* Modules */,
 				C636E35B2A10248700BE18DB /* Resources */,
 				C636E3462A10240B00BE18DB /* AppDelegate.swift */,
 				C636E3482A10240B00BE18DB /* SceneDelegate.swift */,
@@ -83,6 +394,458 @@
 				C636E3542A10240C00BE18DB /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C636E35C2A10255600BE18DB /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C636E35D2A10255600BE18DB /* WeatherModule */,
+				C636E36D2A10255600BE18DB /* SearchModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C636E35D2A10255600BE18DB /* WeatherModule */ = {
+			isa = PBXGroup;
+			children = (
+				C636E35E2A10255600BE18DB /* ViewModel */,
+				C636E3612A10255600BE18DB /* Elements */,
+				C636E3652A10255600BE18DB /* View */,
+				C636E36B2A10255600BE18DB /* Builder */,
+			);
+			path = WeatherModule;
+			sourceTree = "<group>";
+		};
+		C636E35E2A10255600BE18DB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C636E35F2A10255600BE18DB /* WeatherViewModel.swift */,
+				C636E3602A10255600BE18DB /* WeatherViewModelImpl.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C636E3612A10255600BE18DB /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3622A10255600BE18DB /* WeekDayView.swift */,
+				C636E3632A10255600BE18DB /* TemperatureView.swift */,
+				C636E3642A10255600BE18DB /* FiveDaysView.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		C636E3652A10255600BE18DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3662A10255600BE18DB /* WeatherViewController.swift */,
+				C636E3672A10255600BE18DB /* SubViews */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C636E3672A10255600BE18DB /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3682A10255600BE18DB /* WeatherErrorView.swift */,
+				C636E3692A10255600BE18DB /* WeatherSuccessView.swift */,
+				C636E36A2A10255600BE18DB /* WeatherViewContainer.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C636E36B2A10255600BE18DB /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				C636E36C2A10255600BE18DB /* WeatherModuleBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		C636E36D2A10255600BE18DB /* SearchModule */ = {
+			isa = PBXGroup;
+			children = (
+				C636E36E2A10255600BE18DB /* ViewModel */,
+				C636E3712A10255600BE18DB /* Elements */,
+				C636E3732A10255600BE18DB /* View */,
+				C636E37B2A10255600BE18DB /* Builder */,
+			);
+			path = SearchModule;
+			sourceTree = "<group>";
+		};
+		C636E36E2A10255600BE18DB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C636E36F2A10255600BE18DB /* SearchViewModelImpl.swift */,
+				C636E3702A10255600BE18DB /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C636E3712A10255600BE18DB /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3722A10255600BE18DB /* SearchView.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		C636E3732A10255600BE18DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3742A10255600BE18DB /* SearchViewController.swift */,
+				C636E3752A10255600BE18DB /* SubViews */,
+				C636E3792A10255600BE18DB /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C636E3752A10255600BE18DB /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3762A10255600BE18DB /* SearchLoadedView.swift */,
+				C636E3772A10255600BE18DB /* SearchViewContainer.swift */,
+				C636E3782A10255600BE18DB /* SearchErrorView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C636E3792A10255600BE18DB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C636E37A2A10255600BE18DB /* CollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C636E37B2A10255600BE18DB /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				C636E37C2A10255600BE18DB /* SearchModuleBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		C636E37D2A10255700BE18DB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C636E37E2A10255700BE18DB /* AppCoordinator.swift */,
+				C636E37F2A10255700BE18DB /* ViewModel.swift */,
+				C636E3802A10255700BE18DB /* Screens */,
+				C636E3842A10255700BE18DB /* AppNavigation.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C636E3802A10255700BE18DB /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3812A10255700BE18DB /* ErrorScreen.swift */,
+				C636E3822A10255700BE18DB /* AboutScreen.swift */,
+				C636E3832A10255700BE18DB /* LoadingScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		C636E3852A10255700BE18DB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3862A10255700BE18DB /* Repository */,
+				C636E38D2A10255700BE18DB /* Models */,
+				C636E3952A10255700BE18DB /* NetworkLayer */,
+				C636E3A52A10255700BE18DB /* Flows */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C636E3862A10255700BE18DB /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3872A10255700BE18DB /* WeatherRepository */,
+				C636E38A2A10255700BE18DB /* GeoRepository */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		C636E3872A10255700BE18DB /* WeatherRepository */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3882A10255700BE18DB /* WeatherRepositoryImpl.swift */,
+				C636E3892A10255700BE18DB /* WeatherRepository.swift */,
+			);
+			path = WeatherRepository;
+			sourceTree = "<group>";
+		};
+		C636E38A2A10255700BE18DB /* GeoRepository */ = {
+			isa = PBXGroup;
+			children = (
+				C636E38B2A10255700BE18DB /* GeoRepositoryImpl.swift */,
+				C636E38C2A10255700BE18DB /* GeoRepository.swift */,
+			);
+			path = GeoRepository;
+			sourceTree = "<group>";
+		};
+		C636E38D2A10255700BE18DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C636E38E2A10255700BE18DB /* API */,
+				C636E3912A10255700BE18DB /* Domain */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C636E38E2A10255700BE18DB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C636E38F2A10255700BE18DB /* GeoModelAPI.swift */,
+				C636E3902A10255700BE18DB /* WeatherModelAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C636E3912A10255700BE18DB /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3922A10255700BE18DB /* WeatherModelDomain.swift */,
+				C636E3932A10255700BE18DB /* GeoModelDomain.swift */,
+				C636E3942A10255700BE18DB /* WeekDayModelDomain.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		C636E3952A10255700BE18DB /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3962A10255700BE18DB /* NetworkService */,
+				C636E3992A10255700BE18DB /* Encoders */,
+				C636E39C2A10255700BE18DB /* Request */,
+				C636E3A32A10255700BE18DB /* Builder */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		C636E3962A10255700BE18DB /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3972A10255700BE18DB /* NetworkServiceImplementation.swift */,
+				C636E3982A10255700BE18DB /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		C636E3992A10255700BE18DB /* Encoders */ = {
+			isa = PBXGroup;
+			children = (
+				C636E39A2A10255700BE18DB /* Encoder.swift */,
+				C636E39B2A10255700BE18DB /* URLEncoder.swift */,
+			);
+			path = Encoders;
+			sourceTree = "<group>";
+		};
+		C636E39C2A10255700BE18DB /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C636E39D2A10255700BE18DB /* RequestConfig.swift */,
+				C636E39E2A10255700BE18DB /* HTTPMethod.swift */,
+				C636E39F2A10255700BE18DB /* APIKey.swift */,
+				C636E3A02A10255700BE18DB /* GeoRequest.swift */,
+				C636E3A12A10255700BE18DB /* WeatherRequest.swift */,
+				C636E3A22A10255700BE18DB /* RequestType.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		C636E3A32A10255700BE18DB /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3A42A10255700BE18DB /* RequestBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		C636E3A52A10255700BE18DB /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3A62A10255700BE18DB /* FlowFactory */,
+				C636E3A92A10255700BE18DB /* MainFlow */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		C636E3A62A10255700BE18DB /* FlowFactory */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3A72A10255700BE18DB /* FlowFactory.swift */,
+				C636E3A82A10255700BE18DB /* FlowFactoryImplementation.swift */,
+			);
+			path = FlowFactory;
+			sourceTree = "<group>";
+		};
+		C636E3A92A10255700BE18DB /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3AA2A10255700BE18DB /* MainFlowCoordinator.swift */,
+				C636E3AB2A10255700BE18DB /* MainFlowCoordinatorImplementation.swift */,
+				C636E3AC2A10255700BE18DB /* MainFlowNavigation.swift */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		C636E3AD2A10255700BE18DB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3AE2A10255700BE18DB /* ImageCache.swift */,
+				C636E3AF2A10255700BE18DB /* Extensions */,
+				C636E3B42A10255700BE18DB /* Experiment.swift */,
+				C636E3B52A10255700BE18DB /* Resources.swift */,
+				C636E3B62A10255700BE18DB /* Fonts */,
+				C636E4172A10255700BE18DB /* CustomUIElements */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C636E3AF2A10255700BE18DB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3B02A10255700BE18DB /* UIImageView + Extension.swift */,
+				C636E3B12A10255700BE18DB /* UIColor+Extension.swift */,
+				C636E3B22A10255700BE18DB /* UIViewController+Extension.swift */,
+				C636E3B32A10255700BE18DB /* UIView+ Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C636E3B62A10255700BE18DB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3B72A10255700BE18DB /* Asap */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C636E3B72A10255700BE18DB /* Asap */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3B82A10255700BE18DB /* Asap-VariableFont_wdth,wght.ttf */,
+				C636E3B92A10255700BE18DB /* static */,
+				C636E4142A10255700BE18DB /* OFL.txt */,
+				C636E4152A10255700BE18DB /* Asap-Italic-VariableFont_wdth,wght.ttf */,
+				C636E4162A10255700BE18DB /* README.txt */,
+			);
+			path = Asap;
+			sourceTree = "<group>";
+		};
+		C636E3B92A10255700BE18DB /* static */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3BA2A10255700BE18DB /* Asap_SemiCondensed-MediumItalic.ttf */,
+				C636E3BB2A10255700BE18DB /* Asap-ExtraLight.ttf */,
+				C636E3BC2A10255700BE18DB /* Asap_SemiCondensed-Italic.ttf */,
+				C636E3BD2A10255700BE18DB /* Asap-ThinItalic.ttf */,
+				C636E3BE2A10255700BE18DB /* Asap_Expanded-Light.ttf */,
+				C636E3BF2A10255700BE18DB /* Asap-Thin.ttf */,
+				C636E3C02A10255700BE18DB /* Asap_Condensed-BlackItalic.ttf */,
+				C636E3C12A10255700BE18DB /* Asap-ExtraBold.ttf */,
+				C636E3C22A10255700BE18DB /* Asap_SemiExpanded-SemiBold.ttf */,
+				C636E3C32A10255700BE18DB /* Asap-BoldItalic.ttf */,
+				C636E3C42A10255700BE18DB /* Asap_Condensed-MediumItalic.ttf */,
+				C636E3C52A10255700BE18DB /* Asap-MediumItalic.ttf */,
+				C636E3C62A10255700BE18DB /* Asap_SemiExpanded-ExtraBold.ttf */,
+				C636E3C72A10255700BE18DB /* Asap_SemiCondensed-ExtraLightItalic.ttf */,
+				C636E3C82A10255700BE18DB /* Asap_Condensed-ThinItalic.ttf */,
+				C636E3C92A10255700BE18DB /* Asap_SemiExpanded-MediumItalic.ttf */,
+				C636E3CA2A10255700BE18DB /* Asap-BlackItalic.ttf */,
+				C636E3CB2A10255700BE18DB /* Asap_Condensed-ExtraLight.ttf */,
+				C636E3CC2A10255700BE18DB /* Asap_Expanded-LightItalic.ttf */,
+				C636E3CD2A10255700BE18DB /* Asap_Expanded-Italic.ttf */,
+				C636E3CE2A10255700BE18DB /* Asap-Medium.ttf */,
+				C636E3CF2A10255700BE18DB /* Asap-Bold.ttf */,
+				C636E3D02A10255700BE18DB /* Asap_SemiExpanded-Regular.ttf */,
+				C636E3D12A10255700BE18DB /* Asap_Condensed-BoldItalic.ttf */,
+				C636E3D22A10255700BE18DB /* Asap_Condensed-Black.ttf */,
+				C636E3D32A10255700BE18DB /* Asap_SemiCondensed-Regular.ttf */,
+				C636E3D42A10255700BE18DB /* Asap_SemiExpanded-ExtraLightItalic.ttf */,
+				C636E3D52A10255700BE18DB /* Asap_Condensed-SemiBoldItalic.ttf */,
+				C636E3D62A10255700BE18DB /* Asap_Expanded-ExtraBold.ttf */,
+				C636E3D72A10255700BE18DB /* Asap_Expanded-BoldItalic.ttf */,
+				C636E3D82A10255700BE18DB /* Asap-LightItalic.ttf */,
+				C636E3D92A10255700BE18DB /* Asap-ExtraLightItalic.ttf */,
+				C636E3DA2A10255700BE18DB /* Asap_SemiCondensed-Black.ttf */,
+				C636E3DB2A10255700BE18DB /* Asap_Expanded-ExtraLight.ttf */,
+				C636E3DC2A10255700BE18DB /* Asap_Expanded-BlackItalic.ttf */,
+				C636E3DD2A10255700BE18DB /* Asap_Expanded-Thin.ttf */,
+				C636E3DE2A10255700BE18DB /* Asap_Expanded-ThinItalic.ttf */,
+				C636E3DF2A10255700BE18DB /* Asap_Expanded-SemiBoldItalic.ttf */,
+				C636E3E02A10255700BE18DB /* Asap_SemiExpanded-Italic.ttf */,
+				C636E3E12A10255700BE18DB /* Asap_Condensed-Medium.ttf */,
+				C636E3E22A10255700BE18DB /* Asap-SemiBoldItalic.ttf */,
+				C636E3E32A10255700BE18DB /* Asap_SemiCondensed-ExtraBold.ttf */,
+				C636E3E42A10255700BE18DB /* Asap_SemiExpanded-ExtraBoldItalic.ttf */,
+				C636E3E52A10255700BE18DB /* Asap_Expanded-Bold.ttf */,
+				C636E3E62A10255700BE18DB /* Asap_Condensed-LightItalic.ttf */,
+				C636E3E72A10255700BE18DB /* Asap_SemiCondensed-ExtraBoldItalic.ttf */,
+				C636E3E82A10255700BE18DB /* Asap-Regular.ttf */,
+				C636E3E92A10255700BE18DB /* Asap-SemiBold.ttf */,
+				C636E3EA2A10255700BE18DB /* Asap_SemiExpanded-Light.ttf */,
+				C636E3EB2A10255700BE18DB /* Asap-Black.ttf */,
+				C636E3EC2A10255700BE18DB /* Asap-ExtraBoldItalic.ttf */,
+				C636E3ED2A10255700BE18DB /* Asap_SemiCondensed-ThinItalic.ttf */,
+				C636E3EE2A10255700BE18DB /* Asap_Expanded-SemiBold.ttf */,
+				C636E3EF2A10255700BE18DB /* Asap_SemiCondensed-SemiBoldItalic.ttf */,
+				C636E3F02A10255700BE18DB /* Asap_Condensed-ExtraLightItalic.ttf */,
+				C636E3F12A10255700BE18DB /* Asap_SemiExpanded-Medium.ttf */,
+				C636E3F22A10255700BE18DB /* Asap_Condensed-Italic.ttf */,
+				C636E3F32A10255700BE18DB /* Asap_SemiCondensed-ExtraLight.ttf */,
+				C636E3F42A10255700BE18DB /* Asap_SemiCondensed-BlackItalic.ttf */,
+				C636E3F52A10255700BE18DB /* Asap_SemiExpanded-LightItalic.ttf */,
+				C636E3F62A10255700BE18DB /* Asap_SemiExpanded-Black.ttf */,
+				C636E3F72A10255700BE18DB /* Asap-Light.ttf */,
+				C636E3F82A10255700BE18DB /* Asap_SemiCondensed-BoldItalic.ttf */,
+				C636E3F92A10255700BE18DB /* Asap_SemiCondensed-SemiBold.ttf */,
+				C636E3FA2A10255700BE18DB /* Asap_SemiExpanded-Bold.ttf */,
+				C636E3FB2A10255700BE18DB /* Asap_Condensed-Thin.ttf */,
+				C636E3FC2A10255700BE18DB /* Asap_Condensed-Bold.ttf */,
+				C636E3FD2A10255700BE18DB /* Asap_SemiExpanded-Thin.ttf */,
+				C636E3FE2A10255700BE18DB /* Asap_Expanded-MediumItalic.ttf */,
+				C636E3FF2A10255700BE18DB /* Asap_SemiExpanded-BoldItalic.ttf */,
+				C636E4002A10255700BE18DB /* Asap_Condensed-Regular.ttf */,
+				C636E4012A10255700BE18DB /* Asap_SemiExpanded-ThinItalic.ttf */,
+				C636E4022A10255700BE18DB /* Asap_Condensed-ExtraBold.ttf */,
+				C636E4032A10255700BE18DB /* Asap_Expanded-Regular.ttf */,
+				C636E4042A10255700BE18DB /* Asap_SemiCondensed-Light.ttf */,
+				C636E4052A10255700BE18DB /* Asap_SemiExpanded-ExtraLight.ttf */,
+				C636E4062A10255700BE18DB /* Asap_Condensed-ExtraBoldItalic.ttf */,
+				C636E4072A10255700BE18DB /* Asap_Condensed-SemiBold.ttf */,
+				C636E4082A10255700BE18DB /* Asap_SemiCondensed-Bold.ttf */,
+				C636E4092A10255700BE18DB /* Asap_SemiCondensed-Medium.ttf */,
+				C636E40A2A10255700BE18DB /* Asap_Condensed-Light.ttf */,
+				C636E40B2A10255700BE18DB /* Asap_Expanded-ExtraBoldItalic.ttf */,
+				C636E40C2A10255700BE18DB /* Asap_Expanded-Black.ttf */,
+				C636E40D2A10255700BE18DB /* Asap_Expanded-Medium.ttf */,
+				C636E40E2A10255700BE18DB /* Asap-Italic.ttf */,
+				C636E40F2A10255700BE18DB /* Asap_SemiCondensed-LightItalic.ttf */,
+				C636E4102A10255700BE18DB /* Asap_Expanded-ExtraLightItalic.ttf */,
+				C636E4112A10255700BE18DB /* Asap_SemiCondensed-Thin.ttf */,
+				C636E4122A10255700BE18DB /* Asap_SemiExpanded-BlackItalic.ttf */,
+				C636E4132A10255700BE18DB /* Asap_SemiExpanded-SemiBoldItalic.ttf */,
+			);
+			path = static;
+			sourceTree = "<group>";
+		};
+		C636E4172A10255700BE18DB /* CustomUIElements */ = {
+			isa = PBXGroup;
+			children = (
+				C636E4182A10255700BE18DB /* CustomLabel.swift */,
+			);
+			path = CustomUIElements;
+			sourceTree = "<group>";
+		};
+		C636E4192A10255700BE18DB /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				C636E41A2A10255700BE18DB /* DIContainer.swift */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 		D195DF49F1AB09C8404872CA /* Frameworks */ = {
@@ -154,8 +917,102 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C636E4932A10255800BE18DB /* Asap_SemiCondensed-BoldItalic.ttf in Resources */,
+				C636E4552A10255800BE18DB /* Asap_SemiCondensed-MediumItalic.ttf in Resources */,
+				C636E4672A10255800BE18DB /* Asap_Expanded-LightItalic.ttf in Resources */,
+				C636E4A92A10255800BE18DB /* Asap-Italic.ttf in Resources */,
+				C636E4602A10255800BE18DB /* Asap-MediumItalic.ttf in Resources */,
+				C636E49A2A10255800BE18DB /* Asap_SemiExpanded-BoldItalic.ttf in Resources */,
+				C636E4622A10255800BE18DB /* Asap_SemiCondensed-ExtraLightItalic.ttf in Resources */,
+				C636E4772A10255800BE18DB /* Asap_Expanded-BlackItalic.ttf in Resources */,
+				C636E4862A10255800BE18DB /* Asap-Black.ttf in Resources */,
+				C636E49F2A10255800BE18DB /* Asap_SemiCondensed-Light.ttf in Resources */,
+				C636E4AB2A10255800BE18DB /* Asap_Expanded-ExtraLightItalic.ttf in Resources */,
+				C636E49B2A10255800BE18DB /* Asap_Condensed-Regular.ttf in Resources */,
+				C636E47A2A10255800BE18DB /* Asap_Expanded-SemiBoldItalic.ttf in Resources */,
+				C636E47B2A10255800BE18DB /* Asap_SemiExpanded-Italic.ttf in Resources */,
 				C636E3532A10240C00BE18DB /* LaunchScreen.storyboard in Resources */,
+				C636E4742A10255800BE18DB /* Asap-ExtraLightItalic.ttf in Resources */,
+				C636E49D2A10255800BE18DB /* Asap_Condensed-ExtraBold.ttf in Resources */,
+				C636E4A82A10255800BE18DB /* Asap_Expanded-Medium.ttf in Resources */,
+				C636E46E2A10255800BE18DB /* Asap_SemiCondensed-Regular.ttf in Resources */,
+				C636E4B02A10255800BE18DB /* Asap-Italic-VariableFont_wdth,wght.ttf in Resources */,
+				C636E4832A10255800BE18DB /* Asap-Regular.ttf in Resources */,
+				C636E4AF2A10255800BE18DB /* OFL.txt in Resources */,
+				C636E4A12A10255800BE18DB /* Asap_Condensed-ExtraBoldItalic.ttf in Resources */,
+				C636E4632A10255800BE18DB /* Asap_Condensed-ThinItalic.ttf in Resources */,
+				C636E4A62A10255800BE18DB /* Asap_Expanded-ExtraBoldItalic.ttf in Resources */,
+				C636E4842A10255800BE18DB /* Asap-SemiBold.ttf in Resources */,
+				C636E47C2A10255800BE18DB /* Asap_Condensed-Medium.ttf in Resources */,
+				C636E4702A10255800BE18DB /* Asap_Condensed-SemiBoldItalic.ttf in Resources */,
+				C636E4902A10255800BE18DB /* Asap_SemiExpanded-LightItalic.ttf in Resources */,
+				C636E4782A10255800BE18DB /* Asap_Expanded-Thin.ttf in Resources */,
+				C636E4A52A10255800BE18DB /* Asap_Condensed-Light.ttf in Resources */,
+				C636E4992A10255800BE18DB /* Asap_Expanded-MediumItalic.ttf in Resources */,
+				C636E4922A10255800BE18DB /* Asap-Light.ttf in Resources */,
+				C636E4A72A10255800BE18DB /* Asap_Expanded-Black.ttf in Resources */,
+				C636E4982A10255800BE18DB /* Asap_SemiExpanded-Thin.ttf in Resources */,
+				C636E48A2A10255800BE18DB /* Asap_SemiCondensed-SemiBoldItalic.ttf in Resources */,
+				C636E4732A10255800BE18DB /* Asap-LightItalic.ttf in Resources */,
+				C636E4682A10255800BE18DB /* Asap_Expanded-Italic.ttf in Resources */,
+				C636E4652A10255800BE18DB /* Asap-BlackItalic.ttf in Resources */,
+				C636E4852A10255800BE18DB /* Asap_SemiExpanded-Light.ttf in Resources */,
+				C636E4A32A10255800BE18DB /* Asap_SemiCondensed-Bold.ttf in Resources */,
+				C636E45A2A10255800BE18DB /* Asap-Thin.ttf in Resources */,
+				C636E4AE2A10255800BE18DB /* Asap_SemiExpanded-SemiBoldItalic.ttf in Resources */,
+				C636E46C2A10255800BE18DB /* Asap_Condensed-BoldItalic.ttf in Resources */,
+				C636E45B2A10255800BE18DB /* Asap_Condensed-BlackItalic.ttf in Resources */,
+				C636E45F2A10255800BE18DB /* Asap_Condensed-MediumItalic.ttf in Resources */,
 				C636E3502A10240C00BE18DB /* Assets.xcassets in Resources */,
+				C636E48B2A10255800BE18DB /* Asap_Condensed-ExtraLightItalic.ttf in Resources */,
+				C636E4792A10255800BE18DB /* Asap_Expanded-ThinItalic.ttf in Resources */,
+				C636E4722A10255800BE18DB /* Asap_Expanded-BoldItalic.ttf in Resources */,
+				C636E45D2A10255800BE18DB /* Asap_SemiExpanded-SemiBold.ttf in Resources */,
+				C636E4972A10255800BE18DB /* Asap_Condensed-Bold.ttf in Resources */,
+				C636E4612A10255800BE18DB /* Asap_SemiExpanded-ExtraBold.ttf in Resources */,
+				C636E4882A10255800BE18DB /* Asap_SemiCondensed-ThinItalic.ttf in Resources */,
+				C636E46F2A10255800BE18DB /* Asap_SemiExpanded-ExtraLightItalic.ttf in Resources */,
+				C636E4A22A10255800BE18DB /* Asap_Condensed-SemiBold.ttf in Resources */,
+				C636E4AC2A10255800BE18DB /* Asap_SemiCondensed-Thin.ttf in Resources */,
+				C636E4562A10255800BE18DB /* Asap-ExtraLight.ttf in Resources */,
+				C636E4812A10255800BE18DB /* Asap_Condensed-LightItalic.ttf in Resources */,
+				C636E4AD2A10255800BE18DB /* Asap_SemiExpanded-BlackItalic.ttf in Resources */,
+				C636E4582A10255800BE18DB /* Asap-ThinItalic.ttf in Resources */,
+				C636E46D2A10255800BE18DB /* Asap_Condensed-Black.ttf in Resources */,
+				C636E4592A10255800BE18DB /* Asap_Expanded-Light.ttf in Resources */,
+				C636E48D2A10255800BE18DB /* Asap_Condensed-Italic.ttf in Resources */,
+				C636E4802A10255800BE18DB /* Asap_Expanded-Bold.ttf in Resources */,
+				C636E49E2A10255800BE18DB /* Asap_Expanded-Regular.ttf in Resources */,
+				C636E49C2A10255800BE18DB /* Asap_SemiExpanded-ThinItalic.ttf in Resources */,
+				C636E48C2A10255800BE18DB /* Asap_SemiExpanded-Medium.ttf in Resources */,
+				C636E4A42A10255800BE18DB /* Asap_SemiCondensed-Medium.ttf in Resources */,
+				C636E4712A10255800BE18DB /* Asap_Expanded-ExtraBold.ttf in Resources */,
+				C636E4B12A10255800BE18DB /* README.txt in Resources */,
+				C636E4962A10255800BE18DB /* Asap_Condensed-Thin.ttf in Resources */,
+				C636E46B2A10255800BE18DB /* Asap_SemiExpanded-Regular.ttf in Resources */,
+				C636E4872A10255800BE18DB /* Asap-ExtraBoldItalic.ttf in Resources */,
+				C636E4AA2A10255800BE18DB /* Asap_SemiCondensed-LightItalic.ttf in Resources */,
+				C636E4542A10255800BE18DB /* Asap-VariableFont_wdth,wght.ttf in Resources */,
+				C636E4762A10255800BE18DB /* Asap_Expanded-ExtraLight.ttf in Resources */,
+				C636E45E2A10255800BE18DB /* Asap-BoldItalic.ttf in Resources */,
+				C636E4662A10255800BE18DB /* Asap_Condensed-ExtraLight.ttf in Resources */,
+				C636E4642A10255800BE18DB /* Asap_SemiExpanded-MediumItalic.ttf in Resources */,
+				C636E4752A10255800BE18DB /* Asap_SemiCondensed-Black.ttf in Resources */,
+				C636E48F2A10255800BE18DB /* Asap_SemiCondensed-BlackItalic.ttf in Resources */,
+				C636E4892A10255800BE18DB /* Asap_Expanded-SemiBold.ttf in Resources */,
+				C636E45C2A10255800BE18DB /* Asap-ExtraBold.ttf in Resources */,
+				C636E48E2A10255800BE18DB /* Asap_SemiCondensed-ExtraLight.ttf in Resources */,
+				C636E4822A10255800BE18DB /* Asap_SemiCondensed-ExtraBoldItalic.ttf in Resources */,
+				C636E4942A10255800BE18DB /* Asap_SemiCondensed-SemiBold.ttf in Resources */,
+				C636E46A2A10255800BE18DB /* Asap-Bold.ttf in Resources */,
+				C636E4A02A10255800BE18DB /* Asap_SemiExpanded-ExtraLight.ttf in Resources */,
+				C636E4692A10255800BE18DB /* Asap-Medium.ttf in Resources */,
+				C636E47D2A10255800BE18DB /* Asap-SemiBoldItalic.ttf in Resources */,
+				C636E4952A10255800BE18DB /* Asap_SemiExpanded-Bold.ttf in Resources */,
+				C636E4912A10255800BE18DB /* Asap_SemiExpanded-Black.ttf in Resources */,
+				C636E4572A10255800BE18DB /* Asap_SemiCondensed-Italic.ttf in Resources */,
+				C636E47F2A10255800BE18DB /* Asap_SemiExpanded-ExtraBoldItalic.ttf in Resources */,
+				C636E47E2A10255800BE18DB /* Asap_SemiCondensed-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,8 +1083,67 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C636E42E2A10255700BE18DB /* AppCoordinator.swift in Sources */,
+				C636E42D2A10255700BE18DB /* SearchModuleBuilder.swift in Sources */,
+				C636E4422A10255700BE18DB /* HTTPMethod.swift in Sources */,
+				C636E4432A10255700BE18DB /* APIKey.swift in Sources */,
+				C636E4392A10255700BE18DB /* WeatherModelAPI.swift in Sources */,
 				C636E3472A10240B00BE18DB /* AppDelegate.swift in Sources */,
+				C636E4212A10255700BE18DB /* WeatherErrorView.swift in Sources */,
+				C636E42A2A10255700BE18DB /* SearchViewContainer.swift in Sources */,
+				C636E44B2A10255700BE18DB /* MainFlowCoordinatorImplementation.swift in Sources */,
+				C636E42F2A10255700BE18DB /* ViewModel.swift in Sources */,
+				C636E4332A10255700BE18DB /* AppNavigation.swift in Sources */,
+				C636E4322A10255700BE18DB /* LoadingScreen.swift in Sources */,
+				C636E4442A10255700BE18DB /* GeoRequest.swift in Sources */,
+				C636E4372A10255700BE18DB /* GeoRepository.swift in Sources */,
+				C636E44F2A10255700BE18DB /* UIColor+Extension.swift in Sources */,
+				C636E4252A10255700BE18DB /* SearchViewModelImpl.swift in Sources */,
+				C636E41B2A10255700BE18DB /* WeatherViewModel.swift in Sources */,
+				C636E43A2A10255700BE18DB /* WeatherModelDomain.swift in Sources */,
+				C636E4352A10255700BE18DB /* WeatherRepository.swift in Sources */,
+				C636E44E2A10255700BE18DB /* UIImageView + Extension.swift in Sources */,
+				C636E4462A10255700BE18DB /* RequestType.swift in Sources */,
+				C636E4292A10255700BE18DB /* SearchLoadedView.swift in Sources */,
+				C636E4222A10255700BE18DB /* WeatherSuccessView.swift in Sources */,
+				C636E41D2A10255700BE18DB /* WeekDayView.swift in Sources */,
+				C636E43F2A10255700BE18DB /* Encoder.swift in Sources */,
+				C636E41F2A10255700BE18DB /* FiveDaysView.swift in Sources */,
+				C636E4362A10255700BE18DB /* GeoRepositoryImpl.swift in Sources */,
+				C636E4472A10255700BE18DB /* RequestBuilder.swift in Sources */,
+				C636E4242A10255700BE18DB /* WeatherModuleBuilder.swift in Sources */,
+				C636E4382A10255700BE18DB /* GeoModelAPI.swift in Sources */,
+				C636E44C2A10255700BE18DB /* MainFlowNavigation.swift in Sources */,
+				C636E4B22A10255800BE18DB /* CustomLabel.swift in Sources */,
+				C636E4312A10255700BE18DB /* AboutScreen.swift in Sources */,
+				C636E4512A10255700BE18DB /* UIView+ Extension.swift in Sources */,
+				C636E4B32A10255800BE18DB /* DIContainer.swift in Sources */,
+				C636E4502A10255700BE18DB /* UIViewController+Extension.swift in Sources */,
+				C636E4342A10255700BE18DB /* WeatherRepositoryImpl.swift in Sources */,
+				C636E42C2A10255700BE18DB /* CollectionViewCell.swift in Sources */,
+				C636E4302A10255700BE18DB /* ErrorScreen.swift in Sources */,
+				C636E4262A10255700BE18DB /* SearchViewModel.swift in Sources */,
+				C636E43D2A10255700BE18DB /* NetworkServiceImplementation.swift in Sources */,
 				C636E3492A10240B00BE18DB /* SceneDelegate.swift in Sources */,
+				C636E4282A10255700BE18DB /* SearchViewController.swift in Sources */,
+				C636E4532A10255700BE18DB /* Resources.swift in Sources */,
+				C636E4452A10255700BE18DB /* WeatherRequest.swift in Sources */,
+				C636E4492A10255700BE18DB /* FlowFactoryImplementation.swift in Sources */,
+				C636E4402A10255700BE18DB /* URLEncoder.swift in Sources */,
+				C636E44D2A10255700BE18DB /* ImageCache.swift in Sources */,
+				C636E4272A10255700BE18DB /* SearchView.swift in Sources */,
+				C636E4202A10255700BE18DB /* WeatherViewController.swift in Sources */,
+				C636E4232A10255700BE18DB /* WeatherViewContainer.swift in Sources */,
+				C636E41C2A10255700BE18DB /* WeatherViewModelImpl.swift in Sources */,
+				C636E42B2A10255700BE18DB /* SearchErrorView.swift in Sources */,
+				C636E44A2A10255700BE18DB /* MainFlowCoordinator.swift in Sources */,
+				C636E43E2A10255700BE18DB /* NetworkService.swift in Sources */,
+				C636E43B2A10255700BE18DB /* GeoModelDomain.swift in Sources */,
+				C636E4482A10255700BE18DB /* FlowFactory.swift in Sources */,
+				C636E43C2A10255700BE18DB /* WeekDayModelDomain.swift in Sources */,
+				C636E4412A10255700BE18DB /* RequestConfig.swift in Sources */,
+				C636E4522A10255700BE18DB /* Experiment.swift in Sources */,
+				C636E41E2A10255700BE18DB /* TemperatureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

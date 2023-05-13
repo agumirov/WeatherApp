@@ -4,6 +4,7 @@ excluded:
   - Pods
 
 disabled_rules: # rule identifiers to exclude from running
+  - trailing_whitespace
 
 
 # configurable rules can be customized from this configuration file
@@ -103,4 +104,3 @@ custom_rules:
     capture_group: 1
     message: "Use explicit type annotation when initializing empty arrays and dictionaries"
     severity: warning
-
