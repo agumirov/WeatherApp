@@ -27,6 +27,7 @@ enum Encoder {
             case .jsonEncoding:
                 guard let jsonParameters = jsonParameters else { throw  EncoderError.parametersNil}
                 try JSONEncoder.encode(urlRequest: &urlRequest, with: jsonParameters)
+                
             case .urlAndJsonEncoding:
                 guard let urlParameters = urlParameters else { throw  EncoderError.parametersNil}
                 guard let jsonParameters = jsonParameters else { throw  EncoderError.parametersNil}

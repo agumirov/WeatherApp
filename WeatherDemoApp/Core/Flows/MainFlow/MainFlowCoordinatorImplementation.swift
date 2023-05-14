@@ -21,8 +21,21 @@ class MainFlowCoordinatorImplementation<N>: AppCoordinator<N> where N: MainFlowN
     
     override func start() {
         super.start()
+        let storedData = StoreManager.shared.fetchData()
         
-        showSearchScreen()
+        if storedData.isEmpty {
+            showSearchScreen()
+        } else {
+            
+            for data in storedData {
+                print(data)
+            }
+            guard let storedData = storedData.last else { return }
+            showWeatherScreen(geoData: GeoModelDomain(name: storedData.city ?? "",
+                                                      country: storedData.country ?? "",
+                                                      latitude: storedData.latitude as! Double,
+                                                      longitude: storedData.longitude as! Double))
+        }
     }
 }
 

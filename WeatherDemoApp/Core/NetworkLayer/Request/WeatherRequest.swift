@@ -10,7 +10,6 @@ import Foundation
 struct WeatherRequest: RequestType {
     
     let geoData: GeoModelDomain
-    let path: String = "data/2.5/forecast"
     let httpMethod: HTTPMethod = .get
     
     var baseURL: URL {
@@ -18,6 +17,8 @@ struct WeatherRequest: RequestType {
         else { fatalError("baseURL could not be configured.") }
         return url
     }
+    
+    let path: String = "data/2.5/forecast"
     
     var config: RequestConfig {
         return .withParameters(

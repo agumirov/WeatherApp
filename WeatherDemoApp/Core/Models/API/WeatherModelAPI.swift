@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct WeatherModelAPI: Codable {
     let list: [WeatherList]
@@ -16,7 +17,7 @@ struct Weather: Codable {
     let icon: String
 }
 
-struct WeatherList: Codable {
+class WeatherList: NSObject, Codable {
     let dt: Double
     let main: [String: Double]
     let weather: [Weather]
