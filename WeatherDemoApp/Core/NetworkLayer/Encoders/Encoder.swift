@@ -10,6 +10,8 @@ import Foundation
 enum Encoder {
     
     case urlEncoding
+    case jsonEncoding
+    case urlAndJsonEncoding
     
     public func encode(
         urlParameters: Parameters?,
@@ -21,6 +23,16 @@ enum Encoder {
             case .urlEncoding:
                 guard let urlParameters = urlParameters else { throw  EncoderError.parametersNil}
                 try URLEncoder.encode(urlRequest: &urlRequest, with: urlParameters)
+                
+            case .jsonEncoding:
+                guard let jsonParameters = jsonParameters else { throw  EncoderError.parametersNil}
+                try JSONEncoder.encode(urlRequest: &urlRequest, with: jsonParameters)
+            case .urlAndJsonEncoding:
+                guard let urlParameters = urlParameters else { throw  EncoderError.parametersNil}
+                guard let jsonParameters = jsonParameters else { throw  EncoderError.parametersNil}
+                
+                try URLEncoder.encode(urlRequest: &urlRequest, with: urlParameters)
+                try JSONEncoder.encode(urlRequest: &urlRequest, with: jsonParameters)
             }
         } catch {
             throw EncoderError.encodingFailed

@@ -67,7 +67,6 @@
 		C636E44F2A10255700BE18DB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B12A10255700BE18DB /* UIColor+Extension.swift */; };
 		C636E4502A10255700BE18DB /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B22A10255700BE18DB /* UIViewController+Extension.swift */; };
 		C636E4512A10255700BE18DB /* UIView+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B32A10255700BE18DB /* UIView+ Extension.swift */; };
-		C636E4522A10255700BE18DB /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B42A10255700BE18DB /* Experiment.swift */; };
 		C636E4532A10255700BE18DB /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E3B52A10255700BE18DB /* Resources.swift */; };
 		C636E4542A10255800BE18DB /* Asap-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3B82A10255700BE18DB /* Asap-VariableFont_wdth,wght.ttf */; };
 		C636E4552A10255800BE18DB /* Asap_SemiCondensed-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C636E3BA2A10255700BE18DB /* Asap_SemiCondensed-MediumItalic.ttf */; };
@@ -165,6 +164,7 @@
 		C636E4B12A10255800BE18DB /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C636E4162A10255700BE18DB /* README.txt */; };
 		C636E4B22A10255800BE18DB /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E4182A10255700BE18DB /* CustomLabel.swift */; };
 		C636E4B32A10255800BE18DB /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E41A2A10255700BE18DB /* DIContainer.swift */; };
+		C636E4B52A1028B200BE18DB /* JSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E4B42A1028B200BE18DB /* JSONEncoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -232,7 +232,6 @@
 		C636E3B12A10255700BE18DB /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C636E3B22A10255700BE18DB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C636E3B32A10255700BE18DB /* UIView+ Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ Extension.swift"; sourceTree = "<group>"; };
-		C636E3B42A10255700BE18DB /* Experiment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experiment.swift; sourceTree = "<group>"; };
 		C636E3B52A10255700BE18DB /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		C636E3B82A10255700BE18DB /* Asap-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
 		C636E3BA2A10255700BE18DB /* Asap_SemiCondensed-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asap_SemiCondensed-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -330,6 +329,7 @@
 		C636E4162A10255700BE18DB /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		C636E4182A10255700BE18DB /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		C636E41A2A10255700BE18DB /* DIContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		C636E4B42A1028B200BE18DB /* JSONEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,14 +374,13 @@
 		C636E3452A10240B00BE18DB /* WeatherDemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				C636E4B62A10383300BE18DB /* Application */,
 				C636E37D2A10255700BE18DB /* Base */,
 				C636E3852A10255700BE18DB /* Core */,
 				C636E4192A10255700BE18DB /* Dependencies */,
 				C636E3AD2A10255700BE18DB /* Helpers */,
 				C636E35C2A10255600BE18DB /* Modules */,
 				C636E35B2A10248700BE18DB /* Resources */,
-				C636E3462A10240B00BE18DB /* AppDelegate.swift */,
-				C636E3482A10240B00BE18DB /* SceneDelegate.swift */,
 			);
 			path = WeatherDemoApp;
 			sourceTree = "<group>";
@@ -529,9 +528,9 @@
 		C636E37D2A10255700BE18DB /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C636E3802A10255700BE18DB /* Screens */,
 				C636E37E2A10255700BE18DB /* AppCoordinator.swift */,
 				C636E37F2A10255700BE18DB /* ViewModel.swift */,
-				C636E3802A10255700BE18DB /* Screens */,
 				C636E3842A10255700BE18DB /* AppNavigation.swift */,
 			);
 			path = Base;
@@ -638,6 +637,7 @@
 			children = (
 				C636E39A2A10255700BE18DB /* Encoder.swift */,
 				C636E39B2A10255700BE18DB /* URLEncoder.swift */,
+				C636E4B42A1028B200BE18DB /* JSONEncoder.swift */,
 			);
 			path = Encoders;
 			sourceTree = "<group>";
@@ -696,7 +696,6 @@
 			children = (
 				C636E3AE2A10255700BE18DB /* ImageCache.swift */,
 				C636E3AF2A10255700BE18DB /* Extensions */,
-				C636E3B42A10255700BE18DB /* Experiment.swift */,
 				C636E3B52A10255700BE18DB /* Resources.swift */,
 				C636E3B62A10255700BE18DB /* Fonts */,
 				C636E4172A10255700BE18DB /* CustomUIElements */,
@@ -846,6 +845,15 @@
 				C636E41A2A10255700BE18DB /* DIContainer.swift */,
 			);
 			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		C636E4B62A10383300BE18DB /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C636E3462A10240B00BE18DB /* AppDelegate.swift */,
+				C636E3482A10240B00BE18DB /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		D195DF49F1AB09C8404872CA /* Frameworks */ = {
@@ -1091,6 +1099,7 @@
 				C636E3472A10240B00BE18DB /* AppDelegate.swift in Sources */,
 				C636E4212A10255700BE18DB /* WeatherErrorView.swift in Sources */,
 				C636E42A2A10255700BE18DB /* SearchViewContainer.swift in Sources */,
+				C636E4B52A1028B200BE18DB /* JSONEncoder.swift in Sources */,
 				C636E44B2A10255700BE18DB /* MainFlowCoordinatorImplementation.swift in Sources */,
 				C636E42F2A10255700BE18DB /* ViewModel.swift in Sources */,
 				C636E4332A10255700BE18DB /* AppNavigation.swift in Sources */,
@@ -1142,7 +1151,6 @@
 				C636E4482A10255700BE18DB /* FlowFactory.swift in Sources */,
 				C636E43C2A10255700BE18DB /* WeekDayModelDomain.swift in Sources */,
 				C636E4412A10255700BE18DB /* RequestConfig.swift in Sources */,
-				C636E4522A10255700BE18DB /* Experiment.swift in Sources */,
 				C636E41E2A10255700BE18DB /* TemperatureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
