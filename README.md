@@ -1,6 +1,7 @@
 ## WeatherApp
-Description
-This is weather application project. I tried to implement there MVVM-C architecture, with different flows. Also Network layer was implemented, and now we have somthing like Alamofire or Moya, but made with native tools.
+
+## Description
+This is weather application project. I tried to implement there MVVM-C architecture, with different flows. Also Network layer was implemented, and now we have something like Alamofire or Moya, but made with native tools.
 
 ## Setup
 Just download this project and install pods.
