@@ -361,12 +361,12 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C619C23F2A1317C40053674A /* EventConverter */ = {
+		C619C23F2A1317C40053674A /* StateConverter */ = {
 			isa = PBXGroup;
 			children = (
 				C619C2402A1317D10053674A /* SearchEventConverter.swift */,
 			);
-			path = EventConverter;
+			path = StateConverter;
 			sourceTree = "<group>";
 		};
 		C636E33A2A10240B00BE18DB = {
@@ -481,11 +481,11 @@
 		C636E36D2A10255600BE18DB /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
-				C619C23F2A1317C40053674A /* EventConverter */,
+				C636E37B2A10255600BE18DB /* Builder */,
+				C619C23F2A1317C40053674A /* StateConverter */,
 				C636E36E2A10255600BE18DB /* ViewModel */,
 				C636E3712A10255600BE18DB /* Elements */,
 				C636E3732A10255600BE18DB /* View */,
-				C636E37B2A10255600BE18DB /* Builder */,
 			);
 			path = SearchModule;
 			sourceTree = "<group>";

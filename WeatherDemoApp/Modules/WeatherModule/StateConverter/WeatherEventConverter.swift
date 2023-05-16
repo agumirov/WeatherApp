@@ -8,7 +8,7 @@
 import Foundation
 
 enum WeatherStateConverter {
-    static func convert(state: ViewModelState) -> WeatherViewState {
+    static func convert(state: WeatherViewModelState) -> WeatherViewState {
         switch state {
         case .fetchingData:
             return .loading

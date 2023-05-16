@@ -11,19 +11,11 @@ import RxCocoa
 
 typealias SearchViewState = SearchViewController.State
 typealias SearchViewEvent = SearchViewController.Event
-typealias ViewModelInputEvents = SearchViewModelImpl.InputEvents
-typealias ViewModelOutputEvents = SearchViewModelImpl.OutputEvents
+typealias SearchViewModelState = SearchViewModelImpl.State
+typealias SearchViewModelOutput = SearchViewModelImpl.OutputEvent
 
 protocol SearchViewModel {
-    var input: SearchViewModelInput { get }
-    var output: SearchViewModelOutput { get }
-}
-
-protocol SearchViewModelInput {
-    var event: PublishRelay<SearchViewEvent> { get set }
-}
-
-protocol SearchViewModelOutput {
-    var state: BehaviorRelay<SearchViewState> { get set }
-    var event: PublishRelay<ViewModelOutputEvents> { get set }
+    var output: Observable<SearchViewModelOutput> { get }
+    var state: Observable<SearchViewModelState> { get }
+    func sendEvent(_ event: SearchViewEvent)
 }

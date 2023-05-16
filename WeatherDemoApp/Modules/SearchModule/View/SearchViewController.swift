@@ -47,25 +47,24 @@ class SearchViewController: UIViewController {
     
     private func bindState() {
         
-        viewModel.output.state
-            .asObservable()
+        viewModel.state
             .subscribe(onNext: { [weak self] state in
                 guard let self = self else { return }
-                self.render(state: state)
+                let viewState = SearchStateConverter.convert(event: state)
+                self.render(state: viewState)
             })
             .disposed(by: disposeBag)
         
         container.event
-            .asObservable()
             .subscribe(onNext: { [weak self] event in
                 guard let self = self else { return }
                 switch event {
                 case let .citySelected(geoData):
-                    self.sendEvent(.showWeather(geoData: geoData))
+                    self.viewModel.sendEvent(.showWeather(geoData: geoData))
                 case let .showCityList(value):
-                    self.sendEvent(.showCities(value: value))
+                    self.viewModel.sendEvent(.showCities(value: value))
                 case .cancelSearch:
-                    self.sendEvent(.cancelSearch)
+                    self.viewModel.sendEvent(.cancelSearch)
                 }
             })
             .disposed(by: disposeBag)
@@ -108,9 +107,5 @@ extension SearchViewController {
         case showWeather(geoData: GeoModelDomain)
         case showCities(value: String)
         case cancelSearch
-    }
-    
-    private func sendEvent(_ event: Event) {
-        viewModel.input.event.accept(event)
     }
 }

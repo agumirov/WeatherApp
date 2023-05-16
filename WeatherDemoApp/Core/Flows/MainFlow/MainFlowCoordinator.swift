@@ -45,9 +45,11 @@ extension MainFlowCoordinator {
     }
     
     func showSearchScreen() {
-        let (view, viewModel) = SearchModuleBuilder.buildSearchModule()
+        let searchModule = SearchModuleBuilder.buildSearchModule(
+            dependencies: .init(networkService: DIContainer.standart.resolve()),
+            payload: .init())
         
-        viewModel.output.event
+        searchModule.output
             .asObservable()
             .subscribe { [weak self] event in
                 switch event {
@@ -59,7 +61,7 @@ extension MainFlowCoordinator {
             }
             .disposed(by: disposeBag)
         
-        navigationController?.pushViewController(view, animated: false)
+        navigationController?.pushViewController(searchModule.view, animated: false)
     }
     
     private func popVC() {

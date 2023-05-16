@@ -7,20 +7,22 @@
 
 import Foundation
 import UIKit
+import RxSwift
+
+typealias SearchModule = (view: SearchViewController, output: Observable<SearchViewModelOutput>)
 
 enum SearchModuleBuilder {
     
     struct Dependencies {
-        static let networkService: NetworkService = DIContainer.standart.resolve()
+        let networkService: NetworkService
     }
     
-    struct PayLoad {
-        
-    }
+    struct PayLoad {}
     
-    static func buildSearchModule() -> (SearchViewController, SearchViewModel) {
+    static func buildSearchModule(dependencies: Dependencies,
+                                  payload: PayLoad) -> SearchModule {
         
-        let geoRepository = GeoRepositoryImpl(networkService: Dependencies.networkService)
+        let geoRepository = GeoRepositoryImpl(networkService: dependencies.networkService)
         
         let viewModel = SearchViewModelImpl(
             geoRepository: geoRepository
@@ -28,6 +30,6 @@ enum SearchModuleBuilder {
         
         let view = SearchViewController(viewModel: viewModel)
         
-        return (view, viewModel)
+        return (view: view, output: viewModel.output)
     }
 }
