@@ -14,7 +14,7 @@ class FlowFactoryImplementation: FlowFactory {
         
         let navigationController = MainFlowNavigation()
         
-        _ = MainFlowCoordinatorImplementation(
+        _ = MainFlowCoordinator(
             navigationController: navigationController)
         
         return navigationController

@@ -12,7 +12,7 @@ import RxCocoa
 
 final class WeatherSuccessView: UIView {
     
-    private var _event: BehaviorSubject<WeatherViewEvent> = BehaviorSubject(value: .none)
+    private var _event = PublishRelay<WeatherViewEvent>()
     
     private var _weather: WeatherModelDomain?
     
@@ -184,7 +184,7 @@ final class WeatherSuccessView: UIView {
    
     
     @objc private func searchCity() {
-        _event.onNext(.search)
+        _event.accept(.search)
     }
     
     func renderUI(data: WeatherModelDomain) {
@@ -223,11 +223,10 @@ final class WeatherSuccessView: UIView {
 extension WeatherSuccessView {
     
     enum WeatherViewEvent {
-        case none
         case search
     }
     
     var event: Observable<WeatherViewEvent> {
-        _event.asObserver()
+        _event.asObservable()
     }
 }

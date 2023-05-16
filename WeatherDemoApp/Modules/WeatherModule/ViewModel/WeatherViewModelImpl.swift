@@ -9,52 +9,91 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class WeatherViewModelImpl: ViewModel, WeatherViewModel {
+class WeatherViewModelImpl: WeatherViewModel {
     
-    typealias CoordinatorType = MainFlowCoordinator
-    var coordinator: CoordinatorType
-    
-    var weatherData: WeatherModelDomain?
-    
+    var input: WeatherViewModelInput
+    var output: WeatherViewModelOuput
+    private let disposeBag = DisposeBag()
     private let geoData: GeoModelDomain
+    private let weatherRepository: WeatherRepository // тоже должны быть ивенты?
     
-    private let weatherRepository: WeatherRepository
+    struct Input: WeatherViewModelInput {
+        var event = PublishRelay<WeatherViewEvent>()
+    }
     
-    var state: BehaviorRelay<WeatherViewController.WeatherState> = BehaviorRelay(value: .initial)
+    struct Output: WeatherViewModelOuput {
+        var state = PublishRelay<WeatherViewState>()
+        var event = PublishRelay<WeatherViewModelImpl.OutputEvents>()
+    }
     
     init(
         geoData: GeoModelDomain,
-        coordinator: CoordinatorType,
         weatherRepository: WeatherRepository
     ) {
-        self.coordinator = coordinator
         self.weatherRepository = weatherRepository
         self.geoData = geoData
+        self.input = Input()
+        self.output = Output()
+        
+        bindInputs()
     }
     
-    func viewDidLoad() {}
+    private func bindInputs() {
+        self.input.event
+            .asObservable()
+            .subscribe(onNext: { [weak self] event in
+                guard let self = self else { return }
+                let event = WeatherEventConverter.convert(event: event)
+                self.handleEvent(event: event)
+            })
+            .disposed(by: disposeBag)
+    }
     
-    private func getWeatherData(geoData: GeoModelDomain) {
-        Task {
+    private func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelDomain {
+        let task = Task {
             let data = try? await weatherRepository.getWeatherData(geoData: geoData)
-            await MainActor.run { [weak self] in
-                self?.weatherData = data
-                self?.state.accept(.success)
-            }
+            return data
         }
+        guard let result = await task.value else { throw Errors.fetchDataError }
+        return result
     }
 }
 
 extension WeatherViewModelImpl {
     
-    func handleEvent(event: WeatherViewController.WeatherEvent) {
-        state.accept(.loading)
+    enum InputEvents {
+        case fetchWeatherData
+        case sendWeatherDataToOutput(WeatherModelDomain)
+        case routeToSearch
+    }
+    
+    enum OutputEvents {
+        case showSearchScreen
+    }
+    
+    enum Errors: String, Error {
+        case fetchDataError = "Fetched data is nil"
+    }
+    
+    private func handleEvent(event: InputEvents) {
+        
         switch event {
-        case .searchSelected:
-            self.coordinator.showSearchScreen()
-            self.state.accept(.initial)
-        case .showWeather:
-            getWeatherData(geoData: geoData)
+        case .fetchWeatherData:
+            self.output.state.accept(.loading)
+            Task {
+                let weatherData = try await self.getWeatherData(geoData: self.geoData)
+                handleEvent(event: .sendWeatherDataToOutput(weatherData))
+            }
+            
+        case .routeToSearch:
+            self.output.state.accept(.loading)
+            self.output.event.accept(.showSearchScreen)
+            self.output.state.accept(.initial)
+            
+        case let .sendWeatherDataToOutput(weatherData):
+            DispatchQueue.main.async {
+                self.output.state.accept(.success(weatherData))
+            }
         }
     }
 }

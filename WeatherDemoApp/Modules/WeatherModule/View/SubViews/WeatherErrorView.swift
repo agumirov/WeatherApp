@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxRelay
 
 class WeatherErrorView: UIView {
     
-    private var _event: BehaviorSubject<Event> = BehaviorSubject(value: .none)
+    private var _event = PublishRelay<Event>()
     
     let errorMessage: UILabel = {
         let label = UILabel()
@@ -58,11 +59,10 @@ class WeatherErrorView: UIView {
 extension WeatherErrorView {
     
     enum Event {
-        case none
         case retrySearch
     }
     
     var event: Observable<Event> {
-        _event.asObserver()
+        _event.asObservable()
     }
 }

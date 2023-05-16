@@ -11,13 +11,13 @@ import RxSwift
 
 class WeatherViewController: UIViewController {
     
-    var viewModel: WeatherViewModel
+    var viewModel: any WeatherViewModel
     
     private let container = WeatherViewContainer()
     
     private let disposeBag = DisposeBag()
     
-    init(viewModel: WeatherViewModel) {
+    init(viewModel: any WeatherViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -32,7 +32,7 @@ class WeatherViewController: UIViewController {
         setupGradient()
         bindViewModel()
         setupUI()
-        viewModel.handleEvent(event: .showWeather)
+        sendEvent(.showWeather)
     }
     
     
@@ -56,9 +56,9 @@ class WeatherViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.state
+        viewModel.output.state
             .asObservable()
-            .subscribe(onNext: { [weak self] state in
+            .subscribe(onNext: {[weak self] state in
                 guard let self = self else { return }
                 self.render(state: state)
             })
@@ -67,12 +67,9 @@ class WeatherViewController: UIViewController {
         container.event
             .asObservable()
             .subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
                 switch event {
                 case .searchSelected:
-                    self.viewModel.handleEvent(event: .searchSelected)
-                case .none:
-                    break
+                    self?.sendEvent(.searchSelected)
                 }
             })
             .disposed(by: disposeBag)
@@ -89,7 +86,7 @@ extension WeatherViewController {
     enum WeatherState {
         case initial
         case loading
-        case success
+        case success(WeatherModelDomain)
         case error
     }
     
@@ -97,13 +94,16 @@ extension WeatherViewController {
         switch state {
         case .loading:
             container.render(state: .loading)
-        case .success:
-            guard let data = viewModel.weatherData else { return }
-            container.render(state: .success(data))
+        case let .success(weatherData):
+            container.render(state: .success(weatherData))
         case .error:
             container.render(state: .error)
         case .initial:
             container.render(state: .initial)
         }
+    }
+    
+    private func sendEvent(_ event: WeatherEvent) {
+        viewModel.input.event.accept(event)
     }
 }

@@ -10,19 +10,24 @@ import UIKit
 
 enum SearchModuleBuilder {
     
-    static func buildSearchModule(
-        coordinator: MainFlowCoordinator
-    ) -> UIViewController {
+    struct Dependencies {
+        static let networkService: NetworkService = DIContainer.standart.resolve()
+    }
+    
+    struct PayLoad {
         
-        let geoRepository = GeoRepositoryImpl(networkService: DIContainer.standart.resolve())
+    }
+    
+    static func buildSearchModule() -> (SearchViewController, SearchViewModel) {
+        
+        let geoRepository = GeoRepositoryImpl(networkService: Dependencies.networkService)
         
         let viewModel = SearchViewModelImpl(
-            coordinator: coordinator,
             geoRepository: geoRepository
         )
         
         let view = SearchViewController(viewModel: viewModel)
         
-        return view
+        return (view, viewModel)
     }
 }

@@ -9,13 +9,21 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+typealias WeatherViewState = WeatherViewController.WeatherState
+typealias WeatherViewEvent = WeatherViewController.WeatherEvent
+typealias WeatherViewModelInputEvent = WeatherViewModelImpl.InputEvents
+typealias WeatherViewModelOutputEvent = WeatherViewModelImpl.OutputEvents
+
 protocol WeatherViewModel: AnyObject {
-    
-    var weatherData: WeatherModelDomain? { get }
-    
-    var state: BehaviorRelay<WeatherViewController.WeatherState> { get }
-    
-    func handleEvent(event: WeatherViewController.WeatherEvent)
-    
-    func viewDidLoad()
+    var input: WeatherViewModelInput { get }
+    var output: WeatherViewModelOuput { get }
+}
+
+protocol WeatherViewModelInput {
+    var event: PublishRelay<WeatherViewEvent> { get set }
+}
+
+protocol WeatherViewModelOuput {
+    var state: PublishRelay<WeatherViewState> { get set }
+    var event: PublishRelay<WeatherViewModelOutputEvent> { get set }
 }

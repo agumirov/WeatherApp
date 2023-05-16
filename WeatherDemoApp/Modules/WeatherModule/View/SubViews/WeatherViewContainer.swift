@@ -85,7 +85,6 @@ extension WeatherViewContainer {
 extension WeatherViewContainer {
     
     enum Event {
-        case none
         case searchSelected
     }
     
@@ -95,8 +94,6 @@ extension WeatherViewContainer {
                 .asObservable()
                 .map { event in
                     switch event {
-                    case .none:
-                        return .none
                     case .search:
                         return .searchSelected
                     }
@@ -108,8 +105,6 @@ extension WeatherViewContainer {
                     switch event {
                     case .retrySearch:
                         return .searchSelected
-                    case .none:
-                        return .none
                     }
                 })
         )
