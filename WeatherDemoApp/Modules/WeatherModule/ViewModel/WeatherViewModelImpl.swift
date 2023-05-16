@@ -11,42 +11,28 @@ import RxSwift
 
 class WeatherViewModelImpl: WeatherViewModel {
     
-    var input: WeatherViewModelInput
-    var output: WeatherViewModelOuput
+    var state: Observable<State> {
+        _state.asObservable()
+    }
+    private var _state = PublishRelay<State>()
+    
+    var output: Observable<OutputEvents> {
+        _output.asObservable()
+    }
+    private var _output = PublishRelay<WeatherViewModelOutput>()
+    
     private let disposeBag = DisposeBag()
-    private let geoData: GeoModelDomain
     private let weatherRepository: WeatherRepository // тоже должны быть ивенты?
+    private var input: Input
     
-    struct Input: WeatherViewModelInput {
-        var event = PublishRelay<WeatherViewEvent>()
+    struct Input {
+        var geoData: GeoModelDomain
     }
     
-    struct Output: WeatherViewModelOuput {
-        var state = PublishRelay<WeatherViewState>()
-        var event = PublishRelay<WeatherViewModelImpl.OutputEvents>()
-    }
-    
-    init(
-        geoData: GeoModelDomain,
-        weatherRepository: WeatherRepository
-    ) {
+    init(input: Input,
+         weatherRepository: WeatherRepository) {
         self.weatherRepository = weatherRepository
-        self.geoData = geoData
-        self.input = Input()
-        self.output = Output()
-        
-        bindInputs()
-    }
-    
-    private func bindInputs() {
-        self.input.event
-            .asObservable()
-            .subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
-                let event = WeatherEventConverter.convert(event: event)
-                self.handleEvent(event: event)
-            })
-            .disposed(by: disposeBag)
+        self.input = input
     }
     
     private func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelDomain {
@@ -61,10 +47,10 @@ class WeatherViewModelImpl: WeatherViewModel {
 
 extension WeatherViewModelImpl {
     
-    enum InputEvents {
-        case fetchWeatherData
-        case sendWeatherDataToOutput(WeatherModelDomain)
-        case routeToSearch
+    enum State {
+        case fetchingData
+        case sucess(WeatherModelDomain)
+        case failure(Error)
     }
     
     enum OutputEvents {
@@ -75,25 +61,27 @@ extension WeatherViewModelImpl {
         case fetchDataError = "Fetched data is nil"
     }
     
-    private func handleEvent(event: InputEvents) {
-        
+    func sendEvent(_ event: WeatherViewEvent) {
         switch event {
-        case .fetchWeatherData:
-            self.output.state.accept(.loading)
-            Task {
-                let weatherData = try await self.getWeatherData(geoData: self.geoData)
-                handleEvent(event: .sendWeatherDataToOutput(weatherData))
-            }
-            
-        case .routeToSearch:
-            self.output.state.accept(.loading)
-            self.output.event.accept(.showSearchScreen)
-            self.output.state.accept(.initial)
-            
-        case let .sendWeatherDataToOutput(weatherData):
-            DispatchQueue.main.async {
-                self.output.state.accept(.success(weatherData))
+        case .searchSelected:
+            self._output.accept(.showSearchScreen)
+        case .viewDidLoad:
+            setState(.fetchingData)
+            Task { [weak self] in
+                guard let self = self else { return }
+                do {
+                    let weatherData = try await self.getWeatherData(geoData: input.geoData)
+                    await MainActor.run {
+                        setState(.sucess(weatherData))
+                    }
+                } catch let error {
+                    setState(.failure(error))
+                }
             }
         }
+    }
+    
+    private func setState(_ state: State) {
+        self._state.accept(state)
     }
 }
