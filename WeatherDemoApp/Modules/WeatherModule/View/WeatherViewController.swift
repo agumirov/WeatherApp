@@ -32,7 +32,7 @@ class WeatherViewController: UIViewController {
         setupGradient()
         bindViewModel()
         setupUI()
-        sendEvent(.showWeather)
+        viewModel.sendEvent(.viewDidLoad)
     }
     
     
@@ -56,11 +56,12 @@ class WeatherViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.output.state
-            .asObservable()
+        
+        viewModel.state
             .subscribe(onNext: {[weak self] state in
                 guard let self = self else { return }
-                self.render(state: state)
+                let viewState = WeatherStateConverter.convert(state: state)
+                self.render(state: viewState)
             })
             .disposed(by: disposeBag)
         
@@ -69,7 +70,7 @@ class WeatherViewController: UIViewController {
             .subscribe(onNext: { [weak self] event in
                 switch event {
                 case .searchSelected:
-                    self?.sendEvent(.searchSelected)
+                    self?.viewModel.sendEvent(.searchSelected)
                 }
             })
             .disposed(by: disposeBag)
@@ -80,7 +81,7 @@ extension WeatherViewController {
     
     enum WeatherEvent {
         case searchSelected
-        case showWeather
+        case viewDidLoad
     }
     
     enum WeatherState {
@@ -101,9 +102,5 @@ extension WeatherViewController {
         case .initial:
             container.render(state: .initial)
         }
-    }
-    
-    private func sendEvent(_ event: WeatherEvent) {
-        viewModel.input.event.accept(event)
     }
 }

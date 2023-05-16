@@ -15,42 +15,9 @@ class MainFlowCoordinator<N>: AppCoordinator<N> where N: MainFlowNavigation {
     
     private let disposeBag = DisposeBag()
     
-    private var _event: CoordinatorEvents? = nil {
-        willSet {
-            switch newValue {
-            case let .pushWeatherScreen(geoData):
-                showWeatherScreen(geoData: geoData)
-            case .pushSearchScreen:
-                showSearchScreen()
-            case .none:
-                break
-            case .popVC:
-                navigationController?.popViewController(animated: false)
-            }
-        }
-    }
-    
-    override init(navigationController: N) {
-        super.init(navigationController: navigationController)
-    }
-    
     override func start() {
         super.start()
-        let storedData = StoreManager.shared.fetchData()
-        
-        if storedData.isEmpty {
-            showSearchScreen()
-        } else {
-            
-            for data in storedData {
-                print(data)
-            }
-            guard let storedData = storedData.last else { return }
-            showWeatherScreen(geoData: GeoModelDomain(name: storedData.city ?? "",
-                                                      country: storedData.country ?? "",
-                                                      latitude: storedData.latitude as! Double,
-                                                      longitude: storedData.longitude as! Double))
-        }
+        checkStoredData()
     }
 }
 
@@ -60,10 +27,12 @@ extension MainFlowCoordinator {
     //    showMainScreen
     func showWeatherScreen(geoData: GeoModelDomain) {
         
-        let (view, viewModel) = WeatherModuleBuilder.buildWeatherModule(geoData: geoData)
+        let weatherModule = WeatherModuleBuilder.buildWeatherModule(
+            payLoad: .init(geoData: geoData),
+            dependencies: .init(networkService: DIContainer.standart.resolve())
+        )
         
-        viewModel.output.event
-            .asObservable()
+        weatherModule.output
             .subscribe { [weak self] event in
                 switch event {
                 case .showSearchScreen:
@@ -72,7 +41,7 @@ extension MainFlowCoordinator {
             }
             .disposed(by: disposeBag)
         
-        navigationController?.viewControllers = [view]
+        navigationController?.viewControllers = [weatherModule.view]
     }
     
     func showSearchScreen() {
@@ -94,7 +63,7 @@ extension MainFlowCoordinator {
     }
     
     private func popVC() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
     }
 }
 
@@ -104,5 +73,24 @@ extension MainFlowCoordinator {
         case pushWeatherScreen(geoData: GeoModelDomain)
         case pushSearchScreen
         case popVC
+    }
+    
+    private func checkStoredData() {
+        
+        let storedData = StoreManager.shared.fetchData()
+        
+        if storedData.isEmpty {
+            showSearchScreen()
+        } else {
+            
+            for data in storedData {
+                print(data)
+            }
+            guard let storedData = storedData.last else { return }
+            showWeatherScreen(geoData: GeoModelDomain(name: storedData.city ?? "",
+                                                      country: storedData.country ?? "",
+                                                      latitude: storedData.latitude as! Double,
+                                                      longitude: storedData.longitude as! Double))
+        }
     }
 }

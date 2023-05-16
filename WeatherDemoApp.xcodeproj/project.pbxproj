@@ -423,7 +423,7 @@
 		C636E35D2A10255600BE18DB /* WeatherModule */ = {
 			isa = PBXGroup;
 			children = (
-				C636E4C92A12C9F600BE18DB /* EventConverter */,
+				C636E4C92A12C9F600BE18DB /* StateConverter */,
 				C636E36B2A10255600BE18DB /* Builder */,
 				C636E35E2A10255600BE18DB /* ViewModel */,
 				C636E3612A10255600BE18DB /* Elements */,
@@ -884,12 +884,12 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		C636E4C92A12C9F600BE18DB /* EventConverter */ = {
+		C636E4C92A12C9F600BE18DB /* StateConverter */ = {
 			isa = PBXGroup;
 			children = (
 				C636E4CA2A12CA0200BE18DB /* WeatherEventConverter.swift */,
 			);
-			path = EventConverter;
+			path = StateConverter;
 			sourceTree = "<group>";
 		};
 		D195DF49F1AB09C8404872CA /* Frameworks */ = {

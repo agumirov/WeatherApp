@@ -11,19 +11,11 @@ import RxSwift
 
 typealias WeatherViewState = WeatherViewController.WeatherState
 typealias WeatherViewEvent = WeatherViewController.WeatherEvent
-typealias WeatherViewModelInputEvent = WeatherViewModelImpl.InputEvents
-typealias WeatherViewModelOutputEvent = WeatherViewModelImpl.OutputEvents
+typealias WeatherViewModelOutput = WeatherViewModelImpl.OutputEvents
+typealias ViewModelState = WeatherViewModelImpl.State
 
 protocol WeatherViewModel: AnyObject {
-    var input: WeatherViewModelInput { get }
-    var output: WeatherViewModelOuput { get }
-}
-
-protocol WeatherViewModelInput {
-    var event: PublishRelay<WeatherViewEvent> { get set }
-}
-
-protocol WeatherViewModelOuput {
-    var state: PublishRelay<WeatherViewState> { get set }
-    var event: PublishRelay<WeatherViewModelOutputEvent> { get set }
+    var output: Observable<WeatherViewModelOutput> { get }
+    var state: Observable<ViewModelState> { get }
+    func sendEvent(_ event: WeatherViewEvent)
 }

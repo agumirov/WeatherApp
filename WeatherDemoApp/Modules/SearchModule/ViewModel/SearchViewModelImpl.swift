@@ -44,20 +44,14 @@ class SearchViewModelImpl: SearchViewModel {
     }
     
     private func searchCall(cityName: String) async throws -> [GeoModelDomain] {
+        
         let task = Task {
             let cities = try? await geoRepository.getGeoData(cityName: cityName)
             return cities
         }
+        
         guard let result = await task.value else { throw Errors.fetchDataError }
         return result
-    }
-    
-    private func sendOuputEvent(_ event: OutputEvents) {
-        self.output.event.accept(event)
-    }
-    
-    private func setState(_ state: SearchViewState) {
-        self.output.state.accept(state)
     }
 }
 
@@ -75,7 +69,12 @@ extension SearchViewModelImpl {
         case abortSearch
     }
     
+    enum Errors: String, Error {
+        case fetchDataError = "Fetched data is nil"
+    }
+    
     func handleEvent(event: InputEvents) {
+        
         switch event {
         case let .fetchData(cityName):
             Task {
@@ -98,7 +97,11 @@ extension SearchViewModelImpl {
         }
     }
     
-    enum Errors: String, Error {
-        case fetchDataError = "Fetched data is nil"
+    private func sendOuputEvent(_ event: OutputEvents) {
+        self.output.event.accept(event)
+    }
+    
+    private func setState(_ state: SearchViewState) {
+        self.output.state.accept(state)
     }
 }

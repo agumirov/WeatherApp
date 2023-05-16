@@ -7,22 +7,30 @@
 
 import Foundation
 import UIKit
+import RxSwift
+
+typealias WeatherModule = (view: WeatherViewController, output: Observable<WeatherViewModelOutput>)
 
 enum WeatherModuleBuilder {
     
-    static func buildWeatherModule(
-        geoData: GeoModelDomain
-    ) -> (WeatherViewController, WeatherViewModel) {
-        let weatherRepository = WeatherRepositoryImpl(networkService:
-                                                        DIContainer.standart.resolve())
+    struct Dependencies {
+        let networkService: NetworkService
+    }
+    
+    struct Payload {
+        let geoData: GeoModelDomain
+    }
+    
+    static func buildWeatherModule(payLoad: Payload,
+                                   dependencies: Dependencies) -> WeatherModule {
+        
+        let weatherRepository = WeatherRepositoryImpl(networkService: dependencies.networkService)
         
         let viewModel = WeatherViewModelImpl(
-            geoData: geoData,
-            weatherRepository: weatherRepository
-        )
+            input: .init(geoData: payLoad.geoData),
+            weatherRepository: weatherRepository)
         
         let view = WeatherViewController(viewModel: viewModel)
-        
-        return (view, viewModel)
+        return WeatherModule(view, viewModel.output)
     }
 }
