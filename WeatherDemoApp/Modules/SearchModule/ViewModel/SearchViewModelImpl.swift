@@ -11,38 +11,22 @@ import RxCocoa
 
 class SearchViewModelImpl: SearchViewModel {
     
-    var input: SearchViewModelInput
-    var output: SearchViewModelOutput
-    
-    struct Input: SearchViewModelInput {
-        var event = PublishRelay<SearchViewEvent>()
+    var output: Observable<SearchViewModelOutput> {
+        _output.asObservable()
     }
+    private var _output = PublishRelay<OutputEvent>()
     
-    struct Output: SearchViewModelOutput {
-        var state = BehaviorRelay<SearchViewState>(value: .initial)
-        var event = PublishRelay<ViewModelOutputEvents>()
+    var state: Observable<SearchViewModelState> {
+        _state.asObservable()
     }
-    
+    private var _state: BehaviorRelay<State> = .init(value: .waitingForInput)
     private var geoRepository: GeoRepository
     private var disposeBag = DisposeBag()
     
     init(geoRepository: GeoRepository) {
         self.geoRepository = geoRepository
-        self.input = Input()
-        self.output = Output()
-        bindInputs()
     }
-    
-    private func bindInputs() {
-        self.input.event
-            .asObservable()
-            .subscribe { [weak self] event in
-                let event = SearchEventConverter.convert(event: event)
-                self?.handleEvent(event: event)
-            }
-            .disposed(by: disposeBag)
-    }
-    
+        
     private func searchCall(cityName: String) async throws -> [GeoModelDomain] {
         
         let task = Task {
@@ -50,21 +34,24 @@ class SearchViewModelImpl: SearchViewModel {
             return cities
         }
         
-        guard let result = await task.value else { throw Errors.fetchDataError }
+        guard let result = await task.value else {
+            setState(.failure(Errors.fetchDataError))
+            return []
+        }
         return result
     }
 }
 
+// States/Events
 extension SearchViewModelImpl {
     
-    enum InputEvents {
-        case fetchData(cityName: String)
-        case showFetchResult([GeoModelDomain])
-        case showFullWeatherData(geoData: GeoModelDomain)
-        case cancelSearchIfPossible
+    enum State {
+        case waitingForInput
+        case sucess([GeoModelDomain])
+        case failure(Error)
     }
     
-    enum OutputEvents {
+    enum OutputEvent {
         case routeToWeatherModule(GeoModelDomain)
         case abortSearch
     }
@@ -73,35 +60,34 @@ extension SearchViewModelImpl {
         case fetchDataError = "Fetched data is nil"
     }
     
-    func handleEvent(event: InputEvents) {
-        
+    func sendEvent(_ event: SearchViewEvent) {
         switch event {
-        case let .fetchData(cityName):
+            
+        case let .showWeather(geoData):
+            _output.accept(.routeToWeatherModule(geoData))
+            
+        case let .showCities(value):
             Task {
-                let result = try await searchCall(cityName: cityName)
-                await MainActor.run {
-                    handleEvent(event: .showFetchResult(result))
+                do {
+                    let cities = try await searchCall(cityName: value)
+                    setState(.sucess(cities))
+                } catch let error {
+                    setState(.failure(error))
                 }
             }
             
-        case let .showFetchResult(cities):
-            setState(.loaded(cities: cities))
-            
-        case let .showFullWeatherData(geoData):
-            sendOuputEvent(.routeToWeatherModule(geoData))
-            setState(.initial)
-            
-        case .cancelSearchIfPossible:
-            sendOuputEvent(.abortSearch)
-            setState(.initial)
+        case .cancelSearch:
+            sendOuput(.abortSearch)
         }
     }
     
-    private func sendOuputEvent(_ event: OutputEvents) {
-        self.output.event.accept(event)
+    private func sendOuput(_ event: OutputEvent) {
+        _output.accept(event)
     }
     
-    private func setState(_ state: SearchViewState) {
-        self.output.state.accept(state)
+    private func setState(_ state: State) {
+        DispatchQueue.main.async { [weak self] in
+            self?._state.accept(state)
+        }
     }
 }
