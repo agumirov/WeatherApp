@@ -9,12 +9,12 @@
 import Foundation
 import CoreData
 
-public class WeatherData: NSManagedObject {}
+public class WeatherModelCD: NSManagedObject {}
 
-extension WeatherData {
+extension WeatherModelCD {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<WeatherData> {
-        return NSFetchRequest<WeatherData>(entityName: "WeatherData")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<WeatherModelCD> {
+        return NSFetchRequest<WeatherModelCD>(entityName: "WeatherData")
     }
 
     @NSManaged public var city: String?

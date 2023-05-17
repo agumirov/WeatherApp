@@ -15,6 +15,7 @@ enum WeatherModuleBuilder {
     
     struct Dependencies {
         let networkService: NetworkService
+        let weatherStorageManager: WeatherStorageManager
     }
     
     struct Payload {
@@ -28,7 +29,8 @@ enum WeatherModuleBuilder {
         
         let viewModel = WeatherViewModelImpl(
             input: .init(geoData: payLoad.geoData),
-            weatherRepository: weatherRepository)
+            weatherRepository: weatherRepository,
+            weatherStorageManager: dependencies.weatherStorageManager)
         
         let view = WeatherViewController(viewModel: viewModel)
         return WeatherModule(view, viewModel.output)

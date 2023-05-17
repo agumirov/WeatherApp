@@ -22,17 +22,21 @@ class WeatherViewModelImpl: WeatherViewModel {
     private var _output = PublishRelay<WeatherViewModelOutput>()
     
     private let disposeBag = DisposeBag()
-    private let weatherRepository: WeatherRepository // тоже должны быть ивенты?
     private var input: Input
+    private let weatherRepository: WeatherRepository // тоже должны быть ивенты?
+    private let weatherStorageManager: WeatherStorageManager
     
     struct Input {
         var geoData: GeoModelDomain
     }
     
     init(input: Input,
-         weatherRepository: WeatherRepository) {
-        self.weatherRepository = weatherRepository
+         weatherRepository: WeatherRepository,
+         weatherStorageManager: WeatherStorageManager
+    ) {
         self.input = input
+        self.weatherRepository = weatherRepository
+        self.weatherStorageManager = weatherStorageManager
     }
     
     private func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelDomain {
@@ -43,6 +47,23 @@ class WeatherViewModelImpl: WeatherViewModel {
         guard let result = await task.value else { throw Errors.fetchDataError }
         return result
     }
+    
+//    private func checkStoredData() {
+//
+////        let storedData = StorageManager.shared.fetchData()
+//
+//        if storedData.isEmpty {
+//            sendEvent(.searchSelected)
+//        } else {
+//
+//            for data in storedData {
+//                print(data)
+//            }
+//            guard let storedData = storedData.last else { return }
+//            self.input = .init(geoData: storedData)
+//            sendEvent(.viewDidLoad)
+//        }
+//    }
 }
 
 extension WeatherViewModelImpl {

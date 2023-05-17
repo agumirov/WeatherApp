@@ -8,8 +8,8 @@
 import Foundation
 
 enum Resources {
-    static var screenWidth = 0.0
-    static var screenHeight = 0.0
+    static var screenWidth: CGFloat = 0.0
+    static var screenHeight: CGFloat = 0.0
     
     private static let layoutWidth = 414.0
     private static let layoutHeight = 896.0

@@ -11,7 +11,7 @@ import RxSwift
 
 class WeatherViewController: UIViewController {
     
-    var viewModel: any WeatherViewModel
+    var viewModel: WeatherViewModel
     
     private let container = WeatherViewContainer()
     

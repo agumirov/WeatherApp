@@ -18,12 +18,6 @@ class WeatherRepositoryImpl: WeatherRepository {
     func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelDomain {
         let apiModel = try await networkService.getWeatherData(geoData: geoData)
         
-        Task {
-            await MainActor.run {
-                StoreManager.shared.saveData(geoData: geoData)
-            }
-        }
-        
         let date: String = {
             
             let dateFormatter = DateFormatter()
