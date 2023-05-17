@@ -14,7 +14,7 @@ typealias SearchViewEvent = SearchViewController.Event
 typealias SearchViewModelState = SearchViewModelImpl.State
 typealias SearchViewModelOutput = SearchViewModelImpl.OutputEvent
 
-protocol SearchViewModel {
+protocol SearchViewModel: AnyObject {
     var output: Observable<SearchViewModelOutput> { get }
     var state: Observable<SearchViewModelState> { get }
     func sendEvent(_ event: SearchViewEvent)

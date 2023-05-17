@@ -17,7 +17,7 @@ class MainFlowCoordinator<N>: AppCoordinator<N> where N: MainFlowNavigation {
     
     override func start() {
         super.start()
-        checkStoredData()
+        showSearchScreen()
     }
 }
 
@@ -29,7 +29,8 @@ extension MainFlowCoordinator {
         
         let weatherModule = WeatherModuleBuilder.buildWeatherModule(
             payLoad: .init(geoData: geoData),
-            dependencies: .init(networkService: DIContainer.standart.resolve())
+            dependencies: .init(networkService: DIContainer.standart.resolve(),
+                                weatherStorageManager: DIContainer.standart.resolve())
         )
         
         weatherModule.output
@@ -75,24 +76,5 @@ extension MainFlowCoordinator {
         case pushWeatherScreen(geoData: GeoModelDomain)
         case pushSearchScreen
         case popVC
-    }
-    
-    private func checkStoredData() {
-        
-        let storedData = StoreManager.shared.fetchData()
-        
-        if storedData.isEmpty {
-            showSearchScreen()
-        } else {
-            
-            for data in storedData {
-                print(data)
-            }
-            guard let storedData = storedData.last else { return }
-            showWeatherScreen(geoData: GeoModelDomain(name: storedData.city ?? "",
-                                                      country: storedData.country ?? "",
-                                                      latitude: storedData.latitude as! Double,
-                                                      longitude: storedData.longitude as! Double))
-        }
     }
 }
