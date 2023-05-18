@@ -8,9 +8,9 @@
 import Foundation
 
 struct WeatherModelDomain {
-    let list: [WeekDayModelDomain]
+    let list: [WeatherList]
     let icon: String
-    let date: String
+    let date: Double
     let temperature: Double
     let humidity: Double
     let pressure: Double
@@ -23,12 +23,10 @@ struct WeatherModelDomain {
 extension WeatherModelDomain {
     init(
         location: GeoModelDomain,
-        weather: WeatherModelAPI,
-        date: String,
-        list: [WeekDayModelDomain]
+        weather: WeatherModelAPI
     ) {
         self.icon = weather.list.first?.weather.first?.icon ?? "10d"
-        self.date = date
+        self.date = weather.list.first?.dt ?? 0.0
         self.humidity = weather.list.first?.main["humidity"] ?? 0.0
         self.pressure = weather.list.first?.main["pressure"] ?? 0.0
         self.temperature = weather.list.first?.main["temp"] ?? 0.0
@@ -36,7 +34,6 @@ extension WeatherModelDomain {
         self.visibility = weather.list.first?.visibility ?? 0.0
         self.country = location.country
         self.name = location.name
-        
-        self.list = list
+        self.list = weather.list
     }
 }

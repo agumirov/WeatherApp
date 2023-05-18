@@ -187,16 +187,20 @@ final class WeatherSuccessView: UIView {
         _event.accept(.search)
     }
     
-    func renderUI(data: WeatherModelDomain) {
+    func renderUI(
+        data: WeatherModelDomain,
+        date: String,
+        weekWeather: [WeekModelDomain]
+    ) {
         _weather = data
-        setData()
+        setData(date: date, weekWeather: weekWeather)
     }
     
-    private func setData() {
+    private func setData(date: String, weekWeather: [WeekModelDomain]) {
         
         guard let weather = _weather else { return }
         
-        dateLabel.text = weather.date
+        dateLabel.text = date
         
         city.text = weather.name
         
@@ -216,7 +220,7 @@ final class WeatherSuccessView: UIView {
         
         airPressureValue.text = String(weather.pressure)
         
-        fiveDaysView.configureView(data: weather.list)
+        fiveDaysView.configureView(data: weekWeather)
     }
 }
 

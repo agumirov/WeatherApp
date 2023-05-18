@@ -11,7 +11,7 @@ import UIKit
 
 class StorageManager {
     
-    var persistentContainer: NSPersistentContainer {
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "WeatherStorage")
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
@@ -19,7 +19,11 @@ class StorageManager {
             }
         }
         return container
-    }
+    }()
+    
+    lazy var context: NSManagedObjectContext = {
+        persistentContainer.viewContext
+    }()
     
     func saveContext() {
         let context = persistentContainer.viewContext
@@ -33,9 +37,4 @@ class StorageManager {
             }
         }
     }
-    
-    var context: NSManagedObjectContext {
-        persistentContainer.viewContext
-    }
-    
 }

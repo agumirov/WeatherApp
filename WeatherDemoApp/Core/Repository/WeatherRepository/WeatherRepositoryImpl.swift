@@ -10,54 +10,33 @@ import Foundation
 class WeatherRepositoryImpl: WeatherRepository {
     
     private let networkService: NetworkService
+    private let weatherStorageManager: WeatherStorageManager
     
-    init(networkService: NetworkService) {
+    init(networkService: NetworkService,
+         weatherStorageManager: WeatherStorageManager) {
         self.networkService = networkService
+        self.weatherStorageManager = weatherStorageManager
     }
     
-    func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelDomain {
-        let apiModel = try await networkService.getWeatherData(geoData: geoData)
+    func getWeatherData(geoData: GeoModelDomain?) async throws -> WeatherModelDomain? {
         
-        let date: String = {
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .full
-            dateFormatter.timeStyle = .none
-            
-            let date = Date(timeIntervalSince1970: apiModel.list.first?.dt ?? 0.0)
-            let text = dateFormatter.string(from: date)
-            return text
-        }()
+        var apiModel: WeatherModelAPI
+        var weatherModel: WeatherModelDomain
         
-        let list: [WeekDayModelDomain] = {
-            
-            var weekDayData: [WeekDayModelDomain] = []
-            var currentDate = NSDate.now
-            let weatherList = apiModel.list
-            
-            for weekDay in weatherList {
-                
-                let calendar = Calendar.current
-                let date = calendar.dateComponents([.day], from: Date(timeIntervalSince1970: weekDay.dt))
-                let dateDay = date.day
-                let nextDayDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)
-                let nextDay = calendar.dateComponents([.day], from: nextDayDate ?? .distantFuture).day
-                
-                if dateDay == nextDay {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "EEEE"
-                    
-                    weekDayData.append(WeekDayModelDomain(weather: weekDay))
-                    currentDate = nextDayDate ?? .distantFuture
-                }
-            }
-            return weekDayData
-        }()
-        
-        let weatherModel = WeatherModelDomain(location: geoData,
-                                              weather: apiModel,
-                                              date: date,
-                                              list: list)
+        if geoData == nil {
+            let storedData = weatherStorageManager.fetchData()
+            guard let geodData = storedData.last else { return nil }
+            let geoModel = GeoModelDomain(from: geodData)
+            apiModel = try await networkService.getWeatherData(geoData: geoModel)
+            weatherModel = WeatherModelDomain(location: geoModel,
+                                              weather: apiModel)
+        } else {
+            guard let geoData = geoData else { fatalError("data is nil") }
+            weatherStorageManager.saveData(geoData: geoData)
+            apiModel = try await networkService.getWeatherData(geoData: geoData)
+            weatherModel = WeatherModelDomain(location: geoData,
+                                              weather: apiModel)
+        }
         
         return weatherModel
     }

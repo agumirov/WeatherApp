@@ -11,8 +11,9 @@ import CoreData
 class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
     
     func saveData(geoData: GeoModelDomain) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "WeatherData", in: context) else { return }
-        let weatherData = WeatherModelCD(entity: entity, insertInto: context)
+        deletaAllData()
+        guard let entity = NSEntityDescription.entity(forEntityName: "GeoModelCD", in: context) else { return }
+        let weatherData = GeoModelCD(entity: entity, insertInto: context)
         weatherData.city = geoData.name
         weatherData.country = geoData.country
         weatherData.longitude = (geoData.longitude) as NSNumber
@@ -21,15 +22,14 @@ class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
         saveContext()
     }
     
-    func fetchData() -> [WeatherModelCD] {
-        let fetchRequest: NSFetchRequest<WeatherModelCD> = WeatherModelCD.fetchRequest()
+    func fetchData() -> [GeoModelCD] {
+        let fetchRequest: NSFetchRequest<GeoModelCD> = GeoModelCD.fetchRequest()
         guard let objects = try? context.fetch(fetchRequest) else { return [] }
-        
         return objects
     }
     
     func updateData(geoData: GeoModelDomain) {
-        let weatherData = WeatherModelCD(context: context)
+        let weatherData = GeoModelCD(context: context)
         weatherData.city = geoData.name
         weatherData.country = geoData.country
         weatherData.longitude = (geoData.longitude) as NSNumber
@@ -39,7 +39,7 @@ class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
     }
     
     func deletaAllData() {
-        let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WeatherData")
+        let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GeoModelCD")
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: deleteRequest)
         try! context.execute(batchDeleteRequest)
     }

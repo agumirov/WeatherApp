@@ -27,7 +27,7 @@ class WeatherViewModelImpl: WeatherViewModel {
     private let weatherStorageManager: WeatherStorageManager
     
     struct Input {
-        var geoData: GeoModelDomain
+        var geoData: GeoModelDomain?
     }
     
     init(input: Input,
@@ -39,7 +39,7 @@ class WeatherViewModelImpl: WeatherViewModel {
         self.weatherStorageManager = weatherStorageManager
     }
     
-    private func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelDomain {
+    private func getWeatherData(geoData: GeoModelDomain?) async throws -> WeatherModelDomain {
         let task = Task {
             let data = try? await weatherRepository.getWeatherData(geoData: geoData)
             return data
@@ -47,30 +47,14 @@ class WeatherViewModelImpl: WeatherViewModel {
         guard let result = await task.value else { throw Errors.fetchDataError }
         return result
     }
-    
-//    private func checkStoredData() {
-//
-////        let storedData = StorageManager.shared.fetchData()
-//
-//        if storedData.isEmpty {
-//            sendEvent(.searchSelected)
-//        } else {
-//
-//            for data in storedData {
-//                print(data)
-//            }
-//            guard let storedData = storedData.last else { return }
-//            self.input = .init(geoData: storedData)
-//            sendEvent(.viewDidLoad)
-//        }
-//    }
 }
 
 extension WeatherViewModelImpl {
     
     enum State {
         case fetchingData
-        case sucess(WeatherModelDomain)
+        case sucess(weatherModel: WeatherModelDomain,
+                    date: String, weekWeather: [WeekModelDomain])
         case failure(Error)
     }
     
@@ -92,14 +76,61 @@ extension WeatherViewModelImpl {
                 guard let self = self else { return }
                 do {
                     let weatherData = try await self.getWeatherData(geoData: input.geoData)
+                    let (date, weekWeather) = prepareData(date: weatherData.date,
+                                                          weekWeather: weatherData.list)
                     await MainActor.run {
-                        setState(.sucess(weatherData))
+                        setState(.sucess(weatherModel: weatherData, date: date,
+                                         weekWeather: weekWeather))
                     }
                 } catch let error {
-                    setState(.failure(error))
+                    DispatchQueue.main.async { [weak self] in
+                        self?.setState(.failure(error))
+                        self?._output.accept(.showSearchScreen)
+                    }
                 }
             }
         }
+    }
+    
+    private func prepareData(date: Double, weekWeather: [WeatherList]) -> (String, [WeekModelDomain]) {
+        
+        let date: String = {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .full
+            dateFormatter.timeStyle = .none
+            
+            let date = Date(timeIntervalSince1970: date)
+            let text = dateFormatter.string(from: date)
+            return text
+        }()
+        
+        let list: [WeekModelDomain] = {
+            
+            var weekDayData: [WeekModelDomain] = []
+            var currentDate = NSDate.now
+            let weatherList = weekWeather
+            
+            for weekDay in weatherList {
+                
+                let calendar = Calendar.current
+                let date = calendar.dateComponents([.day], from: Date(timeIntervalSince1970: weekDay.dt))
+                let dateDay = date.day
+                let nextDayDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)
+                let nextDay = calendar.dateComponents([.day], from: nextDayDate ?? .distantFuture).day
+                
+                if dateDay == nextDay {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "EEEE"
+                    
+                    weekDayData.append(WeekModelDomain(weather: weekDay))
+                    currentDate = nextDayDate ?? .distantFuture
+                }
+            }
+            return weekDayData
+        }()
+        
+        return (date, list)
     }
     
     private func setState(_ state: State) {

@@ -87,7 +87,9 @@ extension WeatherViewController {
     enum WeatherState {
         case initial
         case loading
-        case success(WeatherModelDomain)
+        case success(weatherModel: WeatherModelDomain,
+                     date: String,
+                     weekWeather: [WeekModelDomain])
         case error
     }
     
@@ -95,8 +97,10 @@ extension WeatherViewController {
         switch state {
         case .loading:
             container.render(state: .loading)
-        case let .success(weatherData):
-            container.render(state: .success(weatherData))
+        case let .success(weatherData, date, weekWeather):
+            container.render(state: .success(weatherModel: weatherData,
+                                             date: date,
+                                             weekWeather: weekWeather))
         case .error:
             container.render(state: .error)
         case .initial:

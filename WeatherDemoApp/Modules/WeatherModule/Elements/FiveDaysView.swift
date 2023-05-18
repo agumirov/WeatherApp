@@ -13,7 +13,7 @@ import RxCocoa
 
 class FiveDaysView: UIView {
     
-    private lazy var weatherList: [WeekDayModelDomain] = []
+    private lazy var weatherList: [WeekModelDomain] = []
     
     private let fiveDaysLabel: UILabel = {
         let label = UILabel()
@@ -93,7 +93,7 @@ class FiveDaysView: UIView {
         }
     }
     
-    private func updateUI(with weatherList: [WeekDayModelDomain]) {
+    private func updateUI(with weatherList: [WeekModelDomain]) {
         for day in weatherList {
             let weekDayView = WeekDayView()
             weekDayView.configView(
@@ -110,7 +110,7 @@ class FiveDaysView: UIView {
         }
     }
 
-    func configureView(data: [WeekDayModelDomain]) {
+    func configureView(data: [WeekModelDomain]) {
         updateUI(with: data)
     }
 }
