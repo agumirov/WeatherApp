@@ -8,5 +8,5 @@
 import Foundation
 
 protocol WeatherRepository {
-    func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelDomain
+    func getWeatherData(geoData: GeoModelDomain?) async throws -> WeatherModelDomain?
 }

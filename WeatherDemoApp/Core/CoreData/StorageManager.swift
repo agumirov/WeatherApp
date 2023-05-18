@@ -37,5 +37,4 @@ class StorageManager {
     var context: NSManagedObjectContext {
         persistentContainer.viewContext
     }
-    
 }

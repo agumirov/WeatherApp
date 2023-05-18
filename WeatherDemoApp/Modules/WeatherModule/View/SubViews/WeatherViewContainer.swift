@@ -55,7 +55,9 @@ extension WeatherViewContainer {
     enum WeatherState {
         case initial
         case loading
-        case success(WeatherModelDomain)
+        case success(weatherModel: WeatherModelDomain,
+                     date: String,
+                     weekWeather: [WeekModelDomain])
         case error
     }
     
@@ -69,11 +71,13 @@ extension WeatherViewContainer {
             errorView.isHidden = true
             loadingView.isHidden = false
             successView.isHidden = true
-        case let .success(data):
+        case let .success(data, date, weekWeather):
             errorView.isHidden = true
             loadingView.isHidden = true
             successView.isHidden = false
-            successView.renderUI(data: data)
+            successView.renderUI(data: data,
+                                 date: date,
+                                 weekWeather: weekWeather)
         case .error:
             errorView.isHidden = false
             loadingView.isHidden = true

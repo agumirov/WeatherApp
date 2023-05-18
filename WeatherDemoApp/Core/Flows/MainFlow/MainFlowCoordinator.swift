@@ -15,17 +15,20 @@ class MainFlowCoordinator<N>: AppCoordinator<N> where N: MainFlowNavigation {
     
     private let disposeBag = DisposeBag()
     
-    override func start() {
+    func start(isStoredDataAvailable: Bool) {
         super.start()
-        showSearchScreen()
+//        if isStoredDataAvailable {
+//            showWeatherScreen(geoData: nil)
+//        } else {
+//            showSearchScreen()
+//        }
+        showWeatherScreen(geoData: nil)
     }
 }
 
 extension MainFlowCoordinator {
     
-    //    func finish
-    //    showMainScreen
-    func showWeatherScreen(geoData: GeoModelDomain) {
+    func showWeatherScreen(geoData: GeoModelDomain?) {
         
         let weatherModule = WeatherModuleBuilder.buildWeatherModule(
             payLoad: .init(geoData: geoData),

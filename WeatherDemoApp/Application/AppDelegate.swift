@@ -33,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Resources.screenHeight = windowScene.screen.bounds.height
         
         let factory: FlowFactory = DIContainer.standart.resolve()
-        let view = factory.startMainFlow()
+        let storedData = weatherStorageManager.fetchData()
+        let view = factory.startMainFlow(isStoredDataAvailable: !storedData.isEmpty)
         window?.rootViewController = view
         
         return true

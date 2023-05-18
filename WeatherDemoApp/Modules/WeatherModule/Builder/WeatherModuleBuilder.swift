@@ -19,13 +19,14 @@ enum WeatherModuleBuilder {
     }
     
     struct Payload {
-        let geoData: GeoModelDomain
+        let geoData: GeoModelDomain?
     }
     
     static func buildWeatherModule(payLoad: Payload,
                                    dependencies: Dependencies) -> WeatherModule {
         
-        let weatherRepository = WeatherRepositoryImpl(networkService: dependencies.networkService)
+        let weatherRepository = WeatherRepositoryImpl(networkService: dependencies.networkService,
+                                                      weatherStorageManager: dependencies.weatherStorageManager)
         
         let viewModel = WeatherViewModelImpl(
             input: .init(geoData: payLoad.geoData),
