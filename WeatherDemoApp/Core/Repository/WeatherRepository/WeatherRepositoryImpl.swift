@@ -21,19 +21,23 @@ class WeatherRepositoryImpl: WeatherRepository {
     func getWeatherData(geoData: GeoModelDomain?) async throws -> WeatherModelDomain? {
         
         var apiModel: WeatherModelAPI
+        var weatherModel: WeatherModelDomain
         
         if geoData == nil {
             let storedData = weatherStorageManager.fetchData()
             guard let geodData = storedData.last else { return nil }
-            apiModel = try await networkService.getWeatherData(geoData: GeoModelDomain(from: geodData))
+            let geoModel = GeoModelDomain(from: geodData)
+            apiModel = try await networkService.getWeatherData(geoData: geoModel)
+            weatherModel = WeatherModelDomain(location: geoModel,
+                                              weather: apiModel)
+        } else {
+            guard let geoData = geoData else { fatalError("data is nil") }
+            weatherStorageManager.saveData(geoData: geoData)
+            apiModel = try await networkService.getWeatherData(geoData: geoData)
+            weatherModel = WeatherModelDomain(location: geoData,
+                                              weather: apiModel)
         }
         
-        guard let geoData = geoData else { fatalError("data is nil") }
-        weatherStorageManager.saveData(geoData: geoData)
-        apiModel = try await networkService.getWeatherData(geoData: geoData)
-        
-        let weatherModel = WeatherModelDomain(location: geoData,
-                                              weather: apiModel)
         return weatherModel
     }
 }

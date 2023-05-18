@@ -7,43 +7,34 @@
 
 import Foundation
 
-class NetworkServiceImplementation: NetworkService {
+class NetworkServiceImplementation {
     
-    func getGeoData(cityName: String) async throws -> [GeoModelAPI] {
-        let data = try await makeRequest(request:
-                                            GeoRequest(type: .cityName(cityName: cityName)))
-        let model = try buildModel(data: data) as [GeoModelAPI]
-        return model
-    }
-    
-    func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelAPI {
-        let data = try await makeRequest(request: WeatherRequest(geoData: geoData))
-        let model = try buildModel(data: data) as WeatherModelAPI
-        return model
-    }
-}
-
-extension NetworkServiceImplementation {
-    
-    private func makeRequest<Request: RequestType>(request: Request) async throws -> Data {
+    private func makeRequest<Request: RequestType, Model: Decodable>(request: Request) async throws -> Model {
         
-        guard let request = try? RequestBuilder<Request>
-            .buildRequest(request: request)
-        else { throw NetworkServiceErrors.badRequest }
+        guard let request = try? RequestBuilder<Request>.buildRequest(request: request) else {
+            throw NetworkServiceErrors.badRequest }
         
         let task = URLSession.shared
         let response = try await task.data(for: request)
         
-        return response.0
-    }
-    
-    private func buildModel<T: Decodable>(data: Data) throws -> T {
-        
         let decoder = JSONDecoder()
-        guard let model = try? decoder.decode(T.self, from: data) else {
+        let data = response.0
+        guard let model = try? decoder.decode(Model.self, from: data) else {
             throw NetworkServiceErrors.decodeFail
         }
         
+        return model
+    }
+}
+
+extension NetworkServiceImplementation: NetworkService {
+    func getGeoData(cityName: String) async throws -> [GeoModelAPI] {
+        let model = try await makeRequest(request: GeoRequest(type: .cityName(cityName: cityName))) as [GeoModelAPI]
+        return model
+    }
+    
+    func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelAPI {
+        let model = try await makeRequest(request: WeatherRequest(geoData: geoData)) as WeatherModelAPI
         return model
     }
 }

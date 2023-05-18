@@ -85,6 +85,7 @@ extension WeatherViewModelImpl {
                 } catch let error {
                     DispatchQueue.main.async { [weak self] in
                         self?.setState(.failure(error))
+                        self?._output.accept(.showSearchScreen)
                     }
                 }
             }

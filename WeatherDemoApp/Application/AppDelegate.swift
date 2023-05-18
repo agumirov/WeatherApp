@@ -25,22 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         registerDependencies()
+        getWindowSize()
         startAppFlow()
-        
-        guard let windowScene = window?.windowScene else { return false }
-        
-        Resources.screenWidth = windowScene.screen.bounds.width
-        Resources.screenHeight = windowScene.screen.bounds.height
-        
-        let factory: FlowFactory = DIContainer.standart.resolve()
-        let storedData = weatherStorageManager.fetchData()
-        let view = factory.startMainFlow(isStoredDataAvailable: !storedData.isEmpty)
-        window?.rootViewController = view
         
         return true
     }
     
-    func registerDependencies() {
+    private func registerDependencies() {
         flowFactory = FlowFactoryImplementation()
         networkService = NetworkServiceImplementation()
         weatherStorageManager = WeatherStorageManagerImpl()
@@ -50,5 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DIContainer.standart.register(weatherStorageManager!)
     }
     
-    func startAppFlow() {}
+    private func startAppFlow() {
+        let storedManager: WeatherStorageManager = DIContainer.standart.resolve()
+        let storedData = storedManager.fetchData()
+        let view = flowFactory.startMainFlow(isStoredDataAvailable: !storedData.isEmpty)
+        window?.rootViewController = view
+    }
+    
+    private func getWindowSize() {
+        guard let windowScene = window?.windowScene else { return }
+        
+        Resources.screenWidth = windowScene.screen.bounds.width
+        Resources.screenHeight = windowScene.screen.bounds.height
+    }
 }

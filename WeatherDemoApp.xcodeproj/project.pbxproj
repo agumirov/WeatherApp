@@ -596,8 +596,8 @@
 		C636E38A2A10255700BE18DB /* GeoRepository */ = {
 			isa = PBXGroup;
 			children = (
-				C636E38B2A10255700BE18DB /* GeoRepositoryImpl.swift */,
 				C636E38C2A10255700BE18DB /* GeoRepository.swift */,
+				C636E38B2A10255700BE18DB /* GeoRepositoryImpl.swift */,
 			);
 			path = GeoRepository;
 			sourceTree = "<group>";

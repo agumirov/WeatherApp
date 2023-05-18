@@ -19,7 +19,7 @@ class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
         weatherData.longitude = (geoData.longitude) as NSNumber
         weatherData.latitude = (geoData.latitude) as NSNumber
         
-        super.saveContext()
+        saveContext()
     }
     
     func fetchData() -> [GeoModelCD] {
@@ -35,7 +35,7 @@ class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
         weatherData.longitude = (geoData.longitude) as NSNumber
         weatherData.latitude = (geoData.latitude) as NSNumber
         
-        super.saveContext()
+        saveContext()
     }
     
     func deletaAllData() {

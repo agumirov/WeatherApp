@@ -17,12 +17,11 @@ class MainFlowCoordinator<N>: AppCoordinator<N> where N: MainFlowNavigation {
     
     func start(isStoredDataAvailable: Bool) {
         super.start()
-//        if isStoredDataAvailable {
-//            showWeatherScreen(geoData: nil)
-//        } else {
-//            showSearchScreen()
-//        }
-        showWeatherScreen(geoData: nil)
+        if isStoredDataAvailable {
+            showWeatherScreen(geoData: nil)
+        } else {
+            showSearchScreen()
+        }
     }
 }
 
