@@ -14,7 +14,7 @@ struct GeoModelDomain: Codable {
     let longitude: Double
 }
 
-extension GeoModelDomain {
+extension GeoModelDomain: Equatable {
     init(from apiModel: GeoModelAPI) {
         self.name = apiModel.name
         self.country = apiModel.country
