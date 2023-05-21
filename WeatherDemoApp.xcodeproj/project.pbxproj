@@ -169,6 +169,8 @@
 		C636E4CB2A12CA0200BE18DB /* WeatherStateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636E4CA2A12CA0200BE18DB /* WeatherStateConverter.swift */; };
 		C645F3012A1447AE0049FC2E /* WeatherStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645F3002A1447AE0049FC2E /* WeatherStorageManager.swift */; };
 		C645F3172A16EE350049FC2E /* MainModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645F3162A16EE350049FC2E /* MainModuleTest.swift */; };
+		C645F31E2A1A99CD0049FC2E /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645F31D2A1A99CD0049FC2E /* Mocks.swift */; };
+		C645F3262A1AD5840049FC2E /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C645F3252A1AD5840049FC2E /* DateService.swift */; };
 		C66F373D2A143D2600820BCE /* WeatherStorageManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66F373C2A143D2600820BCE /* WeatherStorageManagerImpl.swift */; };
 		CC88D91E55A2DB5044A907D9 /* Pods_WeatherDemoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68471F87A25B73F18AD765F /* Pods_WeatherDemoApp.framework */; };
 /* End PBXBuildFile section */
@@ -352,6 +354,8 @@
 		C645F3002A1447AE0049FC2E /* WeatherStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStorageManager.swift; sourceTree = "<group>"; };
 		C645F3082A16E2EE0049FC2E /* WeatherDemoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherDemoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C645F3162A16EE350049FC2E /* MainModuleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleTest.swift; sourceTree = "<group>"; };
+		C645F31D2A1A99CD0049FC2E /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		C645F3252A1AD5840049FC2E /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		C66F373C2A143D2600820BCE /* WeatherStorageManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStorageManagerImpl.swift; sourceTree = "<group>"; };
 		F68471F87A25B73F18AD765F /* Pods_WeatherDemoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherDemoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84E5C33A9D35CEE58266162 /* Pods-WeatherDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDemoApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherDemoApp/Pods-WeatherDemoApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -461,6 +465,7 @@
 		C636E35D2A10255600BE18DB /* WeatherModule */ = {
 			isa = PBXGroup;
 			children = (
+				C645F3242A1AD57A0049FC2E /* Services */,
 				C636E4C92A12C9F600BE18DB /* StateConverter */,
 				C636E36B2A10255600BE18DB /* Builder */,
 				C636E35E2A10255600BE18DB /* ViewModel */,
@@ -958,8 +963,17 @@
 			isa = PBXGroup;
 			children = (
 				C645F3162A16EE350049FC2E /* MainModuleTest.swift */,
+				C645F31D2A1A99CD0049FC2E /* Mocks.swift */,
 			);
 			path = MainModuleTest;
+			sourceTree = "<group>";
+		};
+		C645F3242A1AD57A0049FC2E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C645F3252A1AD5840049FC2E /* DateService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1275,6 +1289,7 @@
 				C636E4322A10255700BE18DB /* LoadingScreen.swift in Sources */,
 				C636E4442A10255700BE18DB /* GeoRequest.swift in Sources */,
 				C636E4BA2A10DE3500BE18DB /* WeatherStorage.xcdatamodeld in Sources */,
+				C645F3262A1AD5840049FC2E /* DateService.swift in Sources */,
 				C636E4BC2A10E0C500BE18DB /* StorageManager.swift in Sources */,
 				C636E4372A10255700BE18DB /* GeoRepository.swift in Sources */,
 				C636E44F2A10255700BE18DB /* UIColor+Extension.swift in Sources */,
@@ -1333,6 +1348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C645F3172A16EE350049FC2E /* MainModuleTest.swift in Sources */,
+				C645F31E2A1A99CD0049FC2E /* Mocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

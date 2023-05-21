@@ -6,22 +6,22 @@
 //
 
 import XCTest
-import RxSwift
 @testable import WeatherDemoApp
 
-final class MainModuleTest: XCTestCase {
+import UIKit
+import RxSwift
 
+class MainModuleTest: XCTestCase {
+    
     var viewModel: WeatherViewModel!
-    var view: WeatherViewController!
+    var weatherView: WeatherViewController!
     var coordinator: MainFlowCoordinator<MainFlowNavigation>!
-    var mockModelDomain: WeatherModelDomain!
     var repository: WeatherRepository!
     var storageManager: WeatherStorageManager!
-    var networkService: NetworkService!
+    var mockNetworkService: NetworkService!
     var mainFlowNavigation: MainFlowNavigation!
     var disposeBag: DisposeBag!
     var mockGeoData: GeoModelDomain!
-    var weatherRepository: WeatherRepository!
     
     override func setUpWithError() throws {
         disposeBag = DisposeBag()
@@ -30,11 +30,10 @@ final class MainModuleTest: XCTestCase {
                                      latitude: 43.0226905,
                                      longitude: -0.4126314)
         
-        networkService = NetworkServiceImplementation()
         storageManager = WeatherStorageManagerImpl()
         mainFlowNavigation = MainFlowNavigation()
-        
-        repository = WeatherRepositoryImpl(networkService: networkService,
+        mockNetworkService = MockNetworkService()
+        repository = WeatherRepositoryImpl(networkService: mockNetworkService,
                                            weatherStorageManager: storageManager)
         
         coordinator = MainFlowCoordinator(navigationController: mainFlowNavigation)
@@ -44,58 +43,90 @@ final class MainModuleTest: XCTestCase {
             weatherRepository: repository,
             weatherStorageManager: storageManager
         )
-        view = WeatherViewController(viewModel: viewModel)
-        weatherRepository = WeatherRepositoryImpl(networkService: networkService,
-                                                  weatherStorageManager: storageManager)
+        weatherView = WeatherViewController(viewModel: viewModel)
     }
-
+    
     override func tearDownWithError() throws {
-        networkService = nil
+        disposeBag = nil
+        mockGeoData = nil
         storageManager = nil
         mainFlowNavigation = nil
+        mockNetworkService = nil
         repository = nil
         coordinator = nil
         viewModel = nil
-        view = nil
+        weatherView = nil
     }
-
+    
     func testAPICalls() async {
-        var modelAPI: WeatherModelAPI?
-        modelAPI = try? await self.networkService.getWeatherData(geoData: self.mockGeoData)
+        let modelAPI = try? await mockNetworkService.getWeatherData(geoData: mockGeoData)
         XCTAssertNotNil(modelAPI)
     }
     
     func testCoreDataSave() async {
-        let _ = try? await weatherRepository.getWeatherData(geoData: mockGeoData)
+        let weatherModel = try? await repository.getWeatherData(geoData: mockGeoData)
         let storedData = GeoModelDomain(from: storageManager.fetchData().last!)
-        XCTAssertEqual(mockGeoData, storedData)
+        let weatherModelNil = try? await repository.getWeatherData(geoData: nil)
+        XCTAssertEqual(weatherModel?.name, mockGeoData.name)
+        XCTAssertEqual(mockGeoData.name, storedData.name)
+        XCTAssertEqual(weatherModel?.name, storedData.name)
+        XCTAssertEqual(weatherModelNil?.name, storedData.name)
     }
     
     func testViewModelOutput() {
         let output: WeatherViewModelOutput = .showSearchScreen
         var outputEvent: WeatherViewModelOutput?
         viewModel.output
-            .subscribe { event in
+            .subscribe(onNext: { event in
                 outputEvent = event
-            }
+            })
             .disposed(by: disposeBag)
+        viewModel.sendEvent(.searchSelected)
         XCTAssertEqual(output, outputEvent)
     }
     
-    func testViewModelSuccessState() {
+    func testCoordinator() {
+        coordinator.start(isStoredDataAvailable: false)
+        XCTAssert(mainFlowNavigation.visibleViewController is SearchViewController)
+        
+        coordinator.start(isStoredDataAvailable: true)
+        XCTAssert(mainFlowNavigation.visibleViewController is WeatherViewController)
+    }
+    
+    func testViewModelSuccess() {
+        let expectation = XCTestExpectation(description: "The ViewModel should reach a success state")
         viewModel.state
             .subscribe(onNext: { state in
                 switch state {
                 case .fetchingData:
-                    print(state)
-                case let .sucess(weatherModel, date, weekWeather):
-                    print(weatherModel)
+                    print("==================== \(state) ====================")
+                case let .success(weatherModel, date, weekWeather):
+                    XCTAssertNotNil(weatherModel, "weatherModel was nil in a success state")
+                    XCTAssertNotNil(date, "date was nil in a success state")
+                    XCTAssertNotNil(weekWeather, "weekWeather was nil in a success state")
+                    expectation.fulfill()
                 case .failure(_):
-                    print(state)
+                    XCTFail("ViewModel reached a failure state")
                 }
             })
             .disposed(by: disposeBag)
+        
         viewModel.sendEvent(.viewDidLoad)
-        wait(for: [], timeout: 10)
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testConvertTimestampToFullStringDate() {
+        // Arrange
+        let timestamp = 1634619600.0 // This is "Tuesday, October 19, 2021" in GMT.
+        let expectedDateString = "вторник, 19 октября 2021 г."
+        // Force the date formatter to use US English style.
+        DateService.dateFormatter.locale = Locale(identifier: "en_US")
+
+        // Act
+        let dateString = DateService.convertTimestampToFullStringDate(timestamp)
+
+        // Assert
+        XCTAssertEqual(dateString, expectedDateString, "Expected date string to be \(expectedDateString) but got \(dateString).")
     }
 }

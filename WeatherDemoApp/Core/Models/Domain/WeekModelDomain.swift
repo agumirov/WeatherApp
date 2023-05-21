@@ -15,9 +15,7 @@ struct WeekModelDomain {
 
 extension WeekModelDomain {
     init(weather: WeatherList) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        self.day = "\(dateFormatter.string(from: Date(timeIntervalSince1970: weather.dt)))"
+        self.day = DateService.convertTimestampToStringDay(weather.dt)
         self.weatherImage = "https://openweathermap.org/img/wn/\(weather.weather.first?.icon ?? "10d").png"
         self.temperature = "\(Int(weather.main["temp"] ?? 0.0))°C"
     }
