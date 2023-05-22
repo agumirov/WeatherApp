@@ -4,9 +4,19 @@
 use_frameworks!
 
 target 'WeatherDemoApp' do
-    pod 'SnapKit'
-    pod 'RxSwift', '6.5.0'
-    pod 'RxCocoa', '6.5.0'
-    pod 'Swinject'
-    pod 'SwiftLint'
+  pod 'SnapKit'
+  pod 'RxSwift', '6.5.0'
+  pod 'RxCocoa', '6.5.0'
+  pod 'Swinject'
+  pod 'SwiftLint'
+
 end
+
+target 'WeatherDemoAppTests' do
+    inherit! :search_paths
+  pod 'SnapKit'
+  pod 'RxSwift', '6.5.0'
+  pod 'RxCocoa', '6.5.0'
+  pod 'Swinject'
+  pod 'SwiftLint'
+ end

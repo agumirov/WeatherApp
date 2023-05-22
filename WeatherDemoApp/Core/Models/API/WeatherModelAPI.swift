@@ -17,7 +17,7 @@ struct Weather: Codable {
     let icon: String
 }
 
-class WeatherList: NSObject, Codable {
+class WeatherList: Codable {
     let dt: Double
     let main: [String: Double]
     let weather: [Weather]

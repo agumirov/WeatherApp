@@ -21,17 +21,17 @@ struct WeatherModelDomain {
 }
 
 extension WeatherModelDomain {
-    init(
-        location: GeoModelDomain,
-        weather: WeatherModelAPI
-    ) {
-        self.icon = weather.list.first?.weather.first?.icon ?? "10d"
-        self.date = weather.list.first?.dt ?? 0.0
-        self.humidity = weather.list.first?.main["humidity"] ?? 0.0
-        self.pressure = weather.list.first?.main["pressure"] ?? 0.0
-        self.temperature = weather.list.first?.main["temp"] ?? 0.0
-        self.windspeed = weather.list.first?.wind["speed"] ?? 0.0
-        self.visibility = weather.list.first?.visibility ?? 0.0
+    init(location: GeoModelDomain, weather: WeatherModelAPI) {
+        guard let firstWeatherData = weather.list.first else {
+            fatalError("Weather data is empty.")
+        }
+        self.icon = firstWeatherData.weather.first?.icon ?? "10d"
+        self.date = firstWeatherData.dt
+        self.humidity = firstWeatherData.main["humidity"] ?? 0.0
+        self.pressure = firstWeatherData.main["pressure"] ?? 0.0
+        self.temperature = firstWeatherData.main["temp"] ?? 0.0
+        self.windspeed = firstWeatherData.wind["speed"] ?? 0.0
+        self.visibility = firstWeatherData.visibility
         self.country = location.country
         self.name = location.name
         self.list = weather.list

@@ -28,14 +28,12 @@ class WeatherRepositoryImpl: WeatherRepository {
             guard let geodData = storedData.last else { return nil }
             let geoModel = GeoModelDomain(from: geodData)
             apiModel = try await networkService.getWeatherData(geoData: geoModel)
-            weatherModel = WeatherModelDomain(location: geoModel,
-                                              weather: apiModel)
+            weatherModel = WeatherModelDomain(location: geoModel, weather: apiModel)
         } else {
-            guard let geoData = geoData else { fatalError("data is nil") }
+            guard let geoData = geoData else { fatalError("Data is nil") }
             weatherStorageManager.saveData(geoData: geoData)
             apiModel = try await networkService.getWeatherData(geoData: geoData)
-            weatherModel = WeatherModelDomain(location: geoData,
-                                              weather: apiModel)
+            weatherModel = WeatherModelDomain(location: geoData, weather: apiModel)
         }
         
         return weatherModel

@@ -41,10 +41,10 @@ class WeatherViewModelImpl: WeatherViewModel {
     
     private func getWeatherData(geoData: GeoModelDomain?) async throws -> WeatherModelDomain {
         let task = Task {
-            let data = try? await weatherRepository.getWeatherData(geoData: geoData)
+            let data = try await weatherRepository.getWeatherData(geoData: geoData)
             return data
         }
-        guard let result = await task.value else { throw Errors.fetchDataError }
+        guard let result = try await task.value else { throw Errors.fetchDataError }
         return result
     }
 }
@@ -53,8 +53,8 @@ extension WeatherViewModelImpl {
     
     enum State {
         case fetchingData
-        case sucess(weatherModel: WeatherModelDomain,
-                    date: String, weekWeather: [WeekModelDomain])
+        case success(weatherModel: WeatherModelDomain,
+                     date: String, weekWeather: [WeekModelDomain])
         case failure(Error)
     }
     
@@ -79,8 +79,8 @@ extension WeatherViewModelImpl {
                     let (date, weekWeather) = prepareData(date: weatherData.date,
                                                           weekWeather: weatherData.list)
                     await MainActor.run {
-                        setState(.sucess(weatherModel: weatherData, date: date,
-                                         weekWeather: weekWeather))
+                        setState(.success(weatherModel: weatherData, date: date,
+                                          weekWeather: weekWeather))
                     }
                 } catch let error {
                     DispatchQueue.main.async { [weak self] in
@@ -94,41 +94,26 @@ extension WeatherViewModelImpl {
     
     private func prepareData(date: Double, weekWeather: [WeatherList]) -> (String, [WeekModelDomain]) {
         
-        let date: String = {
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .full
-            dateFormatter.timeStyle = .none
-            
-            let date = Date(timeIntervalSince1970: date)
-            let text = dateFormatter.string(from: date)
-            return text
-        }()
+        let date: String = DateService.convertTimestampToFullStringDate(date)
         
         let list: [WeekModelDomain] = {
-            
             var weekDayData: [WeekModelDomain] = []
-            var currentDate = NSDate.now
+            var currentDate = Date()
             let weatherList = weekWeather
             
             for weekDay in weatherList {
-                
-                let calendar = Calendar.current
-                let date = calendar.dateComponents([.day], from: Date(timeIntervalSince1970: weekDay.dt))
-                let dateDay = date.day
-                let nextDayDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)
-                let nextDay = calendar.dateComponents([.day], from: nextDayDate ?? .distantFuture).day
+                let dateDay = DateService.getDayComponent(fromDate: Date(timeIntervalSince1970: weekDay.dt))
+                let nextDayDate = DateService.calculateNextDay(fromDate: currentDate)
+                let nextDay = DateService.getDayComponent(fromDate: nextDayDate)
                 
                 if dateDay == nextDay {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "EEEE"
-                    
                     weekDayData.append(WeekModelDomain(weather: weekDay))
-                    currentDate = nextDayDate ?? .distantFuture
+                    currentDate = nextDayDate
                 }
             }
             return weekDayData
         }()
+
         
         return (date, list)
     }

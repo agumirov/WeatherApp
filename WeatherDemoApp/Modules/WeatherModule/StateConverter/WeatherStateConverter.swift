@@ -12,7 +12,7 @@ enum WeatherStateConverter {
         switch state {
         case .fetchingData:
             return .loading
-        case let .sucess(weatherData, date, weekWeather):
+        case let .success(weatherData, date, weekWeather):
             return .success(weatherModel: weatherData, date: date, weekWeather: weekWeather)
         case .failure:
             return .error
