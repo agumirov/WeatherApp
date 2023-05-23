@@ -38,3 +38,8 @@ class StorageManager {
         }
     }
 }
+
+enum StorageErrors: String, Error {
+    case savingFailed = "Saving data failed"
+    case fetchingFailed = "Fetching data failed"
+}

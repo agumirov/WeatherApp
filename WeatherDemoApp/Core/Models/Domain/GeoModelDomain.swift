@@ -21,11 +21,4 @@ extension GeoModelDomain: Equatable {
         self.latitude = apiModel.latitude
         self.longitude = apiModel.longitude
     }
-    
-    init(from coreDataModel: GeoModelCD) {
-        self.name = coreDataModel.city
-        self.country = coreDataModel.country
-        self.latitude = Double(truncating: coreDataModel.latitude)
-        self.longitude = Double(truncating: coreDataModel.longitude)
-    }
 }

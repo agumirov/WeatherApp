@@ -199,27 +199,18 @@ final class WeatherSuccessView: UIView {
     private func setData(date: String, weekWeather: [WeekModelDomain]) {
         
         guard let weather = _weather else { return }
-        
         dateLabel.text = date
-        
         city.text = weather.name
-        
         country.text = weather.country
-        
         temperatureView.configView(
             imageURL: "https://openweathermap.org/img/wn/\(weather.icon).png",
             temperature: "\(Int(weather.temperature))°C"
         )
         temperatureView.layer.cornerRadius = self.temperatureView.bounds.width / 2
-        
         windSpeed.text = String(weather.windspeed)
-        
         visibilityRange.text = String(weather.visibility)
-        
         humidityValue.text = String(weather.humidity)
-        
         airPressureValue.text = String(weather.pressure)
-        
         fiveDaysView.configureView(data: weekWeather)
     }
 }

@@ -85,6 +85,7 @@ extension WeatherViewController {
     }
     
     enum WeatherState: Equatable {
+        
         static func == (lhs: WeatherState, rhs: WeatherState) -> Bool {
             switch (lhs, rhs) {
             case (.initial, .initial),
@@ -99,7 +100,9 @@ extension WeatherViewController {
         
         case initial
         case loading
-        case success(weatherModel: WeatherModelDomain, date: String, weekWeather: [WeekModelDomain])
+        case success(weatherModel: WeatherModelDomain,
+                     date: String,
+                     weekWeather: [WeekModelDomain])
         case error
     }
     

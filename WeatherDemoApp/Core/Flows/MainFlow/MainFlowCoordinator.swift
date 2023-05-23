@@ -11,17 +11,13 @@ import RxSwift
 import RxCocoa
 
 
-class MainFlowCoordinator<N>: AppCoordinator<N> where N: MainFlowNavigation {
+class MainFlowCoordinator: AppCoordinator {
     
     private let disposeBag = DisposeBag()
     
-    func start(isStoredDataAvailable: Bool) {
+    override func start() {
         super.start()
-        if isStoredDataAvailable {
-            showWeatherScreen(geoData: nil)
-        } else {
-            showSearchScreen()
-        }
+        showWeatherScreen(geoData: nil)
     }
 }
 
@@ -44,7 +40,7 @@ extension MainFlowCoordinator {
             }
             .disposed(by: disposeBag)
         
-        navigationController?.viewControllers = [weatherModule.view]
+        navigationController.viewControllers = [weatherModule.view]
     }
     
     func showSearchScreen() {
@@ -64,11 +60,11 @@ extension MainFlowCoordinator {
             }
             .disposed(by: disposeBag)
         
-        navigationController?.pushViewController(searchModule.view, animated: false)
+        navigationController.pushViewController(searchModule.view, animated: false)
     }
     
     private func popVC() {
-        navigationController?.popViewController(animated: false)
+        navigationController.popViewController(animated: false)
     }
 }
 

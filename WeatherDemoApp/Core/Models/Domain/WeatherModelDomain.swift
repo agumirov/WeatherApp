@@ -8,7 +8,7 @@
 import Foundation
 
 struct WeatherModelDomain {
-    let list: [WeatherList]
+    let list: [WeekModelDomain]
     let icon: String
     let date: Double
     let temperature: Double
@@ -34,6 +34,19 @@ extension WeatherModelDomain {
         self.visibility = firstWeatherData.visibility
         self.country = location.country
         self.name = location.name
-        self.list = weather.list
+        self.list = weather.list.compactMap { WeekModelDomain(weather: $0) }
+    }
+    
+    init(coreDataModel: WeatherModelCD) {
+        self.list = coreDataModel.list.compactMap { $0 as? WeekModelDomain }
+        self.icon = coreDataModel.icon
+        self.date = coreDataModel.date
+        self.temperature = coreDataModel.temperature
+        self.humidity = coreDataModel.humidity
+        self.pressure = coreDataModel.pressure
+        self.windspeed = coreDataModel.windspeed
+        self.visibility = coreDataModel.visibility
+        self.name = coreDataModel.city
+        self.country = coreDataModel.country
     }
 }

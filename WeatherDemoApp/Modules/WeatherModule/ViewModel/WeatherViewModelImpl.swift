@@ -15,12 +15,10 @@ class WeatherViewModelImpl: WeatherViewModel {
         _state.asObservable()
     }
     private var _state = PublishRelay<State>()
-    
     var output: Observable<OutputEvents> {
         _output.asObservable()
     }
     private var _output = PublishRelay<WeatherViewModelOutput>()
-    
     private let disposeBag = DisposeBag()
     private var input: Input
     private let weatherRepository: WeatherRepository // тоже должны быть ивенты?
@@ -40,12 +38,14 @@ class WeatherViewModelImpl: WeatherViewModel {
     }
     
     private func getWeatherData(geoData: GeoModelDomain?) async throws -> WeatherModelDomain {
-        let task = Task {
-            let data = try await weatherRepository.getWeatherData(geoData: geoData)
-            return data
+        
+        if geoData == nil {
+            let result = try await weatherRepository.getWeatherDataFromStorage()
+            return result
+        } else {
+            let result = try await weatherRepository.getWeatherDataFromNetwork(geoData: geoData)
+            return result
         }
-        guard let result = try await task.value else { throw Errors.fetchDataError }
-        return result
     }
 }
 
@@ -92,7 +92,7 @@ extension WeatherViewModelImpl {
         }
     }
     
-    private func prepareData(date: Double, weekWeather: [WeatherList]) -> (String, [WeekModelDomain]) {
+    private func prepareData(date: Double, weekWeather: [WeekModelDomain]) -> (String, [WeekModelDomain]) {
         
         let date: String = DateService.convertTimestampToFullStringDate(date)
         
@@ -102,18 +102,17 @@ extension WeatherViewModelImpl {
             let weatherList = weekWeather
             
             for weekDay in weatherList {
-                let dateDay = DateService.getDayComponent(fromDate: Date(timeIntervalSince1970: weekDay.dt))
+                let dateDay = DateService.getDayComponent(fromDate: Date(timeIntervalSince1970: weekDay.day))
                 let nextDayDate = DateService.calculateNextDay(fromDate: currentDate)
                 let nextDay = DateService.getDayComponent(fromDate: nextDayDate)
                 
                 if dateDay == nextDay {
-                    weekDayData.append(WeekModelDomain(weather: weekDay))
+                    weekDayData.append(weekDay)
                     currentDate = nextDayDate
                 }
             }
             return weekDayData
         }()
-
         
         return (date, list)
     }

@@ -10,36 +10,39 @@ import CoreData
 
 class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
     
-    func saveData(geoData: GeoModelDomain) {
+    func saveData(weatherModel: WeatherModelDomain) {
         deletaAllData()
-        guard let entity = NSEntityDescription.entity(forEntityName: "GeoModelCD", in: context) else { return }
-        let weatherData = GeoModelCD(entity: entity, insertInto: context)
-        weatherData.city = geoData.name
-        weatherData.country = geoData.country
-        weatherData.longitude = (geoData.longitude) as NSNumber
-        weatherData.latitude = (geoData.latitude) as NSNumber
+        guard let weatherModelEntity = NSEntityDescription.entity(
+            forEntityName: "WeatherModelCD",
+            in: context
+        ) else { return }
+        let weatherData = WeatherModelCD(entity: weatherModelEntity, insertInto: context)
+        weatherData.city = weatherModel.name
+        weatherData.country = weatherModel.country
+        weatherData.icon = weatherModel.icon
+        weatherData.date = weatherModel.date
+        weatherData.temperature = weatherModel.temperature
+        weatherData.humidity = weatherModel.humidity
+        weatherData.pressure = weatherModel.pressure
+        weatherData.windspeed = weatherModel.windspeed
+        weatherData.visibility = weatherModel.visibility
+        weatherData.list = weatherModel.list
         
         saveContext()
     }
     
-    func fetchData() -> [GeoModelCD] {
-        let fetchRequest: NSFetchRequest<GeoModelCD> = GeoModelCD.fetchRequest()
-        guard let objects = try? context.fetch(fetchRequest) else { return [] }
-        return objects
-    }
-    
-    func updateData(geoData: GeoModelDomain) {
-        let weatherData = GeoModelCD(context: context)
-        weatherData.city = geoData.name
-        weatherData.country = geoData.country
-        weatherData.longitude = (geoData.longitude) as NSNumber
-        weatherData.latitude = (geoData.latitude) as NSNumber
-        
-        saveContext()
+    func fetchData() -> [WeatherModelCD] {
+        let fetchRequest: NSFetchRequest<WeatherModelCD> = WeatherModelCD.fetchRequest()
+        do {
+            let fetchedResults = try context.fetch(fetchRequest)
+            return fetchedResults
+        } catch {
+            fatalError("Failed to fetch entities: \(error)")
+        }
     }
     
     func deletaAllData() {
-        let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GeoModelCD")
+        let deleteRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WeatherModelCD")
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: deleteRequest)
         try! context.execute(batchDeleteRequest)
     }

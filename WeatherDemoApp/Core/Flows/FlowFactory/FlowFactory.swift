@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 protocol FlowFactory {
-    func startMainFlow(isStoredDataAvailable: Bool) -> UIViewController
+    func startMainFlow() -> UIViewController
 }

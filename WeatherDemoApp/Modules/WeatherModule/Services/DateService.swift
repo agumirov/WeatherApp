@@ -8,7 +8,7 @@
 import Foundation
 
 /// `DateService` provides utilities to work with dates.
-struct DateService {
+enum DateService {
     
     // MARK: - Static properties
     

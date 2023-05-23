@@ -98,7 +98,7 @@ class FiveDaysView: UIView {
             let weekDayView = WeekDayView()
             weekDayView.configView(
                 weatherImage: day.weatherImage,
-                day: day.day,
+                day: day.weekDay,
                 temperature: day.temperature
             )
             

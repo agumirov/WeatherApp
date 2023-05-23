@@ -51,7 +51,7 @@ extension SearchViewModelImpl {
         case failure(Error)
     }
     
-    enum OutputEvent {
+    enum OutputEvent: Equatable {
         case routeToWeatherModule(GeoModelDomain)
         case abortSearch
     }
