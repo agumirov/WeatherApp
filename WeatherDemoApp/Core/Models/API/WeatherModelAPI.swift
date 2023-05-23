@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 struct WeatherModelAPI: Codable {
-    let list: [WeatherList]
+    let list: [WeatherData]
 }
 
 struct Weather: Codable {
@@ -17,7 +17,7 @@ struct Weather: Codable {
     let icon: String
 }
 
-class WeatherList: Codable {
+struct WeatherData: Codable {
     let dt: Double
     let main: [String: Double]
     let weather: [Weather]

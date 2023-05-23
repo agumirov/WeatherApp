@@ -7,17 +7,11 @@
 
 import Foundation
 
-protocol Coordinator: AnyObject {
-    func start()
-    func delete()
-}
-
-class AppCoordinator<N: Navigation>: Coordinator {
-    func delete() {}
+class AppCoordinator {
     
-    weak var navigationController: N?
+    var navigationController: AppNavigation
     
-    init(navigationController: N) {
+    init(navigationController: AppNavigation) {
         self.navigationController = navigationController
         navigationController.coordinator = self
     }

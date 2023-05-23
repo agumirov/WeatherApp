@@ -10,14 +10,10 @@ import UIKit
 
 class FlowFactoryImplementation: FlowFactory {
     
-    func startMainFlow(isStoredDataAvailable: Bool) -> (UIViewController) {
-        
+    func startMainFlow() -> (UIViewController) {
         let navigationController = MainFlowNavigation()
-        
-        let mainFlowCoordinator = MainFlowCoordinator(
+        _ = MainFlowCoordinator(
             navigationController: navigationController)
-        mainFlowCoordinator.start(isStoredDataAvailable: isStoredDataAvailable)
-        
         return navigationController
     }
 }

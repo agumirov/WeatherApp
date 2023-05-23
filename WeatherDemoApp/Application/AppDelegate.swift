@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerDependencies()
         getWindowSize()
+        transformerRegistration()
         startAppFlow()
         
         return true
@@ -42,9 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func startAppFlow() {
-        let storedManager: WeatherStorageManager = DIContainer.standart.resolve()
-        let storedData = storedManager.fetchData()
-        let view = flowFactory.startMainFlow(isStoredDataAvailable: !storedData.isEmpty)
+        let view = flowFactory.startMainFlow()
         window?.rootViewController = view
     }
     
@@ -53,5 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Resources.screenWidth = windowScene.screen.bounds.width
         Resources.screenHeight = windowScene.screen.bounds.height
+    }
+    
+    private func transformerRegistration() {
+        ValueTransformer.setValueTransformer(WeekModelTransformer(), forName: NSValueTransformerName(rawValue: "WeekModelDomainValueTransformer"))
     }
 }
