@@ -8,6 +8,6 @@
 import Foundation
 
 protocol WeatherStorageManager {
-    func saveData(weatherModel: WeatherModelDomain)
-    func fetchData() -> [WeatherModelCD]
+    func saveData(weatherModel: WeatherModelDomain) throws
+    func fetchData() throws -> [WeatherModelCD]
 }

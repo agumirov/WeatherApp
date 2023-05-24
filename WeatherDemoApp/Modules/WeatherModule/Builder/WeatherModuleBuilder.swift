@@ -30,8 +30,7 @@ enum WeatherModuleBuilder {
         
         let viewModel = WeatherViewModelImpl(
             input: .init(geoData: payLoad.geoData),
-            weatherRepository: weatherRepository,
-            weatherStorageManager: dependencies.weatherStorageManager)
+            weatherRepository: weatherRepository)
         
         let view = WeatherViewController(viewModel: viewModel)
         return WeatherModule(view, viewModel.output)

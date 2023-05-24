@@ -10,12 +10,13 @@ import CoreData
 
 class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
     
-    func saveData(weatherModel: WeatherModelDomain) {
+    func saveData(weatherModel: WeatherModelDomain) throws {
         deletaAllData()
         guard let weatherModelEntity = NSEntityDescription.entity(
             forEntityName: "WeatherModelCD",
             in: context
-        ) else { return }
+        ) else { throw StorageErrors.savingFailed }
+        
         let weatherData = WeatherModelCD(entity: weatherModelEntity, insertInto: context)
         weatherData.city = weatherModel.name
         weatherData.country = weatherModel.country
@@ -31,13 +32,14 @@ class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
         saveContext()
     }
     
-    func fetchData() -> [WeatherModelCD] {
+    func fetchData() throws -> [WeatherModelCD] {
         let fetchRequest: NSFetchRequest<WeatherModelCD> = WeatherModelCD.fetchRequest()
         do {
             let fetchedResults = try context.fetch(fetchRequest)
             return fetchedResults
         } catch {
-            fatalError("Failed to fetch entities: \(error)")
+//            fatalError("Failed to fetch entities: \(error)")
+            throw StorageErrors.fetchingFailed
         }
     }
     

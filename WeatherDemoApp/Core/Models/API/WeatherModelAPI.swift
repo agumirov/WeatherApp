@@ -24,3 +24,19 @@ struct WeatherData: Codable {
     let wind: [String: Double]
     let visibility: Double
 }
+
+#if DEBUG
+
+extension WeatherModelAPI {
+    static var mock: WeatherModelAPI {
+        .init(list: [.mock, .mock, .mock])
+    }
+}
+
+extension WeatherData {
+    static var mock: WeatherData {
+        .init(dt: 777, main: [:], weather: [], wind: [:], visibility: 777)
+    }
+}
+
+#endif
