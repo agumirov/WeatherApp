@@ -21,31 +21,22 @@ class WeatherViewModelImpl: WeatherViewModel {
     private var _output = PublishRelay<WeatherViewModelOutput>()
     private let disposeBag = DisposeBag()
     private var input: Input
-    private let weatherRepository: WeatherRepository // тоже должны быть ивенты?
-    private let weatherStorageManager: WeatherStorageManager
+    private let weatherRepository: WeatherRepository
     
     struct Input {
         var geoData: GeoModelDomain?
     }
     
     init(input: Input,
-         weatherRepository: WeatherRepository,
-         weatherStorageManager: WeatherStorageManager
+         weatherRepository: WeatherRepository
     ) {
         self.input = input
         self.weatherRepository = weatherRepository
-        self.weatherStorageManager = weatherStorageManager
     }
     
     private func getWeatherData(geoData: GeoModelDomain?) async throws -> WeatherModelDomain {
-        
-        if geoData == nil {
-            let result = try await weatherRepository.getWeatherDataFromStorage()
-            return result
-        } else {
-            let result = try await weatherRepository.getWeatherDataFromNetwork(geoData: geoData)
-            return result
-        }
+        let result = try await weatherRepository.getWeatherData(geoData: geoData)
+        return result
     }
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherModelDomain {
+struct WeatherModelDomain: Equatable {
     let list: [WeekModelDomain]
     let icon: String
     let date: Double
@@ -50,3 +50,31 @@ extension WeatherModelDomain {
         self.country = coreDataModel.country
     }
 }
+
+#if DEBUG
+extension WeatherModelDomain {
+    static var mock: WeatherModelDomain {
+        .init(
+            list: [], icon: "",
+            date: 0, temperature: 0,
+            humidity: 0, pressure: 0,
+            windspeed: 0, visibility: 0,
+            name: "Mock", country: "Mock"
+        )
+    }
+    
+//    static func mock(
+//        list:  [WeekModelDomain] = [] , icon: String,
+//        date: Double, temperature: Double,
+//        humidity: Double, pressure: Double,
+//        windspeed: Double, visibility: Double,
+//        name: String, country: String
+//    ) -> WeatherModelDomain {
+//        .init(list: list, icon: icon,
+//              date: date, temperature: temperature,
+//              humidity: humidity, pressure: pressure,
+//              windspeed: windspeed, visibility: visibility,
+//              name: name, country: country)
+//    }
+}
+#endif

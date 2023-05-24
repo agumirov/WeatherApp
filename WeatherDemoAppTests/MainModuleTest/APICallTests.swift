@@ -10,22 +10,17 @@ import Foundation
 import XCTest
 @testable import WeatherDemoApp
 
-class APICallsTest: XCTestCase {
-
-    func testFetchingWeatherData() async {
-        let networkService = NetworkServiceImplementation()
-        let mockGeoData = GeoModelDomain(name: "Aste-Béon",
-                                         country: "FR",
-                                         latitude: 43.0226905,
-                                         longitude: -0.4126314)
-        
-        let modelAPI = try? await networkService.getWeatherData(geoData: mockGeoData)
-        XCTAssertNotNil(modelAPI)
-    }
+class APICallsTests: XCTestCase {
+    let networkService = NetworkServiceImplementation()
     
     func testFetchingGeoData() async {
-        let networkService = NetworkServiceImplementation()
-        let modelAPI = try? await networkService.getGeoData(cityName: "Aste")
-        XCTAssertNotNil(modelAPI)
+        let expectation: [GeoModelAPI] = [.mock]
+        let result = try? await networkService.getGeoData(cityName: "London")
+        XCTAssertEqual(expectation.first, result?.first)
+    }
+    
+    func testFetchingWeatherData() async {
+        let result = try? await networkService.getWeatherData(geoData: .mock)
+        XCTAssertNotNil(result)
     }
 }
