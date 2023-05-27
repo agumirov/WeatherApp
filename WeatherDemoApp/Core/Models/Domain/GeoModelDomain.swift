@@ -28,7 +28,7 @@ extension GeoModelDomain {
     static var mock: GeoModelDomain {
         .init(name: "Mock", country: "Mock", latitude: 0.0, longitude: 0.0)
     }
-
+    
     static func mock(name: String,
                      latitude: Double,
                      longitude: Double,

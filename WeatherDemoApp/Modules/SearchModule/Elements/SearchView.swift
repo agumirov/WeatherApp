@@ -11,8 +11,7 @@ import RxSwift
 import RxCocoa
 
 class SearchView: UIView {
-    
-    
+        
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         let rect = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)

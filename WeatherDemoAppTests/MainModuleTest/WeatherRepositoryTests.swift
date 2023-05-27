@@ -10,18 +10,26 @@ import Foundation
 import XCTest
 @testable import WeatherDemoApp
 
-class RepositoryTests: XCTestCase {
+class WeatherRepositoryTests: XCTestCase {
     
-    func testRepository() async {
+    func testRepositoryFetchingDataFromNetwork() async {
         let expectation = ["weather requested", "data saved"]
         let repository = makeRepository { result in
             XCTAssertEqual(expectation, result)
         }
         _ = try? await repository.getWeatherData(geoData: .mock)
     }
+    
+    func testRepositoryFetchingDataFromStorage() async {
+        let expectation = ["data fetched"]
+        let repository = makeRepository { result in
+            XCTAssertEqual(expectation, result)
+        }
+        _ = try? await repository.getWeatherData(geoData: nil)
+    }
 }
 
-extension RepositoryTests {
+extension WeatherRepositoryTests {
     func makeRepository(completion: @escaping ([String]) -> Void ) -> WeatherRepository {
         var result: [String] = []
         let networkService = MockNetworkService(geoCompletion: {

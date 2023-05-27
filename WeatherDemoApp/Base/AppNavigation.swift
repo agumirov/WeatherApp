@@ -11,7 +11,6 @@ import UIKit
 class AppNavigation: UINavigationController {
     
     var coordinator: AppCoordinator?
-    
     private var isFlowStarted = false
     
     override func viewWillAppear(_ animated: Bool) {

@@ -13,25 +13,19 @@ enum URLEncoder {
                        with parameters: Parameters) throws {
         
         guard let url = urlRequest.url else { throw EncoderError.missingURL }
-        
         if var urlComponent = URLComponents(
             url: url,
             resolvingAgainstBaseURL: false
         ), !parameters.isEmpty {
-            
             urlComponent.queryItems = []
-            
             for (key, value) in parameters {
-                
                 let queryItem = URLQueryItem(
                     name: key,
                     value: "\(value)"
                         .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
                 )
-                
                 urlComponent.queryItems?.append(queryItem)
             }
-            
             urlRequest.url = urlComponent.url
         }
         

@@ -13,6 +13,7 @@ import RxCocoa
 
 class FiveDaysView: UIView {
     
+    // MARK: - Properties
     private lazy var weatherList: [WeekModelDomain] = []
     
     private let fiveDaysLabel: UILabel = {
@@ -49,6 +50,7 @@ class FiveDaysView: UIView {
         return stack
     }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
@@ -75,6 +77,7 @@ class FiveDaysView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     func setupViews() {
         addSubview(stackView)
         addSubview(fiveDaysLabel)

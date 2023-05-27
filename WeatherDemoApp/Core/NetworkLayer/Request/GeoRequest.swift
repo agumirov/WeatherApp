@@ -9,13 +9,12 @@ import Foundation
 
 
 struct GeoRequest: RequestType {
+    var type: GeoRequestType
     
     enum GeoRequestType {
         case cityName(cityName: String)
         case zipCode(code: Double)
     }
-    
-    var type: GeoRequestType
     
     var baseURL: URL {
         guard let url = URL(string: "https://api.openweathermap.org")

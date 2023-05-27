@@ -8,10 +8,11 @@
 import Foundation
 
 class WeatherRepositoryImpl: WeatherRepository {
-    
+    // MARK: - Properties
     private let networkService: NetworkService
     private let weatherStorageManager: WeatherStorageManager
     
+    // MARK: - Init
     init(networkService: NetworkService,
          weatherStorageManager: WeatherStorageManager) {
         self.networkService = networkService
@@ -29,6 +30,7 @@ class WeatherRepositoryImpl: WeatherRepository {
     }
 }
 
+// MARK: - Private methods
 extension WeatherRepositoryImpl {
     
     private func getWeatherDataFromStorage() async throws -> WeatherModelDomain {

@@ -22,15 +22,16 @@ enum WeatherModuleBuilder {
         let geoData: GeoModelDomain?
     }
     
-    static func buildWeatherModule(payLoad: Payload,
-                                   dependencies: Dependencies) -> WeatherModule {
-        
-        let weatherRepository = WeatherRepositoryImpl(networkService: dependencies.networkService,
-                                                      weatherStorageManager: dependencies.weatherStorageManager)
+    static func buildWeatherModule(payLoad: Payload, dependencies: Dependencies) -> WeatherModule {
+        let weatherRepository = WeatherRepositoryImpl(
+            networkService: dependencies.networkService,
+            weatherStorageManager: dependencies.weatherStorageManager
+        )
         
         let viewModel = WeatherViewModelImpl(
             input: .init(geoData: payLoad.geoData),
-            weatherRepository: weatherRepository)
+            weatherRepository: weatherRepository
+        )
         
         let view = WeatherViewController(viewModel: viewModel)
         return WeatherModule(view, viewModel.output)

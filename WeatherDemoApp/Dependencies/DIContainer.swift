@@ -10,7 +10,6 @@ import Foundation
 class DIContainer {
     
     static var standart = DIContainer()
-    
     private var dependencies: [String: Weak] = [:]
     
     func register<Dependency>(_ dependency: Dependency) {

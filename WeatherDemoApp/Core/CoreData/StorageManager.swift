@@ -39,25 +39,29 @@ class StorageManager {
     }
     
     func createObject<Entity: NSManagedObject>() -> Entity {
-            return Entity(context: context)
+        return Entity(context: context)
+    }
+    
+    func fetchObjects<Entity: NSManagedObject>(
+        entityType: Entity.Type,
+        predicate: NSPredicate? = nil,
+        sortDescriptors: [NSSortDescriptor]? = nil)
+    -> [Entity] {
+        let request = Entity.fetchRequest()
+        request.predicate = predicate
+        request.sortDescriptors = sortDescriptors
+        do {
+            return try context.fetch(request) as! [Entity]
+        } catch {
+            print("Fetch failed with error: \(error)")
+            return []
         }
-        
-        func fetchObjects<Entity: NSManagedObject>(entityType: Entity.Type, predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) -> [Entity] {
-            let request = Entity.fetchRequest()
-            request.predicate = predicate
-            request.sortDescriptors = sortDescriptors
-            do {
-                return try context.fetch(request) as! [Entity]
-            } catch {
-                print("Fetch failed with error: \(error)")
-                return []
-            }
-        }
-        
-        func deleteObject<Entity: NSManagedObject>(_ object: Entity) {
-            context.delete(object)
-            saveContext()
-        }
+    }
+    
+    func deleteObject<Entity: NSManagedObject>(_ object: Entity) {
+        context.delete(object)
+        saveContext()
+    }
 }
 
 enum StorageErrors: String, Error {

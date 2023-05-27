@@ -9,11 +9,12 @@ import Foundation
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Properties
     static let cellId = "CollectionViewCell"
     
     private let city: UILabel = {
         let label = UILabel()
-        label.text = "Error message here"
         label.font = UIFont(name: Resources.Font.regular, size: Resources.Font.title1)
         label.textAlignment = .left
         label.textColor = .black
@@ -22,13 +23,13 @@ class CollectionViewCell: UICollectionViewCell {
     
     private let country: UILabel = {
         let label = UILabel()
-        label.text = "Error message here"
         label.font = UIFont(name: Resources.Font.regular, size: Resources.Font.title1)
         label.textAlignment = .left
         label.textColor = .black
         return label
     }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -39,6 +40,7 @@ class CollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     private func setupViews() {
         contentView.addSubview(city)
         contentView.addSubview(country)

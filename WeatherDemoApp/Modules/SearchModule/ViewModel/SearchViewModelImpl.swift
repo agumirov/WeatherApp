@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class SearchViewModelImpl: SearchViewModel {
-    
+    // MARK: - Properties
     var output: Observable<SearchViewModelOutput> {
         _output.asObservable()
     }
@@ -23,10 +23,12 @@ class SearchViewModelImpl: SearchViewModel {
     private var geoRepository: GeoRepository
     private var disposeBag = DisposeBag()
     
+    // MARK: - Init
     init(geoRepository: GeoRepository) {
         self.geoRepository = geoRepository
     }
-        
+    
+    // MARK: - Methods
     private func searchCall(cityName: String) async throws -> [GeoModelDomain] {
         
         let task = Task {
@@ -42,7 +44,7 @@ class SearchViewModelImpl: SearchViewModel {
     }
 }
 
-// States/Events
+// MARK: - Events and States handling
 extension SearchViewModelImpl {
     
     enum State {

@@ -8,12 +8,16 @@
 import Foundation
 
 class GeoRepositoryImpl: GeoRepository {
+    
+    // MARK: - Properties
     private let networkService: NetworkService
     
+    // MARK: - Init
     init(networkService: NetworkService) {
         self.networkService = networkService
     }
     
+    // MARK: - Methods
     func getGeoData(cityName: String) async throws -> [GeoModelDomain] {
         let apiModelArray = try await networkService.getGeoData(cityName: cityName)
         let domainModelArray = apiModelArray.map { apiModel in

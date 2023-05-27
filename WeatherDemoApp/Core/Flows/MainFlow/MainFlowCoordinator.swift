@@ -12,15 +12,17 @@ import RxCocoa
 
 
 class MainFlowCoordinator: AppCoordinator {
-    
+   
+    // MARK: - Properties
     private let disposeBag = DisposeBag()
     
+    // MARK: - Init
     override func start() {
         super.start()
         showWeatherScreen(geoData: nil)
     }
 }
-
+// MARK: - Methods
 extension MainFlowCoordinator {
     
     func showWeatherScreen(geoData: GeoModelDomain?) {

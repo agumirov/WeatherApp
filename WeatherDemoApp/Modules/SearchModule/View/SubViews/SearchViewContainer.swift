@@ -8,21 +8,22 @@
 import Foundation
 import UIKit
 import RxSwift
+import SnapKit
 
 class SearchViewContainer: UIView {
-    
+    // MARK: - Properties
     private let loadedView = SearchLoadedView()
-    
     private let errorView = SearchErrorView()
-    
     private let loadingView = LoadingScreen()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupUI()
     }
     
+    // MARK: - SetupUI
     private func setupUI() {
         addSubview(loadedView)
         addSubview(errorView)
@@ -40,36 +41,14 @@ class SearchViewContainer: UIView {
             make.center.equalToSuperview()
         }
     }
-   
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func render(state: SearchViewController.State) {
-        switch state {
-        case .initial:
-            errorView.isHidden = true
-            loadingView.isHidden = true
-            loadedView.isHidden = false
-            loadedView.render(cities: [])
-        case .loading:
-            errorView.isHidden = true
-            loadingView.isHidden = false
-            loadedView.isHidden = true
-        case .failure:
-            errorView.isHidden = false
-            loadingView.isHidden = true
-            loadedView.isHidden = true
-        case let .loaded(cities):
-            errorView.isHidden = true
-            loadingView.isHidden = true
-            loadedView.isHidden = false
-            loadedView.render(cities: cities)
-        }
-    }
 }
 
+// MARK: - Events and States handling
 extension SearchViewContainer {
     
     enum Event {
@@ -100,5 +79,28 @@ extension SearchViewContainer {
                     }
                 })
         )
+    }
+    
+    func render(state: SearchViewController.State) {
+        switch state {
+        case .initial:
+            errorView.isHidden = true
+            loadingView.isHidden = true
+            loadedView.isHidden = false
+            loadedView.render(cities: [])
+        case .loading:
+            errorView.isHidden = true
+            loadingView.isHidden = false
+            loadedView.isHidden = true
+        case .failure:
+            errorView.isHidden = false
+            loadingView.isHidden = true
+            loadedView.isHidden = true
+        case let .loaded(cities):
+            errorView.isHidden = true
+            loadingView.isHidden = true
+            loadedView.isHidden = false
+            loadedView.render(cities: cities)
+        }
     }
 }

@@ -12,33 +12,13 @@ import RxCocoa
 
 class SearchLoadedView: UIView {
     
+    // MARK: - Properties
     private var cities: [GeoModelDomain] = []
-    
     private var _event = PublishRelay<Event>()
-    
-    private let searchView = SearchView()
-    
     private let disposeBag = DisposeBag()
-    
-    private let searchField: UITextField = {
-        let field = UITextField()
-        let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-        field.leftView = padding
-        field.leftViewMode = .always
-        field.placeholder = "Search Location".uppercased()
-        field.layer.cornerRadius = 20
-        field.backgroundColor = .systemGray4
-        return field
-    }()
-    
-    private let closeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .black
-        button.addTarget(self, action: #selector(cancelSearch), for: .touchUpInside)
-        return button
-    }()
-    
+    private let searchView = SearchView()
+    private let searchField = UITextField()
+    private let closeButton = UIButton()
     private let collection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -50,10 +30,11 @@ class SearchLoadedView: UIView {
         return collection
     }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupViews()
+        setupUI()
         collectionConfig()
         bindText()
     }
@@ -62,33 +43,20 @@ class SearchLoadedView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupViews() {
+    // MARK: - Methods
+    private func setupUI() {
+        setupsearchView()
+        setupCloseButton()
+        setupsearchField()        
+        collectionConfig()
+    }
+}
+
+// MARK: - Setup UI elements
+extension SearchLoadedView {
+    
+    private func setupsearchView() {
         addSubview(searchView)
-        searchView.addSubview(closeButton)
-        searchView.addSubview(searchField)
-        searchView.addSubview(collection)
-        
-        closeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-                .inset(28)
-            make.right.equalToSuperview()
-                .inset(23)
-        }
-        
-        searchField.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-                .inset(55)
-            make.top.equalTo(closeButton.snp.bottom)
-                .inset(12)
-            make.height.equalTo(44)
-        }
-        
-        collection.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(searchField.snp.bottom)
-                .offset(30)
-            make.bottom.equalToSuperview()
-        }
         
         searchView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
@@ -97,37 +65,69 @@ class SearchLoadedView: UIView {
         }
     }
     
+    private func setupCloseButton() {
+        searchView.addSubview(closeButton)
+        
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.tintColor = .black
+        closeButton.rx.tap
+            .bind { [weak self] in
+                self?._event.accept(.cancelSearch)
+            }
+            .disposed(by: disposeBag)
+        
+        closeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+                .inset(28)
+            make.right.equalToSuperview()
+                .inset(23)
+        }
+    }
+    
+    private func setupsearchField() {
+        searchView.addSubview(searchField)
+        
+        let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        searchField.leftView = padding
+        searchField.leftViewMode = .always
+        searchField.placeholder = "Search Location".uppercased()
+        searchField.layer.cornerRadius = 20
+        searchField.backgroundColor = .systemGray4
+        
+        searchField.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+                .inset(55)
+            make.top.equalTo(closeButton.snp.bottom)
+                .inset(12)
+            make.height.equalTo(44)
+        }
+    }
+    
     private func collectionConfig() {
+        searchView.addSubview(collection)
+        
         collection.delegate = self
         collection.dataSource = self
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
         collection.contentInset = UIEdgeInsets(top: 10, left: 10,
                                                bottom: 0, right: 10)
-    }
-    
-    private func bindText() {
-        searchField.rx.text
-            .asObservable()
-            .subscribe(onNext: {[weak self] text in
-                if text == "" { return }
-                guard let self = self else { return }
-                self._event.accept(.searchDidChange(text: (text ?? "") ))
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    @objc private func cancelSearch() {
-        _event.accept(.cancelSearch)
+        
+        collection.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(searchField.snp.bottom)
+                .offset(30)
+            make.bottom.equalToSuperview()
+        }
     }
 }
 
+// MARK: - CollectionView Delegate
 extension SearchLoadedView: UICollectionViewDelegate,
                              UICollectionViewDataSource,
                              UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Items in section. There should be [arrayWithData].count
         cities.count
     }
     
@@ -135,7 +135,6 @@ extension SearchLoadedView: UICollectionViewDelegate,
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        // put your cell here
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: CollectionViewCell.cellId,
             for: indexPath
@@ -167,6 +166,7 @@ extension SearchLoadedView: UICollectionViewDelegate,
     }
 }
 
+// MARK: - Events and States handling
 extension SearchLoadedView {
     
     enum Event {
@@ -182,5 +182,16 @@ extension SearchLoadedView {
     func render(cities: [GeoModelDomain]) {
         self.cities = cities
         collection.reloadData()
+    }
+    
+    private func bindText() {
+        searchField.rx.text
+            .asObservable()
+            .subscribe(onNext: {[weak self] text in
+                guard let text = text, let self = self else { return }
+                if text.isEmpty { return }
+                self._event.accept(.searchDidChange(text: text))
+            })
+            .disposed(by: disposeBag)
     }
 }

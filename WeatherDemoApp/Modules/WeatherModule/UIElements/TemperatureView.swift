@@ -10,6 +10,7 @@ import UIKit
 
 class TemperatureView: UIView {
     
+    // MARK: - Properties
     private let cloudImage: UIImageView = {
         let imageView = UIImageView()
         return imageView
@@ -26,6 +27,7 @@ class TemperatureView: UIView {
         return label
     }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
@@ -41,6 +43,7 @@ class TemperatureView: UIView {
         path.fill()
     }
     
+    // MARK: - Methods
     private func setupViews() {
         
         addSubViews(subViews: [

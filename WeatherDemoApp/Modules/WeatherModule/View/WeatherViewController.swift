@@ -11,13 +11,12 @@ import RxSwift
 
 class WeatherViewController: UIViewController {
     
-    var viewModel: WeatherViewModel
-    
+    // MARK: - Properties
+    private var viewModel: WeatherViewModel
     private let container = WeatherViewContainer()
-    
     private let disposeBag = DisposeBag()
     
-    init(viewModel: any WeatherViewModel) {
+    init(viewModel: WeatherViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -26,6 +25,7 @@ class WeatherViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +34,6 @@ class WeatherViewController: UIViewController {
         setupUI()
         viewModel.sendEvent(.viewDidLoad)
     }
-    
     
     private func setupGradient() {
         let gradient = CAGradientLayer()
@@ -46,7 +45,7 @@ class WeatherViewController: UIViewController {
         view.layer.insertSublayer(gradient, at: 0)
     }
     
-    
+    // MARK: - Methods
     private func setupUI() {
         view.addSubview(container)
         
@@ -77,6 +76,7 @@ class WeatherViewController: UIViewController {
     }
 }
 
+// MARK: - Events
 extension WeatherViewController {
     
     enum WeatherEvent {

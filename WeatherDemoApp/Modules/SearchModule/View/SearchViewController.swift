@@ -13,12 +13,12 @@ import RxCocoa
 
 class SearchViewController: UIViewController {
     
+    // MARK: - Properties
     var viewModel: SearchViewModel
-    
     private let container = SearchViewContainer()
-    
     private let disposeBag = DisposeBag()
     
+    // MARK: - Init
     init(viewModel: SearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -28,16 +28,16 @@ class SearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         bindState()
         setupGradient()
     }
     
+    // MARK: - Methods
     private func setupUI() {
-        
         view.addSubview(container)
         
         container.snp.makeConstraints { make in
@@ -45,8 +45,17 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private func setupGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [
+            UIColor(hexString: "#30A2C5").cgColor,
+            UIColor(hexString: "#000000").cgColor
+        ]
+        view.layer.insertSublayer(gradient, at: 0)
+    }
+    
     private func bindState() {
-        
         viewModel.state
             .subscribe(onNext: { [weak self] state in
                 guard let self = self else { return }
@@ -69,20 +78,10 @@ class SearchViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-    
-    private func setupGradient() {
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [
-            UIColor(hexString: "#30A2C5").cgColor,
-            UIColor(hexString: "#000000").cgColor
-        ]
-        view.layer.insertSublayer(gradient, at: 0)
-    }
 }
 
+// MARK: - State and Event hadling
 extension SearchViewController {
-    
     func render(state: State) {
         switch state {
         case .initial:

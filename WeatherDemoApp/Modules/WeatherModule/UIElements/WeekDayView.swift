@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class WeekDayView: UIView {
-    
+    // MARK: - Properties
     private let dayLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(
@@ -40,6 +40,7 @@ class WeekDayView: UIView {
     
     private let squareView = UIView()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.borderColor = UIColor.systemGray6.cgColor
@@ -63,6 +64,7 @@ class WeekDayView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     private func setupViews() {
         addSubViews(subViews: [
             weatherImage, temperatureLabel, dayLabel

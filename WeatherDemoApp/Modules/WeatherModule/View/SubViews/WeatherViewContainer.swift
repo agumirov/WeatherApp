@@ -9,22 +9,22 @@ import Foundation
 import UIKit
 import RxSwift
 
-class WeatherViewContainer: UIView { // hasViewModel??
+class WeatherViewContainer: UIView {
     
+    // MARK: - Properties
     private let successView = WeatherSuccessView()
-    
     private let errorView = WeatherErrorView()
-    
     private let loadingView = LoadingScreen()
-    
     private let disposeBag = DisposeBag()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupUI()
     }
     
+    // MARK: - Methods
     private func setupUI() {
         
         addSubview(errorView)
@@ -50,7 +50,12 @@ class WeatherViewContainer: UIView { // hasViewModel??
     }
 }
 
+// MARK: - Events and States handling
 extension WeatherViewContainer {
+    
+    enum Event {
+        case searchSelected
+    }
     
     enum WeatherState {
         case initial
@@ -59,6 +64,28 @@ extension WeatherViewContainer {
                      date: String,
                      weekWeather: [WeekModelDomain])
         case error
+    }
+    
+    var event: Observable<Event> {
+        Observable.merge(
+            successView.event
+                .asObservable()
+                .map { event in
+                    switch event {
+                    case .search:
+                        return .searchSelected
+                    }
+                },
+            
+            errorView.event
+                .asObservable()
+                .map({ event in
+                    switch event {
+                    case .retrySearch:
+                        return .searchSelected
+                    }
+                })
+        )
     }
     
     func render(state: WeatherState) {
@@ -83,34 +110,5 @@ extension WeatherViewContainer {
             loadingView.isHidden = true
             successView.isHidden = true
         }
-    }
-}
-
-extension WeatherViewContainer {
-    
-    enum Event {
-        case searchSelected
-    }
-    
-    var event: Observable<Event> {
-        Observable.merge(
-            successView.event
-                .asObservable()
-                .map { event in
-                    switch event {
-                    case .search:
-                        return .searchSelected
-                    }
-                },
-            
-            errorView.event
-                .asObservable()
-                .map({ event in
-                    switch event {
-                    case .retrySearch:
-                        return .searchSelected
-                    }
-                })
-        )
     }
 }

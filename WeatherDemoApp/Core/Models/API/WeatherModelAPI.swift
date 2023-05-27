@@ -8,21 +8,33 @@
 import Foundation
 import CoreData
 
-struct WeatherModelAPI: Codable {
+struct WeatherModelAPI: Codable, Equatable {
+    static func == (lhs: WeatherModelAPI, rhs: WeatherModelAPI) -> Bool {
+        return lhs.list == rhs.list
+    }
+    
     let list: [WeatherData]
 }
 
-struct Weather: Codable {
+struct Weather: Codable, Equatable {
     let description: String
     let icon: String
 }
 
-struct WeatherData: Codable {
+struct WeatherData: Codable, Equatable {
     let dt: Double
     let main: [String: Double]
     let weather: [Weather]
     let wind: [String: Double]
     let visibility: Double
+    
+    static func == (lhs: WeatherData, rhs: WeatherData) -> Bool {
+            return lhs.dt == rhs.dt &&
+                   lhs.main == rhs.main &&
+                   lhs.weather == rhs.weather &&
+                   lhs.wind == rhs.wind &&
+                   lhs.visibility == rhs.visibility
+    }
 }
 
 #if DEBUG

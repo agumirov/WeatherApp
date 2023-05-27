@@ -62,19 +62,5 @@ extension WeatherModelDomain {
             name: "Mock", country: "Mock"
         )
     }
-    
-//    static func mock(
-//        list:  [WeekModelDomain] = [] , icon: String,
-//        date: Double, temperature: Double,
-//        humidity: Double, pressure: Double,
-//        windspeed: Double, visibility: Double,
-//        name: String, country: String
-//    ) -> WeatherModelDomain {
-//        .init(list: list, icon: icon,
-//              date: date, temperature: temperature,
-//              humidity: humidity, pressure: pressure,
-//              windspeed: windspeed, visibility: visibility,
-//              name: name, country: country)
-//    }
 }
 #endif

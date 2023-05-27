@@ -11,25 +11,25 @@ import RxSwift
 
 class WeatherViewModelImpl: WeatherViewModel {
     
-    var state: Observable<State> {
-        _state.asObservable()
-    }
+    // MARK: - Properties
     private var _state = PublishRelay<State>()
-    var output: Observable<OutputEvents> {
-        _output.asObservable()
-    }
     private var _output = PublishRelay<WeatherViewModelOutput>()
     private let disposeBag = DisposeBag()
     private var input: Input
     private let weatherRepository: WeatherRepository
-    
+    var state: Observable<State> {
+        _state.asObservable()
+    }
+    var output: Observable<OutputEvents> {
+        _output.asObservable()
+    }
+        
     struct Input {
         var geoData: GeoModelDomain?
     }
     
-    init(input: Input,
-         weatherRepository: WeatherRepository
-    ) {
+    // MARK: - Init
+    init(input: Input, weatherRepository: WeatherRepository) {
         self.input = input
         self.weatherRepository = weatherRepository
     }
@@ -39,7 +39,7 @@ class WeatherViewModelImpl: WeatherViewModel {
         return result
     }
 }
-
+// MARK: - State and Event handling
 extension WeatherViewModelImpl {
     
     enum State {
@@ -84,14 +84,11 @@ extension WeatherViewModelImpl {
     }
     
     private func prepareData(date: Double, weekWeather: [WeekModelDomain]) -> (String, [WeekModelDomain]) {
-        
         let date: String = DateService.convertTimestampToFullStringDate(date)
-        
         let list: [WeekModelDomain] = {
             var weekDayData: [WeekModelDomain] = []
             var currentDate = Date()
             let weatherList = weekWeather
-            
             for weekDay in weatherList {
                 let dateDay = DateService.getDayComponent(fromDate: Date(timeIntervalSince1970: weekDay.day))
                 let nextDayDate = DateService.calculateNextDay(fromDate: currentDate)
@@ -104,7 +101,6 @@ extension WeatherViewModelImpl {
             }
             return weekDayData
         }()
-        
         return (date, list)
     }
     

@@ -9,8 +9,6 @@ import Foundation
 
 
 protocol NetworkService: AnyObject {
-    
     func getWeatherData(geoData: GeoModelDomain) async throws -> WeatherModelAPI
-    
     func getGeoData(cityName: String) async throws -> [GeoModelAPI]
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 class WeekModelDomain: NSObject, NSCoding {
-
+    
     let weatherImage: String
     let day: Double
     let temperature: String
@@ -22,17 +22,17 @@ class WeekModelDomain: NSObject, NSCoding {
     }
     
     // MARK: - NSCoding
-      func encode(with coder: NSCoder) {
-          coder.encode(weatherImage, forKey: "weatherImage")
-          coder.encode(day, forKey: "day")
-          coder.encode(temperature, forKey: "temperature")
-          coder.encode(weekDay, forKey: "weekDay")
-      }
-      
-      required init?(coder: NSCoder) {
-          self.weatherImage = coder.decodeObject(forKey: "weatherImage") as? String ?? ""
-          self.day = coder.decodeDouble(forKey: "day")
-          self.temperature = coder.decodeObject(forKey: "temperature") as? String ?? ""
-          self.weekDay = coder.decodeObject(forKey: "weekDay") as? String ?? ""
-      }
+    func encode(with coder: NSCoder) {
+        coder.encode(weatherImage, forKey: "weatherImage")
+        coder.encode(day, forKey: "day")
+        coder.encode(temperature, forKey: "temperature")
+        coder.encode(weekDay, forKey: "weekDay")
+    }
+    
+    required init?(coder: NSCoder) {
+        self.weatherImage = coder.decodeObject(forKey: "weatherImage") as? String ?? ""
+        self.day = coder.decodeDouble(forKey: "day")
+        self.temperature = coder.decodeObject(forKey: "temperature") as? String ?? ""
+        self.weekDay = coder.decodeObject(forKey: "weekDay") as? String ?? ""
+    }
 }

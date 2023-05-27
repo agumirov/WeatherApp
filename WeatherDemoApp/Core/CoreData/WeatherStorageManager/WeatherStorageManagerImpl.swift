@@ -38,7 +38,6 @@ class WeatherStorageManagerImpl: StorageManager, WeatherStorageManager {
             let fetchedResults = try context.fetch(fetchRequest)
             return fetchedResults
         } catch {
-//            fatalError("Failed to fetch entities: \(error)")
             throw StorageErrors.fetchingFailed
         }
     }

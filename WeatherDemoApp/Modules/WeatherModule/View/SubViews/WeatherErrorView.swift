@@ -12,6 +12,7 @@ import RxRelay
 
 class WeatherErrorView: UIView {
     
+    // MARK: - Properties
     private var _event = PublishRelay<Event>()
     
     let errorMessage: UILabel = {
@@ -26,6 +27,7 @@ class WeatherErrorView: UIView {
         return label
     }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -37,6 +39,15 @@ class WeatherErrorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
+    private func setupUI() {
+        addSubview(errorMessage)
+        
+        errorMessage.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
     private func setupGradient() {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
@@ -46,16 +57,9 @@ class WeatherErrorView: UIView {
         ]
         layer.insertSublayer(gradient, at: 0)
     }
-    
-    private func setupUI() {
-        addSubview(errorMessage)
-        
-        errorMessage.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
 }
 
+// MARK: - Events
 extension WeatherErrorView {
     
     enum Event {
