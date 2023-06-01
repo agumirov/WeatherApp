@@ -18,10 +18,7 @@ enum RequestBuilder<Request: RequestType> {
         do {
             switch request.config {
                 
-            case let .withParameters(
-                bodyParameters,
-                urlParameters
-            ):
+            case let .withParameters(bodyParameters, urlParameters):
                 try self.configParameters(
                     bodyParameters: bodyParameters,
                     urlParameters: urlParameters,
@@ -29,11 +26,7 @@ enum RequestBuilder<Request: RequestType> {
                     urlRequest: &configuredRequest
                 )
                 
-            case let .withParametersAndHeaders(
-                bodyParameters,
-                urlParameters,
-                headers
-            ):
+            case let .withParametersAndHeaders(bodyParameters, urlParameters, headers):
                 try self.configParameters(
                     bodyParameters: bodyParameters,
                     urlParameters: urlParameters,

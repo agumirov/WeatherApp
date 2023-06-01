@@ -14,7 +14,7 @@ import RxCocoa
 class SearchViewController: UIViewController {
     
     // MARK: - Properties
-    var viewModel: SearchViewModel
+    private weak var viewModel: SearchViewModel?
     private let container = SearchViewContainer()
     private let disposeBag = DisposeBag()
     
@@ -56,7 +56,7 @@ class SearchViewController: UIViewController {
     }
     
     private func bindState() {
-        viewModel.state
+        viewModel?.state
             .subscribe(onNext: { [weak self] state in
                 guard let self = self else { return }
                 let viewState = SearchStateConverter.convert(event: state)
@@ -69,11 +69,11 @@ class SearchViewController: UIViewController {
                 guard let self = self else { return }
                 switch event {
                 case let .citySelected(geoData):
-                    self.viewModel.sendEvent(.showWeather(geoData: geoData))
+                    self.viewModel?.sendEvent(.showWeather(geoData: geoData))
                 case let .showCityList(value):
-                    self.viewModel.sendEvent(.showCities(value: value))
+                    self.viewModel?.sendEvent(.showCities(value: value))
                 case .cancelSearch:
-                    self.viewModel.sendEvent(.cancelSearch)
+                    self.viewModel?.sendEvent(.cancelSearch)
                 }
             })
             .disposed(by: disposeBag)

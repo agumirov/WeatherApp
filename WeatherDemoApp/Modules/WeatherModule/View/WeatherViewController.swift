@@ -12,7 +12,7 @@ import RxSwift
 class WeatherViewController: UIViewController {
     
     // MARK: - Properties
-    private var viewModel: WeatherViewModel
+    private weak var viewModel: WeatherViewModel?
     private let container = WeatherViewContainer()
     private let disposeBag = DisposeBag()
     
@@ -32,7 +32,7 @@ class WeatherViewController: UIViewController {
         setupGradient()
         bindViewModel()
         setupUI()
-        viewModel.sendEvent(.viewDidLoad)
+        viewModel?.sendEvent(.viewDidLoad)
     }
     
     private func setupGradient() {
@@ -56,7 +56,7 @@ class WeatherViewController: UIViewController {
     
     private func bindViewModel() {
         
-        viewModel.state
+        viewModel?.state
             .subscribe(onNext: {[weak self] state in
                 guard let self = self else { return }
                 let viewState = WeatherStateConverter.convert(state: state)
@@ -69,7 +69,7 @@ class WeatherViewController: UIViewController {
             .subscribe(onNext: { [weak self] event in
                 switch event {
                 case .searchSelected:
-                    self?.viewModel.sendEvent(.searchSelected)
+                    self?.viewModel?.sendEvent(.searchSelected)
                 }
             })
             .disposed(by: disposeBag)

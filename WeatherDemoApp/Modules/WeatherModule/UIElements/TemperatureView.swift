@@ -46,9 +46,7 @@ class TemperatureView: UIView {
     // MARK: - Methods
     private func setupViews() {
         
-        addSubViews(subViews: [
-            cloudImage, temperatureLabel
-        ])
+        addSubViews(cloudImage, temperatureLabel)
         
         
         cloudImage.snp.makeConstraints { make in

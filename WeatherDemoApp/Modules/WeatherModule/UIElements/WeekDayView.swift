@@ -66,9 +66,7 @@ class WeekDayView: UIView {
     
     // MARK: - Methods
     private func setupViews() {
-        addSubViews(subViews: [
-            weatherImage, temperatureLabel, dayLabel
-        ])
+        addSubViews(weatherImage, temperatureLabel, dayLabel)
         
         dayLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
