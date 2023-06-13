@@ -40,7 +40,7 @@ class WeatherViewContainer: UIView {
         }
         
         errorView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
@@ -93,7 +93,7 @@ extension WeatherViewContainer {
         case .initial:
             errorView.isHidden = true
             loadingView.isHidden = true
-            successView.isHidden = false // check coreData and load data from it, or send searchSelected event
+            successView.isHidden = false
         case .loading:
             errorView.isHidden = true
             loadingView.isHidden = false

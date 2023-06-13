@@ -23,7 +23,7 @@ enum Resources {
     }
     
     enum Constraints {
-        
+        static let labelHorizontalInsets = 20.0
         static let searchLogoSize = getSize(side: .height, size: 30)
         static let searchLogoRight = getSize(side: .width, size: 25)
         
